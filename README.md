@@ -4,6 +4,6 @@
 
 
 
-#Machine Learning
+#Machine Learning - supervised learning
 
 Random Forest
