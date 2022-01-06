@@ -8,3 +8,5 @@ The topic we selected was Covid-19 as it is still shutting down large parts of t
 
 # Transforming Data
 While the data provided by Our World in Data is very comprehensive spanning many features across the continents we first need to clean up the data. We plan to do this by first sorting through and filtering out any misisng data points.
+
+# Questions to be answered:
