@@ -8,7 +8,7 @@ The topic we selected was Covid-19 as it is still shutting down large parts of t
 
 
 
-#Machine Learning - supervised learning
+## Machine Learning - supervised learning
 
 Random Forest
 >>>>>>> 2ccbbb866933fc00f6939cfefc38997edcd53823
