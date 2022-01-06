@@ -8,7 +8,7 @@ The topic we selected was Covid-19 as it is still shutting down large parts of t
 
 
 
-## Machine Learning - supervised learning
+## Machine Learning - Supervised Learning
 The focus of this project will be towards COVID-19 utilizing a dataset containing information from many different countries.
 
 
