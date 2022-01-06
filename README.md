@@ -7,5 +7,4 @@ The topic we selected was Covid-19 as it is still shutting down large parts of t
 >>>>>>> 4e80af5dcdc97a8c34baae0c18bc8d064b94be2f
 
 # Transforming Data
-While the data provided by Our World in Data is very comprehensive spanning many features across the continents there are many data points missing.
-
+While the data provided by Our World in Data is very comprehensive spanning many features across the continents we first need to clean up the data. We plan to do this by first sorting through and filtering out any misisng data points.
