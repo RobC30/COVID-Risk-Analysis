@@ -1,0 +1,1144 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20214.21.1217.2252                               -->
+<workbook original-version='18.1' source-build='2021.4.2 (20214.21.1217.2252)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <style>
+    <_.fcp.MarkAnimation.true...style-rule element='animation'>
+      <format attr='animation-on' value='ao-on' />
+      <format attr='animation-duration' value='0.5' />
+    </_.fcp.MarkAnimation.true...style-rule>
+  </style>
+  <datasources>
+    <datasource caption='Covid_Cleaned_Database' inline='true' name='federated.0odh0nl1upa7j81cq6uit151wcoo' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='Covid_Cleaned_Database' name='textscan.1gfyptq01nlb5618sfqwv1q01mp3'>
+            <connection class='textscan' directory='C:/Users/Naftoli Dubin/Desktop/Class/COVID-Risk-Analysis/Resources' filename='Covid_Cleaned_Database.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.1gfyptq01nlb5618sfqwv1q01mp3' name='Covid_Cleaned_Database.csv' table='[Covid_Cleaned_Database#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='Row_ID' ordinal='0' />
+            <column datatype='string' name='continent' ordinal='1' />
+            <column datatype='string' name='location' ordinal='2' />
+            <column datatype='date' name='date' ordinal='3' />
+            <column datatype='real' name='new_cases' ordinal='4' />
+            <column datatype='real' name='new_deaths' ordinal='5' />
+            <column datatype='real' name='new_cases_smoothed_per_million' ordinal='6' />
+            <column datatype='real' name='reproduction_rate' ordinal='7' />
+            <column datatype='real' name='new_tests_smoothed' ordinal='8' />
+            <column datatype='string' name='tests_units' ordinal='9' />
+            <column datatype='real' name='stringency_index' ordinal='10' />
+            <column datatype='real' name='population' ordinal='11' />
+            <column datatype='real' name='population_density' ordinal='12' />
+            <column datatype='real' name='median_age' ordinal='13' />
+            <column datatype='real' name='aged_65_older' ordinal='14' />
+            <column datatype='real' name='aged_70_older' ordinal='15' />
+            <column datatype='real' name='gdp_per_capita' ordinal='16' />
+            <column datatype='real' name='extreme_poverty' ordinal='17' />
+            <column datatype='real' name='cardiovasc_death_rate' ordinal='18' />
+            <column datatype='real' name='diabetes_prevalence' ordinal='19' />
+            <column datatype='real' name='female_smokers' ordinal='20' />
+            <column datatype='real' name='male_smokers' ordinal='21' />
+            <column datatype='real' name='hospital_beds_per_thousand' ordinal='22' />
+            <column datatype='real' name='life_expectancy' ordinal='23' />
+            <column datatype='real' name='human_development_index' ordinal='24' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='textscan.1gfyptq01nlb5618sfqwv1q01mp3' name='Covid_Cleaned_Database.csv' table='[Covid_Cleaned_Database#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='Row_ID' ordinal='0' />
+            <column datatype='string' name='continent' ordinal='1' />
+            <column datatype='string' name='location' ordinal='2' />
+            <column datatype='date' name='date' ordinal='3' />
+            <column datatype='real' name='new_cases' ordinal='4' />
+            <column datatype='real' name='new_deaths' ordinal='5' />
+            <column datatype='real' name='new_cases_smoothed_per_million' ordinal='6' />
+            <column datatype='real' name='reproduction_rate' ordinal='7' />
+            <column datatype='real' name='new_tests_smoothed' ordinal='8' />
+            <column datatype='string' name='tests_units' ordinal='9' />
+            <column datatype='real' name='stringency_index' ordinal='10' />
+            <column datatype='real' name='population' ordinal='11' />
+            <column datatype='real' name='population_density' ordinal='12' />
+            <column datatype='real' name='median_age' ordinal='13' />
+            <column datatype='real' name='aged_65_older' ordinal='14' />
+            <column datatype='real' name='aged_70_older' ordinal='15' />
+            <column datatype='real' name='gdp_per_capita' ordinal='16' />
+            <column datatype='real' name='extreme_poverty' ordinal='17' />
+            <column datatype='real' name='cardiovasc_death_rate' ordinal='18' />
+            <column datatype='real' name='diabetes_prevalence' ordinal='19' />
+            <column datatype='real' name='female_smokers' ordinal='20' />
+            <column datatype='real' name='male_smokers' ordinal='21' />
+            <column datatype='real' name='hospital_beds_per_thousand' ordinal='22' />
+            <column datatype='real' name='life_expectancy' ordinal='23' />
+            <column datatype='real' name='human_development_index' ordinal='24' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Row_ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Row_ID]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>Row_ID</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>continent</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[continent]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>continent</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>location</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[location]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>location</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[date]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>new_cases</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[new_cases]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>new_cases</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>new_deaths</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[new_deaths]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>new_deaths</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>new_cases_smoothed_per_million</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[new_cases_smoothed_per_million]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>new_cases_smoothed_per_million</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>reproduction_rate</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[reproduction_rate]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>reproduction_rate</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>new_tests_smoothed</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[new_tests_smoothed]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>new_tests_smoothed</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>tests_units</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[tests_units]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>tests_units</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>stringency_index</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[stringency_index]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>stringency_index</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>population</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[population]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>population</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>population_density</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[population_density]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>population_density</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>median_age</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[median_age]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>median_age</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>aged_65_older</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[aged_65_older]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>aged_65_older</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>aged_70_older</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[aged_70_older]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>aged_70_older</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>gdp_per_capita</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[gdp_per_capita]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>gdp_per_capita</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>extreme_poverty</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[extreme_poverty]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>extreme_poverty</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cardiovasc_death_rate</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[cardiovasc_death_rate]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>cardiovasc_death_rate</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>diabetes_prevalence</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[diabetes_prevalence]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>diabetes_prevalence</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>female_smokers</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[female_smokers]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>female_smokers</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>male_smokers</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[male_smokers]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>male_smokers</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hospital_beds_per_thousand</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[hospital_beds_per_thousand]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>hospital_beds_per_thousand</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>life_expectancy</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[life_expectancy]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>life_expectancy</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>human_development_index</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[human_development_index]</local-name>
+            <parent-name>[Covid_Cleaned_Database.csv]</parent-name>
+            <remote-alias>human_development_index</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Rank Filter' datatype='boolean' name='[Calculation_1427641142159204352]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='[Calculation_1636777049854615553]&lt;=10'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Death by Month' datatype='real' name='[Calculation_1636777049854345216]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='{FIXED [location],MONTH([date]):SUM([new_deaths])}' />
+      </column>
+      <column caption='Death Rank' datatype='integer' name='[Calculation_1636777049854615553]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='RANK_UNIQUE(SUM([Calculation_1636777049854345216]),&apos;desc&apos;)'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Deaths as a % of Population' datatype='real' name='[Calculation_2015642368501407744]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
+      </column>
+      <column caption='Row ID' datatype='integer' name='[Row_ID]' role='dimension' type='ordinal' />
+      <_.fcp.ObjectModelTableType.true...column caption='Covid_Cleaned_Database.csv' datatype='table' name='[__tableau_internal_object_id__].[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]' role='measure' type='quantitative' />
+      <column caption='Aged 65 Older' datatype='real' name='[aged_65_older]' role='measure' type='quantitative' />
+      <column caption='Aged 70 Older' datatype='real' name='[aged_70_older]' role='measure' type='quantitative' />
+      <column caption='Cardiovasc Death Rate' datatype='real' name='[cardiovasc_death_rate]' role='measure' type='quantitative' />
+      <column caption='Continent' datatype='string' name='[continent]' role='dimension' type='nominal' />
+      <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+      <column caption='Diabetes Prevalence' datatype='real' name='[diabetes_prevalence]' role='measure' type='quantitative' />
+      <column caption='Extreme Poverty' datatype='real' name='[extreme_poverty]' role='measure' type='quantitative' />
+      <column caption='Female Smokers' datatype='real' name='[female_smokers]' role='measure' type='quantitative' />
+      <column caption='Gdp Per Capita' datatype='real' name='[gdp_per_capita]' role='measure' type='quantitative' />
+      <column caption='Hospital Beds Per Thousand' datatype='real' name='[hospital_beds_per_thousand]' role='measure' type='quantitative' />
+      <column caption='Human Development Index' datatype='real' name='[human_development_index]' role='measure' type='quantitative' />
+      <column caption='Life Expectancy' datatype='real' name='[life_expectancy]' role='measure' type='quantitative' />
+      <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+      <column caption='Male Smokers' datatype='real' name='[male_smokers]' role='measure' type='quantitative' />
+      <column caption='Median Age' datatype='real' name='[median_age]' role='measure' type='quantitative' />
+      <column caption='New Cases' datatype='real' name='[new_cases]' role='measure' type='quantitative' />
+      <column caption='New Cases Smoothed Per Million' datatype='real' name='[new_cases_smoothed_per_million]' role='measure' type='quantitative' />
+      <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+      <column caption='New Tests Smoothed' datatype='real' name='[new_tests_smoothed]' role='measure' type='quantitative' />
+      <column caption='Population' datatype='real' name='[population]' role='measure' type='quantitative' />
+      <column caption='Population Density' datatype='real' name='[population_density]' role='measure' type='quantitative' />
+      <column caption='Reproduction Rate' datatype='real' name='[reproduction_rate]' role='measure' type='quantitative' />
+      <column caption='Stringency Index' datatype='real' name='[stringency_index]' role='measure' type='quantitative' />
+      <column caption='Tests Units' datatype='string' name='[tests_units]' role='dimension' type='nominal' />
+      <column-instance column='[continent]' derivation='None' name='[none:continent:nk]' pivot='key' type='nominal' />
+      <group caption='Location Set' name='[Location Set]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+          <groupfilter direction='DESC' expression='[Calculation_2015642368501407744]' function='order' user:ui-marker='order'>
+            <groupfilter function='level-members' level='[location]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </groupfilter>
+        </groupfilter>
+      </group>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:continent:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Africa&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Oceania&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;North America&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Europe&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;South America&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Asia&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='Covid_Cleaned_Database.csv' id='Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05'>
+            <properties context=''>
+              <relation connection='textscan.1gfyptq01nlb5618sfqwv1q01mp3' name='Covid_Cleaned_Database.csv' table='[Covid_Cleaned_Database#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='integer' name='Row_ID' ordinal='0' />
+                  <column datatype='string' name='continent' ordinal='1' />
+                  <column datatype='string' name='location' ordinal='2' />
+                  <column datatype='date' name='date' ordinal='3' />
+                  <column datatype='real' name='new_cases' ordinal='4' />
+                  <column datatype='real' name='new_deaths' ordinal='5' />
+                  <column datatype='real' name='new_cases_smoothed_per_million' ordinal='6' />
+                  <column datatype='real' name='reproduction_rate' ordinal='7' />
+                  <column datatype='real' name='new_tests_smoothed' ordinal='8' />
+                  <column datatype='string' name='tests_units' ordinal='9' />
+                  <column datatype='real' name='stringency_index' ordinal='10' />
+                  <column datatype='real' name='population' ordinal='11' />
+                  <column datatype='real' name='population_density' ordinal='12' />
+                  <column datatype='real' name='median_age' ordinal='13' />
+                  <column datatype='real' name='aged_65_older' ordinal='14' />
+                  <column datatype='real' name='aged_70_older' ordinal='15' />
+                  <column datatype='real' name='gdp_per_capita' ordinal='16' />
+                  <column datatype='real' name='extreme_poverty' ordinal='17' />
+                  <column datatype='real' name='cardiovasc_death_rate' ordinal='18' />
+                  <column datatype='real' name='diabetes_prevalence' ordinal='19' />
+                  <column datatype='real' name='female_smokers' ordinal='20' />
+                  <column datatype='real' name='male_smokers' ordinal='21' />
+                  <column datatype='real' name='hospital_beds_per_thousand' ordinal='22' />
+                  <column datatype='real' name='life_expectancy' ordinal='23' />
+                  <column datatype='real' name='human_development_index' ordinal='24' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Deaths as a % of Population'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Deaths as a % of Population' datatype='real' name='[Calculation_2015642368501407744]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
+            </column>
+            <column-instance column='[stringency_index]' derivation='Avg' name='[avg:stringency_index:qk]' pivot='key' type='quantitative' />
+            <column caption='Continent' datatype='string' name='[continent]' role='dimension' type='nominal' />
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+            <column-instance column='[continent]' derivation='None' name='[none:continent:nk]' pivot='key' type='nominal' />
+            <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
+            <column caption='Population' datatype='real' name='[population]' role='measure' type='quantitative' />
+            <column caption='Stringency Index' datatype='real' name='[stringency_index]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_2015642368501407744]' derivation='User' name='[usr:Calculation_2015642368501407744:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' field-type='quantitative' max='100.0' min='24.0' range-type='fixed' scope='cols' type='space' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-format' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' value='p0.00%' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' />
+              <size column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' />
+              <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]</cols>
+        <pages>
+          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
+        </pages>
+        <page-trail-options start='20' />
+      </table>
+      <simple-id uuid='{CDE453EB-52AC-4B95-A63D-DC53EC9D9AE3}' />
+    </worksheet>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[date]' derivation='Month-Trunc' name='[tmn:date:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[tmn:date:qk]</cols>
+      </table>
+      <simple-id uuid='{15107590-00D1-4BF1-B86C-BC0070141EA7}' />
+    </worksheet>
+    <worksheet name='Sheet 4'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Rank Filter' datatype='boolean' name='[Calculation_1427641142159204352]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='[Calculation_1636777049854615553]&lt;=10'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Death by Month' datatype='real' name='[Calculation_1636777049854345216]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='{FIXED [location],MONTH([date]):SUM([new_deaths])}' />
+            </column>
+            <column caption='Death Rank' datatype='integer' name='[Calculation_1636777049854615553]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RANK_UNIQUE(SUM([Calculation_1636777049854345216]),&apos;desc&apos;)'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+            <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1427641142159204352]' derivation='User' name='[usr:Calculation_1427641142159204352:nk:1]' pivot='key' type='nominal'>
+              <table-calc ordering-type='Rows' />
+              <table-calc field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Calculation_1636777049854615553]' ordering-type='Rows' />
+            </column-instance>
+            <column-instance column='[Calculation_1636777049854615553]' derivation='User' name='[usr:Calculation_1636777049854615553:qk:1]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' />
+            </column-instance>
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_1427641142159204352:nk:1]'>
+            <groupfilter function='member' level='[usr:Calculation_1427641142159204352:nk:1]' member='true' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_1427641142159204352:nk:1]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_1636777049854615553:qk:1]</cols>
+        <pages>
+          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
+        </pages>
+      </table>
+      <simple-id uuid='{82C80401-3EBE-4649-B59F-53C0F55630FE}' />
+    </worksheet>
+    <worksheet name='Sheet 5'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+            <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' shelf='rows' />
+          </shelf-sorts>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</cols>
+      </table>
+      <simple-id uuid='{C93A4337-4008-46AD-92DD-76ED98510846}' />
+    </worksheet>
+    <worksheet name='Top 10 Countries Death'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Deaths as a % of Population' datatype='real' name='[Calculation_2015642368501407744]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
+            </column>
+            <column caption='Continent' datatype='string' name='[continent]' role='dimension' type='nominal' />
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+            <column-instance column='[continent]' derivation='None' name='[none:continent:nk]' pivot='key' type='nominal' />
+            <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
+            <column caption='Population' datatype='real' name='[population]' role='measure' type='quantitative' />
+            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Location Set]' context='true' />
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' shelf='rows' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[Location Set]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' />
+              <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</cols>
+        <pages>
+          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
+        </pages>
+        <page-trail-options enabled='true' start='20' />
+      </table>
+      <simple-id uuid='{ECAEA5C2-73C1-4C45-AA22-F2AAF662A3CC}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 1'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='98000' id='5' type-v2='layout-basic' w='82400' x='800' y='1000'>
+              <zone h='98000' id='3' name='Deaths as a % of Population' w='82400' x='800' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+            <zone fixed-size='160' h='98000' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='16000' x='83200' y='1000'>
+              <zone h='15750' id='9' name='Deaths as a % of Population' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16000' x='83200' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='18250' id='10' name='Deaths as a % of Population' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='16000' x='83200' y='16750'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='14' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='13' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
+                <zone fixed-size='280' h='98000' id='3' is-fixed='true' name='Deaths as a % of Population' w='82400' x='800' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='15750' id='9' name='Deaths as a % of Population' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16000' x='83200' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='18250' id='10' name='Deaths as a % of Population' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='16000' x='83200' y='16750'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{4CFF9518-ECFF-4609-98EB-A024A95DD353}' />
+    </dashboard>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 2'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='98000' id='5' type-v2='layout-basic' w='82400' x='800' y='1000'>
+              <zone h='98000' id='3' name='Deaths as a % of Population' w='82400' x='800' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+            <zone fixed-size='160' h='98000' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='16000' x='83200' y='1000'>
+              <zone h='15750' id='8' name='Deaths as a % of Population' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16000' x='83200' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='18250' id='9' name='Deaths as a % of Population' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='16000' x='83200' y='16750'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='13750' id='10' name='Deaths as a % of Population' synchronized='1' type-v2='currpage' w='16000' x='83200' y='35000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='14' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='13' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
+                <zone fixed-size='280' h='98000' id='3' is-fixed='true' name='Deaths as a % of Population' w='82400' x='800' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='15750' id='8' name='Deaths as a % of Population' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16000' x='83200' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='18250' id='9' name='Deaths as a % of Population' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='16000' x='83200' y='16750'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='13750' id='10' name='Deaths as a % of Population' synchronized='1' type-v2='currpage' w='16000' x='83200' y='35000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{C6E21D28-7526-4FA7-9AF2-9039787CB36D}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{6D2DA83C-8FB6-4133-B5B2-F4A4C5069BF9}' />
+    </window>
+    <window class='worksheet' name='Deaths as a % of Population'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type='size' />
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type='color' />
+            <card looped='1' type='currpage' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>202003</bucket>
+          </multibucket>
+        </current-page>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <simple-id uuid='{EF49C747-BD75-42F3-8441-E8C2A5A18E30}' />
+    </window>
+    <window class='worksheet' name='Top 10 Countries Death'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type='color' />
+            <card looped='1' type='currpage' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>202102</bucket>
+          </multibucket>
+        </current-page>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <simple-id uuid='{BBA1BEB0-6F04-41C8-A585-ECC5C77F0B79}' />
+    </window>
+    <window class='dashboard' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='Deaths as a % of Population'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{A14DCE7F-3E70-4E3C-9078-92C31AB7262C}' />
+    </window>
+    <window class='dashboard' name='Dashboard 2'>
+      <viewpoints>
+        <viewpoint name='Deaths as a % of Population'>
+          <current-page>
+            <multibucket>
+              <bucket>202012</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{6622097C-C744-44EC-AA5F-60BEE26D1D40}' />
+    </window>
+    <window class='worksheet' name='Sheet 4'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card type='currpage' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>202105</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{71495C11-45E6-4ABF-908F-352F5B524BBE}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Sheet 5'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{7E497D6F-01B7-4250-B7F0-6D6FAB8C0856}' />
+    </window>
+  </windows>
+</workbook>
