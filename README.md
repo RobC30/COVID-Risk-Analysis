@@ -14,3 +14,11 @@ While the data provided by Our World in Data is very comprehensive spanning many
 <img src = https://raw.githubusercontent.com/RobC30/COVID-Risk-Analysis/main/Resources/ERD.png width = 500 >
 
 </div>
+
+## ERD
+
+<div align="center"> 
+
+<img src = https://raw.githubusercontent.com/RobC30/COVID-Risk-Analysis/michaelx_branch/Resources/ERD_Datatypes.png width = 500 >
+
+</div>
