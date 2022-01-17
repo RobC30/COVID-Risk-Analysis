@@ -14,3 +14,4 @@ The data provided by *Our World in Data* was very comprehensive, as it spanned m
 <img src = https://raw.githubusercontent.com/RobC30/COVID-Risk-Analysis/main/Resources/ERD.png width = 500 >
 
 </div>
+ 
