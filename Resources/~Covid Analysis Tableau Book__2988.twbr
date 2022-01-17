@@ -466,6 +466,11 @@
           </table-calc>
         </calculation>
       </column>
+      <column caption='Running Total New Deaths' datatype='real' name='[Calculation5]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='RUNNING_SUM(SUM([new_deaths]))'>
+          <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
+        </calculation>
+      </column>
       <column caption='Death by Month' datatype='real' name='[Calculation_1636777049854345216]' role='measure' type='quantitative'>
         <calculation class='tableau' formula='{FIXED [location],MONTH([date]):SUM([new_deaths])}' />
       </column>
@@ -477,6 +482,9 @@
       <column caption='Deaths as a % of Population' datatype='real' name='[Calculation_2015642368501407744]' role='measure' type='quantitative'>
         <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
       </column>
+      <column aggregation='Attribute' caption='Calculation4' datatype='real' name='[Calculation_210261869074137090]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='{ EXCLUDE [date]:SUM([new_deaths])}' />
+      </column>
       <column caption='Rank Filter' datatype='boolean' name='[Calculation_2565644473312223236]' role='measure' type='nominal'>
         <calculation class='tableau' formula='[Calculation3]&lt;=10'>
           <table-calc ordering-type='Rows' />
@@ -486,7 +494,7 @@
         <calculation class='tableau' formula='CASE [Parameters].[Parameter 1] when &quot;Continent&quot; then [continent] when &quot;Country&quot; then [location] END' />
       </column>
       <column caption='Rank' datatype='integer' name='[Calculation_2565644473997914122]' role='measure' type='quantitative'>
-        <calculation class='tableau' formula='RANK_UNIQUE(SUM([new_deaths]))'>
+        <calculation class='tableau' formula='RANK_UNIQUE([Calculation5])'>
           <table-calc ordering-type='Rows' />
         </calculation>
       </column>
@@ -550,6 +558,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>40877</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>continent</remote-name>
@@ -564,6 +573,7 @@
               <approx-count>6</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>location</remote-name>
@@ -578,6 +588,7 @@
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>date</remote-name>
@@ -591,6 +602,7 @@
               <aggregation>Year</aggregation>
               <approx-count>1754</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_cases</remote-name>
@@ -604,6 +616,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>6062</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_deaths</remote-name>
@@ -617,6 +630,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>951</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_cases_smoothed_per_million</remote-name>
@@ -630,6 +644,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>19418</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>reproduction_rate</remote-name>
@@ -643,6 +658,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>334</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_tests_smoothed</remote-name>
@@ -656,6 +672,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>16832</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>tests_units</remote-name>
@@ -670,6 +687,7 @@
               <approx-count>4</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>stringency_index</remote-name>
@@ -683,6 +701,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>220</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>population</remote-name>
@@ -696,6 +715,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>population_density</remote-name>
@@ -709,6 +729,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>median_age</remote-name>
@@ -722,6 +743,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>71</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>aged_65_older</remote-name>
@@ -735,6 +757,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>aged_70_older</remote-name>
@@ -748,6 +771,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>84</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>gdp_per_capita</remote-name>
@@ -761,6 +785,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>extreme_poverty</remote-name>
@@ -774,6 +799,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>49</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>cardiovasc_death_rate</remote-name>
@@ -787,6 +813,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>diabetes_prevalence</remote-name>
@@ -800,6 +827,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>female_smokers</remote-name>
@@ -813,6 +841,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>77</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>male_smokers</remote-name>
@@ -826,6 +855,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>69</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>hospital_beds_per_thousand</remote-name>
@@ -839,6 +869,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>62</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>life_expectancy</remote-name>
@@ -852,6 +883,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>83</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>human_development_index</remote-name>
@@ -865,6 +897,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
           </metadata-records>
         </connection>
@@ -917,8 +950,14 @@
             <map to='#4e79a7'>
               <bucket>&quot;Sri Lanka&quot;</bucket>
             </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;United States&quot;</bucket>
+            </map>
             <map to='#59a14f'>
               <bucket>&quot;Bangladesh&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Brazil&quot;</bucket>
             </map>
             <map to='#59a14f'>
               <bucket>&quot;Greece&quot;</bucket>
@@ -949,9 +988,6 @@
             </map>
             <map to='#86bcb6'>
               <bucket>&quot;Norway&quot;</bucket>
-            </map>
-            <map to='#86bcb6'>
-              <bucket>&quot;United Kingdom&quot;</bucket>
             </map>
             <map to='#8cd17d'>
               <bucket>&quot;Belgium&quot;</bucket>
@@ -1059,10 +1095,7 @@
               <bucket>&quot;Pakistan&quot;</bucket>
             </map>
             <map to='#e15759'>
-              <bucket>&quot;United States&quot;</bucket>
-            </map>
-            <map to='#f1ce63'>
-              <bucket>&quot;Brazil&quot;</bucket>
+              <bucket>&quot;United Kingdom&quot;</bucket>
             </map>
             <map to='#f1ce63'>
               <bucket>&quot;India&quot;</bucket>
@@ -1344,8 +1377,13 @@
             <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
           </datasources>
           <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Running Total New Deaths' datatype='real' name='[Calculation5]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RUNNING_SUM(SUM([new_deaths]))'>
+                <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
+              </calculation>
+            </column>
             <column caption='Rank' datatype='integer' name='[Calculation_2565644473997914122]' role='measure' type='quantitative'>
-              <calculation class='tableau' formula='RANK_UNIQUE(SUM([new_deaths]))'>
+              <calculation class='tableau' formula='RANK_UNIQUE([Calculation5])'>
                 <table-calc ordering-type='Rows' />
               </calculation>
             </column>
@@ -1364,6 +1402,7 @@
             <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
             <column-instance column='[Calculation_2565644473997914122]' derivation='User' name='[usr:Calculation_2565644473997914122:ok:4]' pivot='key' type='ordinal'>
               <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' />
+              <table-calc field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Calculation5]' ordering-type='Rows' />
             </column-instance>
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok:4]'>
@@ -1684,26 +1723,43 @@
             <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
           </datasources>
           <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Running Total New Deaths' datatype='real' name='[Calculation5]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RUNNING_SUM(SUM([new_deaths]))'>
+                <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
+              </calculation>
+            </column>
             <column caption='Rank' datatype='integer' name='[Calculation_2565644473997914122]' role='measure' type='quantitative'>
-              <calculation class='tableau' formula='RANK_UNIQUE(SUM([new_deaths]))'>
+              <calculation class='tableau' formula='RANK_UNIQUE([Calculation5])'>
                 <table-calc ordering-type='Rows' />
               </calculation>
             </column>
+            <column-instance column='[new_deaths]' derivation='Sum' name='[cum:sum:new_deaths:qk:10]' pivot='key' type='quantitative'>
+              <table-calc aggregation='Sum' ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' type='CumTotal' />
+            </column-instance>
             <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
             <column caption='Country' datatype='string' name='[location]' role='dimension' type='nominal' />
             <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+            <column caption='New Cases' datatype='real' name='[new_cases]' role='measure' type='quantitative' />
             <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
             <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
-            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[Calculation_2565644473997914122]' derivation='User' name='[usr:Calculation_2565644473997914122:ok]' pivot='key' type='ordinal'>
-              <table-calc ordering-type='Rows' />
+            <column-instance column='[new_cases]' derivation='Sum' name='[sum:new_cases:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation5]' derivation='User' name='[usr:Calculation5:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
+            </column-instance>
+            <column-instance column='[Calculation_2565644473997914122]' derivation='User' name='[usr:Calculation_2565644473997914122:ok:4]' pivot='key' type='ordinal'>
+              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' />
+              <table-calc field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Calculation5]' ordering-type='Rows' />
             </column-instance>
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok]'>
-            <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok]' member='1' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='SUM([new_deaths])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:location:nk]' user:ui-manual-selection='true' user:ui-manual-selection-all-when-empty='true' user:ui-manual-selection-is-empty='true' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
           </filter>
           <slices>
-            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok]</column>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1716,16 +1772,40 @@
             <mark class='Automatic' />
             <encodings>
               <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
+              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
+              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[cum:sum:new_deaths:qk:10]' />
+              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' />
             </encodings>
+            <customized-label>
+              <formatted-text>
+                <run bold='true'><![CDATA[ <[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true' fontcolor='#e15759' fontsize='10'>Æ </run>
+                <run fontcolor='#e15759' fontsize='10'>Æ </run>
+                <run bold='true' fontcolor='#e15759' fontsize='10'>Æ   </run>
+                <run bold='true' fontcolor='#e15759' fontsize='10'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[cum:sum:new_deaths:qk:10]>]]></run>
+                <run bold='true' fontcolor='#e15759' fontsize='10'> New Deaths</run>
+                <run bold='true' fontcolor='#e15759' fontsize='8'>Æ      </run>
+                <run bold='true' fontsize='8'>Æ                            </run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]> New Cases]]></run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
           </pane>
         </panes>
-        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok]</rows>
-        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</cols>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok:4]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation5:qk]</cols>
         <pages>
           <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
         </pages>
       </table>
-      <simple-id uuid='{159BF27D-2D8C-428A-80F3-ECC28C599F17}' />
+      <simple-id uuid='{13B45A9A-6512-41F9-B5D9-22DFB5B9E84E}' />
     </worksheet>
   </worksheets>
   <dashboards>
@@ -1805,8 +1885,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1150' minheight='1150' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='23' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98438' id='22' param='vert' type-v2='layout-flow' w='98750' x='625' y='781'>
+            <zone h='100000' id='25' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='24' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
                 <zone h='4101' id='19' type-v2='title' w='98750' x='625' y='781'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -2164,7 +2244,15 @@
           </strip>
         </edge>
       </cards>
-      <simple-id uuid='{7CDCA8F5-B686-4089-AE3F-0077283E50DC}' />
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>202104</bucket>
+          </multibucket>
+        </current-page>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <simple-id uuid='{AA6BB78B-CC89-46B6-AD88-67AD2EE2746F}' />
     </window>
   </windows>
 </workbook>

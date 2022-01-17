@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='utf-8' ?>
 
 <!-- build 20214.21.1217.2252                               -->
-<workbook original-version='18.1' source-build='2021.4.2 (20214.21.1217.2252)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+<workbook original-version='18.1' source-build='2021.4.2 (20214.21.1217.2252)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
   <document-format-change-manifest>
     <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
     <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
     <AutoCreateAndUpdateDSDPhoneLayouts />
-    <IntuitiveSorting />
-    <IntuitiveSorting_SP2 />
     <_.fcp.MarkAnimation.true...MarkAnimation />
     <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelExtractV2.true...ObjectModelExtractV2 />
     <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
     <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
     <SetMembershipControl />
@@ -19,6 +18,7 @@
     <WorksheetBackgroundTransparency />
     <ZoneBackgroundTransparency />
   </document-format-change-manifest>
+  <repository-location id='CovidAnalysisTableauBook' path='/workbooks' revision='1.0' />
   <preferences>
     <preference name='ui.encoding.shelf.height' value='24' />
     <preference name='ui.shelf.height' value='26' />
@@ -30,11 +30,35 @@
     </_.fcp.MarkAnimation.true...style-rule>
   </style>
   <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='18.1'>
+      <aliases enabled='yes' />
+      <column caption='Regional Look at' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Continent&quot;'>
+        <calculation class='tableau' formula='&quot;Continent&quot;' />
+        <members>
+          <member value='&quot;Continent&quot;' />
+          <member value='&quot;Country&quot;' />
+        </members>
+      </column>
+      <column caption='Metric to Look at' datatype='string' name='[Parameter 2]' param-domain-type='list' role='measure' type='nominal' value='&quot;Stringency Index&quot;'>
+        <calculation class='tableau' formula='&quot;Stringency Index&quot;' />
+        <aliases>
+          <alias key='&quot;GDP&quot;' value='GDP per Capita' />
+          <alias key='&quot;HDI&quot;' value='Human Development Index' />
+        </aliases>
+        <members>
+          <member value='&quot;New Cases&quot;' />
+          <member value='&quot;Stringency Index&quot;' />
+          <member value='&quot;Diabetes Prevalence&quot;' />
+          <member alias='GDP per Capita' value='&quot;GDP&quot;' />
+          <member alias='Human Development Index' value='&quot;HDI&quot;' />
+        </members>
+      </column>
+    </datasource>
     <datasource caption='Covid_Cleaned_Database' inline='true' name='federated.0odh0nl1upa7j81cq6uit151wcoo' version='18.1'>
       <connection class='federated'>
         <named-connections>
           <named-connection caption='Covid_Cleaned_Database' name='textscan.1gfyptq01nlb5618sfqwv1q01mp3'>
-            <connection class='textscan' directory='C:/Users/Naftoli Dubin/Desktop/Class/COVID-Risk-Analysis/Resources' filename='Covid_Cleaned_Database.csv' password='' server='' />
+            <connection class='textscan' directory='C:/Users/Naftoli Dubin/Desktop/Class/COVID-Risk-Analysis/Resources' filename='Covid_Cleaned_Database.csv' password='' server='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.1gfyptq01nlb5618sfqwv1q01mp3' name='Covid_Cleaned_Database.csv' table='[Covid_Cleaned_Database#csv]' type='table'>
@@ -434,6 +458,14 @@
           <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
         </calculation>
       </column>
+      <column caption='Rank New Death by Month' datatype='integer' name='[Calculation3]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='RANK_UNIQUE(SUM([new_deaths]))'>
+          <table-calc ordering-type='Field'>
+            <order field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' />
+            <order field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' />
+          </table-calc>
+        </calculation>
+      </column>
       <column caption='Death by Month' datatype='real' name='[Calculation_1636777049854345216]' role='measure' type='quantitative'>
         <calculation class='tableau' formula='{FIXED [location],MONTH([date]):SUM([new_deaths])}' />
       </column>
@@ -444,6 +476,25 @@
       </column>
       <column caption='Deaths as a % of Population' datatype='real' name='[Calculation_2015642368501407744]' role='measure' type='quantitative'>
         <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
+      </column>
+      <column caption='Rank Filter' datatype='boolean' name='[Calculation_2565644473312223236]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='[Calculation3]&lt;=10'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Regional Parameter' datatype='string' name='[Calculation_2565644473995935752]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='CASE [Parameters].[Parameter 1] when &quot;Continent&quot; then [continent] when &quot;Country&quot; then [location] END' />
+      </column>
+      <column caption='Rank' datatype='integer' name='[Calculation_2565644473997914122]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='RANK_UNIQUE(SUM([new_deaths]))'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column aggregation='Attribute' caption='New Deaths Total' datatype='real' name='[Calculation_2565644474003931150]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='{ EXCLUDE MONTH([date]): SUM([new_deaths])}' />
+      </column>
+      <column caption='Metric Parameter' datatype='real' name='[Calculation_2565644474005430290]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='CASE [Parameters].[Parameter 2] when &quot;New Cases&quot; then SUM([new_cases]) &#13;&#10;WHEN  &quot;Stringency Index&quot; then AVG([stringency_index]) &#13;&#10;WHEN &quot;Diabetes Prevalence&quot; then AVG([diabetes_prevalence])&#13;&#10;WHEN &quot;GDP&quot; then AVG([gdp_per_capita])&#13;&#10;WHEN &quot;HDI&quot; then AVG([human_development_index])&#13;&#10;END' />
       </column>
       <column caption='Row ID' datatype='integer' name='[Row_ID]' role='dimension' type='ordinal' />
       <_.fcp.ObjectModelTableType.true...column caption='Covid_Cleaned_Database.csv' datatype='table' name='[__tableau_internal_object_id__].[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]' role='measure' type='quantitative' />
@@ -459,7 +510,7 @@
       <column caption='Hospital Beds Per Thousand' datatype='real' name='[hospital_beds_per_thousand]' role='measure' type='quantitative' />
       <column caption='Human Development Index' datatype='real' name='[human_development_index]' role='measure' type='quantitative' />
       <column caption='Life Expectancy' datatype='real' name='[life_expectancy]' role='measure' type='quantitative' />
-      <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+      <column caption='Country' datatype='string' name='[location]' role='dimension' type='nominal' />
       <column caption='Male Smokers' datatype='real' name='[male_smokers]' role='measure' type='quantitative' />
       <column caption='Median Age' datatype='real' name='[median_age]' role='measure' type='quantitative' />
       <column caption='New Cases' datatype='real' name='[new_cases]' role='measure' type='quantitative' />
@@ -472,6 +523,7 @@
       <column caption='Stringency Index' datatype='real' name='[stringency_index]' role='measure' type='quantitative' />
       <column caption='Tests Units' datatype='string' name='[tests_units]' role='dimension' type='nominal' />
       <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+      <column-instance column='[Calculation_2565644473995935752]' derivation='None' name='[none:Calculation_2565644473995935752:nk]' pivot='key' type='nominal' />
       <column-instance column='[continent]' derivation='None' name='[none:continent:nk]' pivot='key' type='nominal' />
       <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
       <group caption='Location Set' name='[Location Set]' name-style='unqualified' user:ui-builder='filter-group'>
@@ -481,6 +533,367 @@
           </groupfilter>
         </groupfilter>
       </group>
+      <extract _.fcp.ObjectModelExtractV2.true...object-id='' count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='C:/Users/Naftoli Dubin/Documents/My Tableau Repository/Datasources/Covid_Cleaned_Database.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='' username='tableau_internal_user'>
+          <_.fcp.ObjectModelEncapsulateLegacy.false...relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <_.fcp.ObjectModelEncapsulateLegacy.true...relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>Row_ID</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Row_ID]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Row_ID</remote-alias>
+              <ordinal>0</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>40877</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>continent</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[continent]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>continent</remote-alias>
+              <ordinal>1</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>location</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[location]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>location</remote-alias>
+              <ordinal>2</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>85</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>date</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[date]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>date</remote-alias>
+              <ordinal>3</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>1754</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>new_cases</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[new_cases]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>new_cases</remote-alias>
+              <ordinal>4</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>6062</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>new_deaths</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[new_deaths]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>new_deaths</remote-alias>
+              <ordinal>5</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>951</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>new_cases_smoothed_per_million</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[new_cases_smoothed_per_million]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>new_cases_smoothed_per_million</remote-alias>
+              <ordinal>6</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>19418</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>reproduction_rate</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[reproduction_rate]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>reproduction_rate</remote-alias>
+              <ordinal>7</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>334</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>new_tests_smoothed</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[new_tests_smoothed]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>new_tests_smoothed</remote-alias>
+              <ordinal>8</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>16832</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>tests_units</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[tests_units]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>tests_units</remote-alias>
+              <ordinal>9</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>stringency_index</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[stringency_index]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>stringency_index</remote-alias>
+              <ordinal>10</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>220</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>population</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[population]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>population</remote-alias>
+              <ordinal>11</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>85</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>population_density</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[population_density]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>population_density</remote-alias>
+              <ordinal>12</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>85</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>median_age</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[median_age]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>median_age</remote-alias>
+              <ordinal>13</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>71</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>aged_65_older</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[aged_65_older]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>aged_65_older</remote-alias>
+              <ordinal>14</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>85</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>aged_70_older</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[aged_70_older]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>aged_70_older</remote-alias>
+              <ordinal>15</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>84</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>gdp_per_capita</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[gdp_per_capita]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>gdp_per_capita</remote-alias>
+              <ordinal>16</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>85</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>extreme_poverty</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[extreme_poverty]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>extreme_poverty</remote-alias>
+              <ordinal>17</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>49</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>cardiovasc_death_rate</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[cardiovasc_death_rate]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>cardiovasc_death_rate</remote-alias>
+              <ordinal>18</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>85</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>diabetes_prevalence</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[diabetes_prevalence]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>diabetes_prevalence</remote-alias>
+              <ordinal>19</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>80</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>female_smokers</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[female_smokers]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>female_smokers</remote-alias>
+              <ordinal>20</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>77</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>male_smokers</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[male_smokers]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>male_smokers</remote-alias>
+              <ordinal>21</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>69</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hospital_beds_per_thousand</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[hospital_beds_per_thousand]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hospital_beds_per_thousand</remote-alias>
+              <ordinal>22</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>62</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>life_expectancy</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[life_expectancy]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>life_expectancy</remote-alias>
+              <ordinal>23</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>83</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>human_development_index</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[human_development_index]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>human_development_index</remote-alias>
+              <ordinal>24</ordinal>
+              <family>Covid_Cleaned_Database.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>80</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
       <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
       <style>
         <style-rule element='mark'>
@@ -503,6 +916,49 @@
             <map to='#f28e2b'>
               <bucket>&quot;Asia&quot;</bucket>
             </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_2565644473995935752:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Africa&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Oceania&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;North America&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;Australia&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Europe&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;South America&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Asia&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_2565644473995935752:nk]&#10;[:Measure Names]' type='palette'>
+            <map-pri to='multiordinal_blue_10_0'>
+              <bucket>&quot;Oceania&quot;</bucket>
+            </map-pri>
+            <map-pri to='multiordinal_gold_10_0'>
+              <bucket>&quot;Europe&quot;</bucket>
+            </map-pri>
+            <map-pri to='multiordinal_green_10_0'>
+              <bucket>&quot;Asia&quot;</bucket>
+            </map-pri>
+            <map-pri to='multiordinal_orange_10_0'>
+              <bucket>&quot;Africa&quot;</bucket>
+            </map-pri>
+            <map-pri to='multiordinal_red_10_0'>
+              <bucket>&quot;South America&quot;</bucket>
+            </map-pri>
+            <map-pri to='multiordinal_teal_10_0'>
+              <bucket>&quot;North America&quot;</bucket>
+            </map-pri>
           </encoding>
           <encoding attr='color' field='[none:location:nk]' type='palette'>
             <map to='#499894'>
@@ -736,6 +1192,18 @@
       <semantic-values>
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column caption='Regional Look at' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Continent&quot;'>
+          <calculation class='tableau' formula='&quot;Continent&quot;' />
+        </column>
+        <column caption='Metric to Look at' datatype='string' name='[Parameter 2]' param-domain-type='list' role='measure' type='nominal' value='&quot;Stringency Index&quot;'>
+          <calculation class='tableau' formula='&quot;Stringency Index&quot;' />
+          <aliases>
+            <alias key='&quot;GDP&quot;' value='GDP per Capita' />
+            <alias key='&quot;HDI&quot;' value='Human Development Index' />
+          </aliases>
+        </column>
+      </datasource-dependencies>
       <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
         <objects>
           <object caption='Covid_Cleaned_Database.csv' id='Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05'>
@@ -770,6 +1238,9 @@
                 </columns>
               </relation>
             </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
           </object>
         </objects>
       </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
@@ -796,7 +1267,7 @@
             <column-instance column='[stringency_index]' derivation='Avg' name='[avg:stringency_index:qk]' pivot='key' type='quantitative' />
             <column caption='Continent' datatype='string' name='[continent]' role='dimension' type='nominal' />
             <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
-            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column caption='Country' datatype='string' name='[location]' role='dimension' type='nominal' />
             <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
             <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
             <column-instance column='[continent]' derivation='None' name='[none:continent:nk]' pivot='key' type='nominal' />
@@ -891,6 +1362,87 @@
       </table>
       <simple-id uuid='{23C0E840-8561-4827-A49E-F9D09FDCC508}' />
     </worksheet>
+    <worksheet name='New Death Rank'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Rank' datatype='integer' name='[Calculation_2565644473997914122]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RANK_UNIQUE(SUM([new_deaths]))'>
+                <table-calc ordering-type='Rows' />
+              </calculation>
+            </column>
+            <column aggregation='Attribute' caption='New Deaths Total' datatype='real' name='[Calculation_2565644474003931150]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='{ EXCLUDE MONTH([date]): SUM([new_deaths])}' />
+            </column>
+            <column-instance column='[Calculation_2565644474003931150]' derivation='Attribute' name='[attr:Calculation_2565644474003931150:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[new_deaths]' derivation='Sum' name='[cum:sum:new_deaths:qk:2]' pivot='key' type='quantitative'>
+              <table-calc aggregation='Sum' ordering-type='Rows' type='CumTotal' />
+            </column-instance>
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column caption='Country' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+            <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_2565644473997914122]' derivation='User' name='[usr:Calculation_2565644473997914122:ok:4]' pivot='key' type='ordinal'>
+              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' />
+            </column-instance>
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok:4]'>
+            <groupfilter function='union' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='1' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='2' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='3' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='4' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='5' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='6' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='7' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='8' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='9' />
+              <groupfilter function='member' level='[usr:Calculation_2565644473997914122:ok:4]' member='10' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok:4]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
+            <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[cum:sum:new_deaths:qk:2]' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
+              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
+              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[cum:sum:new_deaths:qk:2]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok:4]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[attr:Calculation_2565644474003931150:qk]</cols>
+        <pages>
+          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
+        </pages>
+      </table>
+      <simple-id uuid='{997CE4C1-BC6B-464B-8A67-3E53BC20AC85}' />
+    </worksheet>
     <worksheet name='New Deaths by Month'>
       <layout-options>
         <title>
@@ -963,35 +1515,7 @@
       </table>
       <simple-id uuid='{254F9367-D729-496C-AC84-089776473986}' />
     </worksheet>
-    <worksheet name='Sheet 1'>
-      <table>
-        <view>
-          <datasources>
-            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
-          </datasources>
-          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
-            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
-            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
-            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[date]' derivation='Month-Trunc' name='[tmn:date:qk]' pivot='key' type='quantitative' />
-          </datasource-dependencies>
-          <aggregation value='true' />
-        </view>
-        <style />
-        <panes>
-          <pane selection-relaxation-option='selection-relaxation-allow'>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Automatic' />
-          </pane>
-        </panes>
-        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</rows>
-        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[tmn:date:qk]</cols>
-      </table>
-      <simple-id uuid='{15107590-00D1-4BF1-B86C-BC0070141EA7}' />
-    </worksheet>
-    <worksheet name='Sheet 10'>
+    <worksheet name='Rank Try'>
       <layout-options>
         <title>
           <formatted-text>
@@ -1005,90 +1529,41 @@
             <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
           </datasources>
           <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
-            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
-            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
-          </datasource-dependencies>
-          <aggregation value='true' />
-        </view>
-        <style />
-        <panes>
-          <pane selection-relaxation-option='selection-relaxation-allow'>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Automatic' />
-          </pane>
-        </panes>
-        <rows />
-        <cols />
-        <pages>
-          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
-        </pages>
-      </table>
-      <simple-id uuid='{80FBA1B9-239F-4871-9DD0-C48BE0EADA7E}' />
-    </worksheet>
-    <worksheet name='Sheet 11'>
-      <table>
-        <view>
-          <datasources />
-          <aggregation value='true' />
-        </view>
-        <style />
-        <panes>
-          <pane selection-relaxation-option='selection-relaxation-allow'>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Automatic' />
-          </pane>
-        </panes>
-        <rows />
-        <cols />
-      </table>
-      <simple-id uuid='{2F1D98D3-35D2-46DF-858A-AF0CCCC64639}' />
-    </worksheet>
-    <worksheet name='Sheet 3'>
-      <table>
-        <view>
-          <datasources>
-            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
-          </datasources>
-          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
-            <column caption='RANK_UNIQUE(SUM([New Deaths]))' datatype='integer' name='[Calculation_1238208482836262916]' role='measure' type='quantitative' user:unnamed='Sheet 3'>
+            <column caption='Rank New Death by Month' datatype='integer' name='[Calculation3]' role='measure' type='quantitative'>
               <calculation class='tableau' formula='RANK_UNIQUE(SUM([new_deaths]))'>
+                <table-calc ordering-type='Field'>
+                  <order field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' />
+                  <order field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' />
+                </table-calc>
+              </calculation>
+            </column>
+            <column caption='Rank Filter' datatype='boolean' name='[Calculation_2565644473312223236]' role='measure' type='nominal'>
+              <calculation class='tableau' formula='[Calculation3]&lt;=10'>
                 <table-calc ordering-type='Rows' />
               </calculation>
             </column>
             <column caption='Continent' datatype='string' name='[continent]' role='dimension' type='nominal' />
             <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
-            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column caption='Country' datatype='string' name='[location]' role='dimension' type='nominal' />
             <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
             <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
             <column-instance column='[continent]' derivation='None' name='[none:continent:nk]' pivot='key' type='nominal' />
             <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
-            <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:2]' pivot='key' type='quantitative'>
-              <table-calc ordering-type='Field' rank-options='Competition,Descending' type='Rank'>
-                <order field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
-                <order field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' />
-              </table-calc>
+            <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:12]' pivot='key' type='quantitative'>
+              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' ordering-type='Field' rank-options='ModifiedCompetition,Descending' type='Rank' />
             </column-instance>
             <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[Calculation_1238208482836262916]' derivation='User' name='[usr:Calculation_1238208482836262916:qk:1]' pivot='key' type='quantitative'>
-              <table-calc ordering-type='Field'>
-                <order field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
-                <order field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' />
-              </table-calc>
+            <column-instance column='[Calculation_2565644473312223236]' derivation='User' name='[usr:Calculation_2565644473312223236:nk]' pivot='key' type='nominal'>
+              <table-calc ordering-type='Columns' />
+              <table-calc field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Calculation3]' ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' />
             </column-instance>
           </datasource-dependencies>
-          <filter class='quantitative' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:2]' included-values='in-range'>
-            <min>1</min>
-            <max>10</max>
+          <computed-sort column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' direction='DESC' using='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473312223236:nk]'>
+            <groupfilter function='member' level='[usr:Calculation_2565644473312223236:nk]' member='true' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
-          <shelf-sorts>
-            <shelf-sort-v2 dimension-to-sort='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' shelf='rows' />
-          </shelf-sorts>
           <slices>
-            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:2]</column>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473312223236:nk]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1101,123 +1576,154 @@
             <mark class='Automatic' />
             <encodings>
               <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' />
+              <tooltip column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
             </encodings>
           </pane>
         </panes>
         <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]</rows>
-        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_1238208482836262916:qk:1]</cols>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:12]</cols>
         <pages>
           <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
         </pages>
       </table>
-      <simple-id uuid='{07CFE95D-3885-4D11-8B01-994F7EE7992B}' />
-    </worksheet>
-    <worksheet name='Sheet 4'>
-      <table>
-        <view>
-          <datasources>
-            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
-          </datasources>
-          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
-            <column caption='Continent' datatype='string' name='[continent]' role='dimension' type='nominal' />
-            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
-            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
-            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
-            <column-instance column='[continent]' derivation='None' name='[none:continent:nk]' pivot='key' type='nominal' />
-            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
-          </datasource-dependencies>
-          <computed-sort column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' direction='DESC' using='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
-          <aggregation value='true' />
-        </view>
-        <style />
-        <panes>
-          <pane selection-relaxation-option='selection-relaxation-allow'>
-            <view>
-              <breakdown value='auto' />
-            </view>
-            <mark class='Automatic' />
-          </pane>
-        </panes>
-        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]</rows>
-        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</cols>
-        <pages>
-          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
-        </pages>
-      </table>
-      <simple-id uuid='{E8168737-45AA-4D98-B2C4-11EB9347BBDE}' />
+      <simple-id uuid='{80FBA1B9-239F-4871-9DD0-C48BE0EADA7E}' />
     </worksheet>
     <worksheet name='Sheet 5'>
       <table>
         <view>
           <datasources>
             <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+            <datasource name='Parameters' />
           </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column caption='Regional Look at' datatype='string' name='[Parameter 1]' param-domain-type='list' role='measure' type='nominal' value='&quot;Continent&quot;'>
+              <calculation class='tableau' formula='&quot;Continent&quot;' />
+            </column>
+            <column caption='Metric to Look at' datatype='string' name='[Parameter 2]' param-domain-type='list' role='measure' type='nominal' value='&quot;Stringency Index&quot;'>
+              <calculation class='tableau' formula='&quot;Stringency Index&quot;' />
+              <aliases>
+                <alias key='&quot;GDP&quot;' value='GDP per Capita' />
+                <alias key='&quot;HDI&quot;' value='Human Development Index' />
+              </aliases>
+            </column>
+          </datasource-dependencies>
           <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
-            <column-instance column='[diabetes_prevalence]' derivation='Avg' name='[avg:diabetes_prevalence:qk]' pivot='key' type='quantitative' />
+            <column caption='Regional Parameter' datatype='string' name='[Calculation_2565644473995935752]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 1] when &quot;Continent&quot; then [continent] when &quot;Country&quot; then [location] END' />
+            </column>
+            <column caption='Metric Parameter' datatype='real' name='[Calculation_2565644474005430290]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 2] when &quot;New Cases&quot; then SUM([new_cases]) &#13;&#10;WHEN  &quot;Stringency Index&quot; then AVG([stringency_index]) &#13;&#10;WHEN &quot;Diabetes Prevalence&quot; then AVG([diabetes_prevalence])&#13;&#10;WHEN &quot;GDP&quot; then AVG([gdp_per_capita])&#13;&#10;WHEN &quot;HDI&quot; then AVG([human_development_index])&#13;&#10;END' />
+            </column>
+            <column caption='Continent' datatype='string' name='[continent]' role='dimension' type='nominal' />
             <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
             <column caption='Diabetes Prevalence' datatype='real' name='[diabetes_prevalence]' role='measure' type='quantitative' />
-            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
-            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+            <column caption='Gdp Per Capita' datatype='real' name='[gdp_per_capita]' role='measure' type='quantitative' />
+            <column caption='Human Development Index' datatype='real' name='[human_development_index]' role='measure' type='quantitative' />
+            <column caption='Country' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column caption='New Cases' datatype='real' name='[new_cases]' role='measure' type='quantitative' />
             <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
-            <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_2565644473995935752]' derivation='None' name='[none:Calculation_2565644473995935752:nk]' pivot='key' type='nominal' />
+            <column caption='Stringency Index' datatype='real' name='[stringency_index]' role='measure' type='quantitative' />
             <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[date]' derivation='Month-Trunc' name='[tmn:date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_2565644474005430290]' derivation='User' name='[usr:Calculation_2565644474005430290:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]'>
+            <groupfilter function='member' level='[none:Calculation_2565644473995935752:nk]' member='&quot;Oceania&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]</column>
+          </slices>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644474005430290:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Circle' />
-            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <mark class='Automatic' />
             <encodings>
-              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
-              <size column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
-              <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]' />
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' />
             </encodings>
-            <style>
-              <style-rule element='mark'>
-                <format attr='size' value='1.9670165777206421' />
-              </style-rule>
-            </style>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'><![CDATA[In the <[Parameters].[Parameter 1]> of ]]></run>
+                <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]> during the month of ]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[tmn:date:qk]> there were <[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]> new deaths and a <[Parameters].[Parameter 2]> of <[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644474005430290:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]' />
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'><![CDATA[In the <[Parameters].[Parameter 1]> of ]]></run>
+                <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]> during the month of ]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[tmn:date:qk]> there were <[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]> new deaths and a <[Parameters].[Parameter 2]> of <[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644474005430290:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644474005430290:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]' />
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#787878'><![CDATA[In the <[Parameters].[Parameter 1]> of ]]></run>
+                <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]> during the month of ]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[tmn:date:qk]> there were <[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]> new deaths and a <[Parameters].[Parameter 2]> of <[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644474005430290:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
           </pane>
         </panes>
-        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:diabetes_prevalence:qk]</rows>
-        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</cols>
-        <pages>
-          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
-        </pages>
+        <rows>([federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk] + [federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644474005430290:qk])</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[tmn:date:qk]</cols>
       </table>
-      <simple-id uuid='{143D274D-446E-4689-853D-2965A3216F9C}' />
+      <simple-id uuid='{33C5C25E-F225-47E0-AFC0-17FCE87287F6}' />
     </worksheet>
-    <worksheet name='Sheet 6'>
+    <worksheet name='Sheet 7'>
       <table>
         <view>
           <datasources>
             <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
           </datasources>
           <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
-            <column caption='Running Total of Deaths' datatype='real' name='[Calculation1]' role='measure' type='quantitative'>
-              <calculation class='tableau' formula='RUNNING_SUM(SUM([new_deaths]))'>
+            <column caption='Rank' datatype='integer' name='[Calculation_2565644473997914122]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='RANK_UNIQUE(SUM([new_deaths]))'>
                 <table-calc ordering-type='Rows' />
               </calculation>
             </column>
             <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
-            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column caption='Country' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
             <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
             <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
             <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[date]' derivation='Month-Trunc' name='[tmn:date:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[Calculation1]' derivation='User' name='[usr:Calculation1:qk]' pivot='key' type='quantitative'>
+            <column-instance column='[Calculation_2565644473997914122]' derivation='User' name='[usr:Calculation_2565644473997914122:ok]' pivot='key' type='ordinal'>
               <table-calc ordering-type='Rows' />
             </column-instance>
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Location Set]' />
-          <slices>
-            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[Location Set]</column>
-          </slices>
           <aggregation value='true' />
         </view>
         <style />
@@ -1229,19 +1735,16 @@
             <mark class='Automatic' />
             <encodings>
               <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
-              <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
             </encodings>
-            <style>
-              <style-rule element='mark'>
-                <format attr='line-interpolation' value='step' />
-              </style-rule>
-            </style>
           </pane>
         </panes>
-        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation1:qk]</rows>
-        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[tmn:date:qk]</cols>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2565644473997914122:ok]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</cols>
+        <pages>
+          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
+        </pages>
       </table>
-      <simple-id uuid='{BD45CB27-EAD4-40B9-B59B-8107E44441C0}' />
+      <simple-id uuid='{159BF27D-2D8C-428A-80F3-ECC28C599F17}' />
     </worksheet>
   </worksheets>
   <dashboards>
@@ -1314,15 +1817,15 @@
             <format attr='margin' value='8' />
           </zone-style>
         </zone>
-        <zone fixed-size='118' h='11523' id='8' is-fixed='true' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='10938' x='75469' y='1465' />
-        <zone h='13477' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='10938' x='32813' y='1465' />
+        <zone fixed-size='118' h='11523' id='8' is-fixed='true' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='10938' x='88125' y='35156' />
+        <zone h='13477' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='10938' x='87891' y='19434' />
       </zones>
       <devicelayouts>
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1150' minheight='1150' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='21' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='84000' id='20' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
+            <zone h='100000' id='25' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='24' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
                 <zone h='4101' id='19' type-v2='title' w='98750' x='625' y='781'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -1342,7 +1845,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='118' h='11523' id='8' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='10938' x='75469' y='1465'>
+                <zone fixed-size='118' h='11523' id='8' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='10938' x='88125' y='35156'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1351,7 +1854,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='13477' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='10938' x='32813' y='1465'>
+                <zone h='13477' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='10938' x='87891' y='19434'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1402,248 +1905,8 @@
       </devicelayouts>
       <simple-id uuid='{0AAEA76F-262A-4D63-84D8-5399A3E1727D}' />
     </dashboard>
-    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 1'>
-      <style />
-      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
-      <zones>
-        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='98000' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='1000'>
-            <zone h='98000' id='5' type-v2='layout-basic' w='82400' x='800' y='1000'>
-              <zone h='98000' id='3' name='Deaths vs Stringency Index' w='82400' x='800' y='1000'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-            </zone>
-            <zone fixed-size='160' h='98000' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='16000' x='83200' y='1000'>
-              <zone h='15750' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16000' x='83200' y='1000'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone h='18250' id='10' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='16000' x='83200' y='16750'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-            </zone>
-          </zone>
-          <zone-style>
-            <format attr='border-color' value='#000000' />
-            <format attr='border-style' value='none' />
-            <format attr='border-width' value='0' />
-            <format attr='margin' value='8' />
-          </zone-style>
-        </zone>
-      </zones>
-      <devicelayouts>
-        <devicelayout auto-generated='true' name='Phone'>
-          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
-          <zones>
-            <zone h='100000' id='16' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='84000' id='15' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
-                <zone fixed-size='280' h='98000' id='3' is-fixed='true' name='Deaths vs Stringency Index' w='82400' x='800' y='1000'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone h='15750' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16000' x='83200' y='1000'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone h='18250' id='10' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='16000' x='83200' y='16750'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-              </zone>
-              <zone-style>
-                <format attr='border-color' value='#000000' />
-                <format attr='border-style' value='none' />
-                <format attr='border-width' value='0' />
-                <format attr='margin' value='8' />
-              </zone-style>
-            </zone>
-          </zones>
-        </devicelayout>
-      </devicelayouts>
-      <simple-id uuid='{4CFF9518-ECFF-4609-98EB-A024A95DD353}' />
-    </dashboard>
-    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 2'>
-      <style />
-      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
-      <zones>
-        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='98000' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='1000'>
-            <zone h='98000' id='5' type-v2='layout-basic' w='82400' x='800' y='1000'>
-              <zone h='98000' id='3' name='Deaths vs Stringency Index' w='82400' x='800' y='1000'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-            </zone>
-            <zone fixed-size='160' h='98000' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='16000' x='83200' y='1000'>
-              <zone h='15750' id='8' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16000' x='83200' y='1000'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone h='18250' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='16000' x='83200' y='16750'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-              <zone h='13750' id='10' name='Deaths vs Stringency Index' synchronized='1' type-v2='currpage' w='16000' x='83200' y='35000'>
-                <zone-style>
-                  <format attr='border-color' value='#000000' />
-                  <format attr='border-style' value='none' />
-                  <format attr='border-width' value='0' />
-                  <format attr='margin' value='4' />
-                </zone-style>
-              </zone>
-            </zone>
-          </zone>
-          <zone-style>
-            <format attr='border-color' value='#000000' />
-            <format attr='border-style' value='none' />
-            <format attr='border-width' value='0' />
-            <format attr='margin' value='8' />
-          </zone-style>
-        </zone>
-      </zones>
-      <devicelayouts>
-        <devicelayout auto-generated='true' name='Phone'>
-          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
-          <zones>
-            <zone h='100000' id='16' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='84000' id='15' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
-                <zone fixed-size='280' h='98000' id='3' is-fixed='true' name='Deaths vs Stringency Index' w='82400' x='800' y='1000'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone h='15750' id='8' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16000' x='83200' y='1000'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone h='18250' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='16000' x='83200' y='16750'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-                <zone h='13750' id='10' name='Deaths vs Stringency Index' synchronized='1' type-v2='currpage' w='16000' x='83200' y='35000'>
-                  <zone-style>
-                    <format attr='border-color' value='#000000' />
-                    <format attr='border-style' value='none' />
-                    <format attr='border-width' value='0' />
-                    <format attr='margin' value='4' />
-                    <format attr='padding' value='0' />
-                  </zone-style>
-                </zone>
-              </zone>
-              <zone-style>
-                <format attr='border-color' value='#000000' />
-                <format attr='border-style' value='none' />
-                <format attr='border-width' value='0' />
-                <format attr='margin' value='8' />
-              </zone-style>
-            </zone>
-          </zones>
-        </devicelayout>
-      </devicelayouts>
-      <simple-id uuid='{C6E21D28-7526-4FA7-9AF2-9039787CB36D}' />
-    </dashboard>
-    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 4'>
-      <style />
-      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
-      <zones />
-      <devicelayouts>
-        <devicelayout auto-generated='true' name='Phone'>
-          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
-          <zones>
-            <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='84000' id='3' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000' />
-              <zone-style>
-                <format attr='border-color' value='#000000' />
-                <format attr='border-style' value='none' />
-                <format attr='border-width' value='0' />
-                <format attr='margin' value='8' />
-              </zone-style>
-            </zone>
-          </zones>
-        </devicelayout>
-      </devicelayouts>
-      <simple-id uuid='{CD7FC4C6-A9DE-49DF-92EE-E59660689E6A}' />
-    </dashboard>
   </dashboards>
   <windows source-height='30'>
-    <window class='worksheet' name='Sheet 1'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{6D2DA83C-8FB6-4133-B5B2-F4A4C5069BF9}' />
-    </window>
     <window class='worksheet' name='Deaths vs Stringency Index'>
       <cards>
         <edge name='left'>
@@ -1682,166 +1945,6 @@
       </viewpoint>
       <simple-id uuid='{EF49C747-BD75-42F3-8441-E8C2A5A18E30}' />
     </window>
-    <window class='dashboard' name='Dashboard 1'>
-      <viewpoints>
-        <viewpoint name='Deaths vs Stringency Index'>
-          <zoom type='entire-view' />
-        </viewpoint>
-      </viewpoints>
-      <active id='-1' />
-      <simple-id uuid='{A14DCE7F-3E70-4E3C-9078-92C31AB7262C}' />
-    </window>
-    <window class='dashboard' name='Dashboard 2'>
-      <viewpoints>
-        <viewpoint name='Deaths vs Stringency Index'>
-          <current-page>
-            <multibucket>
-              <bucket>202012</bucket>
-            </multibucket>
-          </current-page>
-          <zoom type='entire-view' />
-        </viewpoint>
-      </viewpoints>
-      <active id='-1' />
-      <simple-id uuid='{6622097C-C744-44EC-AA5F-60BEE26D1D40}' />
-    </window>
-    <window class='worksheet' name='Sheet 3'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card type='currpage' />
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type='color' />
-          </strip>
-        </edge>
-      </cards>
-      <viewpoint>
-        <current-page>
-          <multibucket>
-            <bucket>202105</bucket>
-          </multibucket>
-        </current-page>
-      </viewpoint>
-      <simple-id uuid='{56E516CB-5147-47FE-BA09-3060A54295D3}' />
-    </window>
-    <window class='worksheet' name='Sheet 4'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card type='currpage' />
-          </strip>
-        </edge>
-      </cards>
-      <viewpoint>
-        <current-page>
-          <multibucket>
-            <bucket>202112</bucket>
-          </multibucket>
-        </current-page>
-      </viewpoint>
-      <simple-id uuid='{481CA4B3-0B94-4863-88DC-DBCC278EDFA2}' />
-    </window>
-    <window class='worksheet' name='Sheet 5'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' type='size' />
-            <card type='currpage' />
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' type='color' />
-          </strip>
-        </edge>
-      </cards>
-      <viewpoint>
-        <current-page>
-          <multibucket>
-            <bucket>202112</bucket>
-          </multibucket>
-        </current-page>
-        <zoom type='entire-view' />
-      </viewpoint>
-      <simple-id uuid='{95B4B770-8CCF-4F53-A27E-9F9F281D53DA}' />
-    </window>
-    <window class='worksheet' name='Sheet 6'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' type='color' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{2B3E5AE6-2456-4549-A575-8193BF50EDF4}' />
-    </window>
     <window class='worksheet' name='New Cases by Month'>
       <cards>
         <edge name='left'>
@@ -1879,7 +1982,7 @@
       </viewpoint>
       <simple-id uuid='{4F194D17-E533-49B1-A3CD-AB0256CD4A77}' />
     </window>
-    <window class='worksheet' maximized='true' name='New Deaths by Month'>
+    <window class='worksheet' name='New Deaths by Month'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1949,12 +2052,111 @@
       </device-preview>
       <simple-id uuid='{B643CF3E-D9F7-454E-8900-1D39D1DB9454}' />
     </window>
-    <window class='dashboard' name='Dashboard 4'>
-      <viewpoints />
-      <active id='-1' />
-      <simple-id uuid='{ED93A071-E31A-439F-AC4D-C1C520771EDD}' />
+    <window class='worksheet' name='Rank Try'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card type='currpage' />
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>202102</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{BEA3B40E-CE06-4E17-BFD2-22895435FB6C}' />
     </window>
-    <window class='worksheet' name='Sheet 10'>
+    <window class='worksheet' name='Sheet 5'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='radiolist' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]' type='filter' values='relevant' />
+            <card mode='compact' param='[Parameters].[Parameter 1]' type='parameter' />
+            <card pane-specification-id='1' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:Calculation_2565644473995935752:nk]&#10;[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' type='color' />
+            <card mode='list' param='[Parameters].[Parameter 2]' type='parameter' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{2286C6A2-7A76-4DDA-A1CB-F2CFF1199902}' />
+    </window>
+    <window class='worksheet' name='New Death Rank'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card type='currpage' />
+            <card pane-specification-id='1' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>202112</bucket>
+          </multibucket>
+        </current-page>
+        <zoom type='fit-height' />
+      </viewpoint>
+      <simple-id uuid='{43F1CABA-2144-4107-AEAD-A4678AE92A98}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Sheet 7'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1980,236 +2182,77 @@
           </strip>
         </edge>
       </cards>
-      <simple-id uuid='{BEA3B40E-CE06-4E17-BFD2-22895435FB6C}' />
-    </window>
-    <window class='worksheet' name='Sheet 11'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{BBD64F15-1F31-4F63-BB42-6E7BD0AEB1E7}' />
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>202103</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{7CDCA8F5-B686-4089-AE3F-0077283E50DC}' />
     </window>
   </windows>
   <thumbnails>
-    <thumbnail height='384' name='New Deaths by Month' width='384'>
-      iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAYAAACkx7W/AAAACXBIWXMAAA7DAAAOwwHHb6hk
-      AAAgAElEQVR4nO3daWwk6X3f8W9V9cFukt28mjc5w2N4zZ46drXyarWSHEGW4tiGlcRxFL1x
-      ECMw4BcGggRIDAjImyRAAiSIAPtFkMC5bDmO7VixJcOytCtpNbuzszOcGQ7J4X2zeTS7efRd
-      VXnB2ZUcWRK5u93k9PP7AIJmh2T/n+ou9re7yKmyfN/3ERER49gXvQAREbkYCoCIiKEUABER
-      QykAIiKGUgBERAylAIiIGEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFDKQAiIoaqyQD4vk81
-      znFXrTlvz6q1OdV6jKqhFu+3Wprz9qxqzHictqcmAwDVebDL5XLVHuxisag5mlO1fa5UKlVt
-      TrXU2r7wfsyp2QCIiMiPpwCIiBhKARARMZQCICJiKAVARMRQCoCIiKECF72ASnFvfBMve1zR
-      Gb7n4dkWHlZF5wDgupQdp6bmuDW2PdWY43seboX3Ofv6B6C1o2K3L5dHzQbAe+u7WPvJys+p
-      +IRTVpVmac7lngPgP/pfpViJTgXAEDoEJCJiKAVARMRQCoCIiKEUABERQykAIiKGUgBERAyl
-      AIiIGEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFDKQAiIoZSAEREDKUAiIgYSgEQETGUAiAi
-      YqgzB8B3CyytbACQO0qTK/7o6x+5rguA52ZZXdv54Y8Xc6xubJ93rfiey+7e/rm/TkREftiZ
-      A+AVD3n1m6+wd1Rgf2OBvZMyvu+Rz+fxPB/Pc3E9j2KxyM2bN8nlcpTLebaT+6ef43//InbL
-      sw+4fX8a1wfPcymVShSKRcrlEsVSCQC3XKZQKOID5XIZt1zG9XwCgQD4PqVigWKpjO+drqH8
-      KDoiInI257om8NiTz/Bw6i79TafdmHzrTeItCXZTGa402bwxv09HeyuHhxl2d3dpa4uyl9xm
-      q8kmnbd49okRfN9n57jEc8NtLG1niB4vsXwcxj7apLFriL21FZ7/2Ie5/eY9WmJ1BGJdbMxP
-      Uip7XH/6gywtrzLYGWf7qExzPEZTfZD9zDHr61v81Isv6JiWiMgZne/50gnR0xRife/o9NV/
-      2WJgYADLKwE+g2NP8tyzT9Ha1kZffz+hgE2io5srVwco5o4AKOczHGSOyRRgbX4WsOjpu0J3
-      oomOnqs0RUIcpbbJFAEnSPb4EA+Hlz/1aTpbGgFY3drliYlR+nu7OEjtk8vlyZ6coPcAIiJn
-      d+YAWJZFwLHpH32C5OoCtm0TizhMT09jh6JYdoD6aASAtsYI9x/MkC/5OM7pCMdxAFhbXOL5
-      l15mbOJJGkIevu1gW2DZDpYFthMg2tpNS50FlkN7oo1oQyOObYEFTsBh+GoPk3fvsbC8xvHR
-      EZZlYds2VgXuIBGRWmX5/g8cnK8Rvu9T/PK/xNpPXvRSRB47zs9/EXf8WQKBALZd2YOqxWKR
-      YDCIZVX+5VuhUCAcDld0hu/7FIvFis+B92d7dMhcRMRQCoCIiKEUABERQykAIiKGUgBERAyl
-      AIiIGEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFDKQAiIoZSAEREDKUAiIgYSgEQETGUAiAi
-      YigFQETEUAqAiIihAhe9gEpxXvoMViFX0Rmu62HbVlUuZ1cuuwQCjuYYPsd1PWzLwrIrt8/Z
-      PVdxK3brcpnUbADsJz5U8euZeqUStuNUfA5AuVDAqcJ1Rqs5xw6FKh7PWrvfqrbPFYuVvX25
-      FHQISETEUAqAiIihFAAREUMpACIihlIAREQMpQCIiBhKARARMZQCICJiKAVARMRQCoCIiKEU
-      ABERQykAIiKGqtmTwZHL4uNXdka5DI6DX4WzgVIq4ZercIKuKs2xSiUoF3/yI+Q4WHXRiq9H
-      xEQ1GwDvz34X+zBV0Rlvn/y3wpkBIFhjcwJnndPZh/XZv1fh1YiYSYeAREQMpQCIiBhKARAR
-      MZQCICJiKAVARMRQCoCIiKEUABERQykAIiKGUgBERAylAIiIGEoBEBExlAIgImIoBUBExFAK
-      gIiIoRQAERFDKQAiIoZSAEREDKUAiIgY6tIHYH99jj/6+qs/9Pfl4jErq8kLWJGISG249NcE
-      XlzfY6A1xEGuTLiYZn5th2hDI1e7W/DwOEztsrmzj0uAibFhqnB5dhGRmnCp3wF45QKZ4xwt
-      zY3Mzi5yeLBHmQDtba14bpH9VIZQuA7HtlldWsS96AWLiDxGLnUA1uZnGBi7TrSpk9LRLpF4
-      Gy0NIe7cvoP36HMe3L9HXX0Djm3jX+hqRUQeL5f6EFDnwBihcBgLeO65DxEMBsFy6OjsJhwK
-      8OREAwF7iMPjE176+Mcu98aIiFwyl/o5MxwO/9Cf403N3/+70OkbmOampuouTESkBlzqQ0Ai
-      IlI5CoCIiKEUABERQykAIiKGUgBERAylAIiIGEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFD
-      KQAiIoZSAEREDKUAiIgYSgEQETGUAiAiYigFQETEUJf6imDvhTU4BrlsRWd4vodtWYBV0TkA
-      nudi245xc6x480/8HBF5d2o3AM98FNuu7Bsct1QCx6n4HIBSoUDgBy6RWQtznFAIy6p8PEXk
-      r6dDQCIihlIAREQMpQCIiBhKARARMZQCICJiKAVARMRQCoCIiKEUABERQykAIiKGUgBERAyl
-      AIiIGEoBEBExlAIgImKomj0bqPvHv4N/mKroDAvwAbeiU045PrhVOHFmNed4lZjT1Y/z6c9X
-      4IZFak/NBoBiAQr5io6o5omMqzXrsZ9TKlbqlkVqjg4BiYgYSgEQETGUAiAiYigFQETEUAqA
-      iIihFAAREUMpACIihlIAREQMpQCIiBhKARARMZQCICJiKAVARMRQCoCIiKEUABERQykAIiKG
-      UgBERAylAIiIGOpCrwhWLh7y+uvTtLU3EW9J0JloucjliIgY5UID4HtFwvXNjI6OAJBMJuno
-      6GBnc5Omjnb2kkm217eZeGaClcUVgpFGBno7mH34EMuyaO+5QixsM7+4TF1jE1d6Oi9yc0RE
-      HisXfggoubnO7Owsu6lDNjbWAdhaWaHglvjut79Nz9AwDybv0j90jVAhxdpehlQmy7WRa8xM
-      3efe5CS9g8Oc7KySyXsXvDUiIo+PCw9AR3cvo6OjJFpi+L6PD3i+D8CV4TE6WuN4nk/AsQk4
-      Nq7n4wQCWFjYtkUhn2V5cQErEiNo+Re7MSIij5ELPQRkByJY7jGzs7PEWxIM9HUxPfMQK1xP
-      yA7Q1dEOwFNPXWduZhonFGW4tZ6ZO1tMzwQZGX+CqFNifmkdOxAkELjwnomIPDYuNABOoJ4P
-      fvgDf+XvWtq//+e+3m4AQpFGJiYmAPDKBfquDjExPvLosyJcvz5RjeWKiNSUx+4lsx0I88Q7
-      T/4iIvJuPXYBEBGR94cCICJiKAVARMRQCoCIiKEUABERQykAIiKGUgBERAylAIiIGEoBEBEx
-      lAIgImIoBUBExFAKgIiIoRQAERFDKQAiIoZSAEREDKUAiIgYSgEQETHUhV4SspKcX/wVLNuq
-      6IxyqYzjOBWfA1AsFAmFQ7Uzp1gkFKrEnMo/FiK1omYDgG1j2RV+g2N71ZkDj+Y4tTPHssGy
-      sSw9YYtcFB0CEhExlAIgImIoBUBExFAKgIiIoRQAERFDKQAiIoZSAEREDKUAiIgYSgEQETGU
-      AiAiYigFQETEUAqAiIihavZkcP79m3j5XEVnWJ6Lb9l4VTihme26eE7lT9JWzTm+4+BXYc5P
-      3J54C/boUxVeicjlU7MB8O7fxE7vV3TG20/7lX4Sg9O3appToTn9w6AAiIF0CEhExFAKgIiI
-      oRQAERFDKQAiIoZSAEREDKUAiIgYSgEQETGUAiAiYigFQETEUAqAiIihFAAREUMpACIihlIA
-      REQMpQCIiBhKARARMZQCICJiKAVARMRQZw6A7/vsbK2ztLKG6/34ayx5nnf6/26W9Y3dH/54
-      Kc/61s45lwq+57KfSp3760RE5IedOQA7y1OkShE6W2McZ/P4vk+5VMLzfXzfw/d9fN/H8zxu
-      3XqTUqmE6+bZ2tqnXC7j+9+PxvLsFG9OTuH54HserutSLrt4novrusBpRMplF//Rnz3PxffB
-      tm3wfVy3jOt631/Ho+iIiMjZnPmawNFYMzMz87THr9Mcq2Nq8hbh+jipzDEjnRFSwT76Qynu
-      bJbZ39tnbW2Njo4Yu8lNlhc8jstBnrl+Dd/3SR6VeG6olaXkIZGjRZYOg1hHW8S6B9lbW+Uj
-      Lz3P7ZuTxBtC1LX0sTE/SaFQYuKZD7OysspwdxPrqTxNTXFaG8Ps7KfZ3N7lxRdf0DEtEZEz
-      OvPzZWNrDy999MOktxaYnl/juOBx7do1Qn6Z8g98nuUESXS0MzA4SDhok+joYXBomEL2EAA3
-      n+EgfcRhCVbnZgCL3isD9HY009k7SHM0zNH+JpmShROq4+gwjetZvPw3PkN3ayMASxs7PPXk
-      BAP9PWTSBxRLZXInJ7jv5z0jIlLjzvwO4DC1w/r2Pr7rEW2IYEWDPJiepuSEaKiPMTM7Sylc
-      wIr209pQx/0HMwxcacO2LeDRoRtgZWGR5176BG31ATLf+x6+ZWEBlnX6ccu2ibR20xzeA8uh
-      sz1B/ihFwLbAB9u2GOrpZvLuPeLxJrLpNIFIjNNbERGRs7L8Hzw4XyN836f8P7+Mnd6/6KXI
-      46B/GOdv/v33dBOFQoFwOPw+LehHK5VKOI7zzguqSikWiwQCgarMCQaDWFblX8BV4zHyfZ9i
-      sViVfeH92B4dMhcRMZQCICJiKAVARMRQCoCIiKEUABERQykAIiKGUgBERAylAIiIGEoBEBEx
-      lAIgImIoBUBExFAKgIiIoRQAERFDKQAiIoZSAEREDKUAiIgYSgEQETGUAiAiYqgzXxP4cWM/
-      +1NYxXxFZ3iuh2VbVbmcnVt2cQJObc1xHCp9KeezbI/V2FTZRYhcUjUbAGv06Ypfz9QtlbCr
-      cH1WgFKhQLAa15yt4pxAKFTxeFZre0QeRzoEJCJiKAVARMRQCoCIiKEUABERQykAIiKGUgBE
-      RAylAIiIGEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFD1ezJ4CiV3tuZJi0LgqH3bTkiIpdN
-      7Qbg5iuQPX73Xx+ug49/9v1bj4jIJaNDQCIihlIAREQMpQCIiBhKARARMZQCICJiKAVARMRQ
-      CoCIiKEUABERQykAIiKGUgBERAylAIiIGEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFDKQAi
-      Ioa61AFwyyWOjrMXvQwRkZp0qQLgFrN85Xd/n3zZB3xuv3WLQrH4zsd9t8Ti8srFLVBEpIZc
-      qmsCby7Ncf2pceaWtxhsr2NtY5tE9xUyB/tk0zu09I7g+1DKnzA7v0SkIU4iVsfmzj6eHWR8
-      ZOg9XQdeRMQkl+cdgO+ztJWiq7OTnfUF6mNNdHZ2caW3i6WHD2jqHaG7tYGd3X2m7t1naHSC
-      wSu9hCMRAo7NyvwC7kVvg4jIY+TSBMAtneCE6imVXOosl2zZf+dj9U1t9HW0vvPqvi4cJJsv
-      UC6XuXNnkt7+q8Qbo/h//U2LiMhf49IcAiqXXK4/9RRNDXU0RoKUi2UGBwcAGBwcPP0kO8Dg
-      QD/trU0sLy1zUtfAxPgoq6urdPdfwbnA9YuIPG4uTQDC9XHCj/4cjbUAEIu2A9DR0XH6Aduh
-      I9EGwMDQ8Dtf29jUVrV1iojUiktzCEhERKpLARARMZQCICJiKAVARMRQCoCIiKEUABERQykA
-      IiKGUgBERAylAIiIGEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFDKQAiIoZSAEREDKUAiIgY
-      6tJcEex9194NxcK7//pg8P1bi4jIJVS7ARieAFtvcEREfhQ9Q4qIGEoBEBExlAIgImIoBUBE
-      xFAKgIiIoRQAERFDKQAiIoZSAEREDKUAiIgYSgEQETGUAiAiYigFQETEUAqAiIihajcAmdRF
-      r0BE5FKr3QD4/kWvQETkUqvdAIiIyI+lAIiIGEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFD
-      KQAiIoZSAEREDKUAiIgYSgEQETGUAiAiYigFQETEUAqAiIihFAAREUMpACIihlIAREQMFbiI
-      obmjFHPLW9i49A2OEq8Pn/s2ysVjNrZPuNLfUYEViojUvgsIgM/dqVk+9NxHsLwir9+6x/Mf
-      eprFhUWC0RjdbTEWV9aItbTT0dLA4sIyrmUzNDTE5uoi5bJ3+nntcSKRECeHB6xv7RBpiNPf
-      01n9zREReUxdyCEgz7dwbAs7EAavxIO7d0j0XqWnM8GdO3cZGLrG+sJDXMuhqSlOKb3N4naG
-      ldV1+gcG2d5Ywy3lWN1IEqqLEmtsYGbqPu5FbIyIyGPqQgIQsHyKrodbzIITplT2qAsHcRyH
-      XPaYxYV5GmJN7KzOsX1YJtHajOu6BIIhAo6DY39/2ffuvEUo0kCsPop3ERsjIvKYuoBDQBbP
-      PPMkD2dmsCx4+pmnCPkFZmemiTTEefYDz7K6uUsgEKYl0cr+4jpp26O5uY5I1+khnkR7AicQ
-      pr2tmbAVYSe5Tbg+pp9oi4icg+X7vn/Ri3i/+b6Pf7CH3ZKo6JxSqYTjONh25dNTKBQIh8//
-      w/LLPCcUCmFZVsXn1NL9Vq19rlgsEggEqjInGAxWfD+A6jxGvu9TLBYfm31OL5pFRAylAIiI
-      GEoBEBExlAIgImIoBUBExFAKgIiIoRQAERFDKQAiIoZSAEREDKUAiIgYSgEQETGUAiAiYigF
-      QETEUAqAiIihFAAREUMpACIihlIAREQMpQCIiBiqdgMQb7noFYiIXGq1G4AqXGNURORxVrsB
-      EBGRH0sBEBExlAIgImIoBUBExFCBi15ApXieh+/7FZ3h+35V5rw9y3XdmprjeV5V5tTi/VYr
-      +3a19oO3Z9XavvBe59TsO4BqPCnbtl2VOW/PqqU5gUCgKt/4juNU5TGq1pxq7XPVvN+qFYBa
-      +x56Px6jmn0HAKd3UCV5nofneRWf8/asWprjui6WZVVlFlR+X/B9H9u2K/7N7/s+5XK5ZvZt
-      fQ+9d+9lVs2+AxARkR/P8qt1DKOK3t4kq8L/GKxac96eVWtzoHYeI8253HPenlVrc+C93Xc1
-      GQAREfnJdAhIRMRQzpe+9KUvXfQiKmVnY5nFtQ3Sh1ma6kPMr2zQHI9yb2qWjo7EOW/N5/ab
-      b3B4dELJtwn6ee49mGNnd49EIsHszAyJRBtT9+7R3NaOY5//bZlXLnLrxqtkynUkmhvZXFlg
-      ZWOLw2yR5liUe5OTJJNJovEWVhceEmtJsLU0S9GpJxoOnnmOWypw87VvkbUaaY3XM3N/kr2D
-      DMfZIvGGOiYn75JMJmlsbmNpfpbm1gRr8w/w6+JEQuf5gZPL7NQD9lJ7pA5zNNUHuDM5xXZy
-      h7b2DrZXF1jb3CZznKe1zmV6PUNrY4B7D+Zpb2/jrPeg75dP5+zvkT4p0OgUuDE5R+74kEhD
-      jOTaIutbSY6yJWKBPPPJLE0ReDC7Qnui9cxb47kFZqcfsre/y1HepT7oMnl/luTuHon2dmYe
-      TJFMbmHXxdhZnScUT5DZXiKVs4nV153jfvNYmpsjubfLzn6GtqYor79xi5OTE5xQhFx6h7nl
-      NfYPjkg0RZmeX6WtuZF79x7Q3tF+5vvtbXNTt9k99mhpDHN38h7J5A6NzW0c7qyzsLJOKnNC
-      IhZiemmLtng996Zm3tWc2btvkCoEaK7z+N6b98ieHBGKNJDeWWd5bZODoyxt9Q7TK7u0xeu4
-      NzVLe0fiXHOO9ta4O7vG8eEBDfEWNlfmWN/a5jhXpqkhzOSdSbaTSWItCRYeztLSlmD54RR2
-      fTN1wbPv25ntJe4vbnOUTtHY1Mrs/TscpA85KZSJ1we5fecu29tJmhMdzM3OkEgkmJ++RyjW
-      RihwntfdPquLc2wmd/FwCFslJu9Pk9zZpa2jg/Wlh4+2z6XeyrK0VyAW8ngwv0Z7208+IWYN
-      vwPwWVjZ4omJCbKpLXKlMpmjY6Ymb9M7MHj+W3OLlK0Io6OjdCVamJmeZfT6E3THHZa2Dkin
-      02yvzBFsTBB03t0xuZOjNK3tHZwc5wCP5Y1drk9MkE6usbE0R33HVZ4YH+LB1EMOM2lyxyk2
-      0kVaG8/z5ALHh2kS7e2cZAsAHOWKjI6OcrW/m42FaZr7rvHE+FXuP5qTPdxj5wSaomePzCmL
-      oZFxxkbH2FpbZvr+fYYmnmK8v5n7c5usbOwwMT7OfnIdr1wkfZzj9pu3GLx27ZxPLhbDYxOM
-      jo2ysbrEfnKD/msTjI6OEA07rG/vMzE+zs7mCn4pT+Y4z+1bdxgcPt9+YNkhRifGGbk2yObG
-      GlP3HzD+5FNcaQ3xcGWLpo52rk+MMz/zgJPDNIXCCQ/XUvQkYueaAxZXh68xOjJCaneb/Ema
-      +uYuRkdHaY7VM7u4ypPXJyC7TyZXIn14zOz9STr6Bs79pHxykCRbgmw2y8biLC1915i41suD
-      2QXmVtZ54voEpcMdTvKncx7cvUP3lcFzzznc3yTv2pxk8xyldmnrGWB0dJRYfR2Lq5tcnxjn
-      JLVFvlggfXTCvTtv0Tc4dO45O9t7DI6NMjo6Sl3QZ337gInxCXY3V1iZnaJtYIwnx65w//4c
-      mUyabGaHvbxNrO58vxC5tbnP6MQYo6OjhAMW2UKZkdFRrvR0sjR1l+6RJ3lytJe79+dJp9Mc
-      p7bIlMM0hM/3Gztu4YitVJHxsTE62pqZujfF2JNPM9geYWZpi42dNBPjEyQ3lvGKeQ5P8ty+
-      PcnQ0MCZbr+GA+CCFcCyLOrDNtmCz+7GMgcFh5aG8z1hnnJoiYV5cP8ekw/myJd9IkGbaGMD
-      2aMTTg4PuPtwnaErne96xY3N7bQ3Nz76rxKWFcKyLEIBi1QmS2NDBDsUxSud4Jby3LjxJtdG
-      R8/9Q6B4awdt8fp3/rurvZXZ6QfcuHmbw+MC8YYwTrgRr3BMuZDjtRu3GBsbeRc/bLJxi8e8
-      8q1vMfbUs2RLPg0hm7pYnHwmg2VZWJZFwLJw8dlenydHw7m/SSzLoZTL8Mo3X+H60x+gsb2f
-      7M4St268xnbqBMu2T3/lFPCAzZUZSsEmoud6N3P6w7aD3W2+/ep36OjpJ+9CJGARjTVynEoT
-      tfNYThDfK+N5ZW7d+B59w+d/fMAid5zh5o3vEo61EaxrJOTnuHv7FvOr28Dp/RaNhDjJFUnt
-      rLOVLtHRXP8Tb/mv8D2mZpe5NtgHwHG2QGO0jmAkSjmXe2dOXShIrlhib3uV3ROftljknHNc
-      pufWGL7SDUBdPIGf3ePOm6+zsp2CR/tBOOBQLHvsbi6TLgRprg+fbw6Q6Oljb3WR11/7Dqnj
-      IywrfPrYWxbp49Lpvl0Xwy0cUi5k+e6N20yMn3/f7rraz+bCQ25899tk8mU62pqZmX7A67fu
-      kj4p09wQxInE8fJpSvkTvvP6XZ6YuHbu7Skdpdg9PGRmeoqbt++TcyEasIjEY2QP0tiOg2VZ
-      2Jzu2+uLD/DCLUSCZ3tqr+EAOFh+Cc/3yeRcGiMWiZ6r9LeEWFjfPfeteb5P39Vhxq9PcJze
-      I1YXIJ0tkdpN0dTaTH2smRc+OM6tOw/ep/WHwM/j+T65okdPZzO7e2mKxymC9S04wTpe+vhL
-      3H/rJq73Xn6O79HW0cPY+ARWOUtra4zkbob84Q7hxjYC4QifePljvHXzJt55f1/Ad/n2d97g
-      hZdepqO5kbaGEDtHeQ62k8Q72/F9H9/3KXkeAcuis3eY9miJtd3M+cb4Zb7z2pu8+PInaIvX
-      44SijI6OMj7czfZeBs91T39/3j/d4buvjtEUOGFz/+hcczzXpSnRyUuf+BTJ1QWa6gKksiVS
-      yT3aujtJ5UO4xSx2MIJtB/jwiy+zMvUWxfL5/qGT7/uEozGe+8iL+Ed7FHAYHh3h+vg19nZ2
-      sfEpez7poxzxhjAt7b2M9MaZXto815xi7ggrEGRpcYnNzU1isQZ2U2my6QMi8SZsfFzP5zhX
-      oKEuRFtnP4MdUeZWk+eakz/O4ATDLC4ts7m5iUuQayMjTIwOkEzuY+Hj+T7ZQplIyCHRfZW+
-      lgCLG3vnmgMQijQwMjLKUE8ru2kX38++s491JRrZ3j0kn04SjrUTCEf55Cc+xpuvv3Huf1AV
-      jsYYGRlloCPGbiZLe1cf4+MTlPNHdLXVs7FzRO5gi7qmLoJ19fz0J3+KG997g/N+p4bibbQ2
-      RBkbm6BcOKYlEmD/pEhqe5eW7k7ccun0XwQ/2rd7B6/TaB2ylTo+0+3X8M8ALFri9cwvLpPo
-      7qepIQq2Q9+VQVI7WzS3tJzvkgG+x+L8HDu7uwwOj9Hb283q4jxeqJGBngS+79Pe2YNfOCYQ
-      jRF0zt/Ww4M91jZ3KRbzhCP1dCfiLC6t0NU/SKK9k2xqi+RBjonxYSwg1tRKIhbmIOvSGD37
-      u5rM/g4byf3TOdF6Usl1tpM7JLqu0NnTy9HuOrvpIhPjQ1j4xJvbaKl3OCzaNERCZ9+gco69
-      TJbcyRFH2QIDw8NsLc1z7AUZG+ihuTHCwtIK3f2DNEbD+HaIgcFBdjbXaGlpOfurstIJe4d5
-      cieHHOdKhB2XhcUV0lmf66NXaaoPsbi8Su+VYeojYQiEGRwcILm5TmvL2S8c5JbyPJxbILW/
-      T8/VQfqv9LG28JBioIGhvi6yBztsJlOMjY/j2NAQa6anPc72/hFNsXO8Ovc9Fhfm2N1P0dze
-      RbzOYW5ugb3UIeMTY3QlmphfWCTe3ksiXo9v2fT2X+VwP0m8uQX7jPebE6yjp7uLluYmGpua
-      6e7tI7Ozzv5xifGRQRLNjcwvLtHS0UdLLIpvBei7cpX07hZN53h8AuEI3d2dtDTHiTW3Egm4
-      zC8ss3+Y5/r4NRJNDY++T6/Q1BDBt4NcuTpAKrl5rjkAJ5l9llbWyXpBRq72EB2yt1QAAAQK
-      SURBVIuGWFpZo2/gGonObjLJFXaPSlwfG4RH+3ZzxOao7FBfd/Z9++hgl+W1DfJWlGt9Hawt
-      z5Pc2aGrb5DO3iukNhbZPznd//B9mlsTxEIeWS9MNHz2w02WHSRsl1jd2KK7f5C+q/2sLz6k
-      4NQz3NdFLBJgaWWN3qun+7YVCDMwcJXtzY0z7dv6NVAREUPV8CEgERH5cRQAERFDKQAiIoZS
-      AEREDKUAiIgYSgEQETGUAiAi8iP85R//d/79l3+b//Aff4v948KZv873S3zjG6+c4fN8vv5H
-      v8tv//Zv8Ydf+8mf/6N8509/j3/35f9Mtgyl/D7//J/8Jpm8y+ybr3JnfvtHfl1NXxFMROS9
-      SK4v87lf+qeUZv+cb7w2CZklPv+Lf4f/9Qdf4fM/83H+9W99hZY6j+svfo7c4ptsFyCZzPDr
-      v/6r7O1vszV7i9//5m28kzQ/+8v/kJOVW7z61hxWuIFf+5Uv4HtZbkwu8S9+85/huS4Pbn6L
-      cssEgf0pym0TvPXnv4ddF+Uw6xNx8gw880k++fx1Cscp/svv/A/KVojP/8Ln+MoffY2hD34S
-      OD1pYWMkyFe/9i1GogecBPqYvPGXfPvWNNc/9BLezgxPfuLn+LP/+mW9AxAR+XH+4L/9J/7w
-      m7d5/plxVtdW8YHV1VUo5bEbuvhHX/g5Xnt9kuT6Oj/9879Eh3VEqgAra6vkDg/oGXmWn/3Y
-      00xOL/Cnr7zJr/3jXyV3sAWAZUf5uU8/z7/9N/+KP/nG9zjcT5I+yZNJ7ZA5zrN3WOQLX/gi
-      ufwJX/zi3+be67cAeO0v/g/PfOrzfP6TT/HV1+Z44dlxPv/L/4Doo5f0rf0TlJKzHBVc8Er8
-      769+gxc+8jzf/PpXaWsMcXvyHv6jcwiJiMiP8JnPfZaya9EQDWG7ZXKFPAeHp+fasSwL651z
-      llqnp5f5/05dYWHx9qd4xQK5YoGj49zpX/gF6tuG+Y3f+HXuvvEdbNumUCiQ2k/9wNc/uk3L
-      gkcnbmior2dvb5/dnV0aG/+604xYfPbTL/InX3sFLBvbK3GcK/HCR19g5OkP8MbX/oCh53+m
-      ls8FJCLy3vUOPcFHnx7g1tQiH31mhK//5WsMXxtldHgQAnX0dyfwA3X0dSXo6O0jZEFnbx9B
-      C/r7+qiLNZNoaiQSa+GDY3383z9/lb2DNJ96+SXA586NV/nW927xt37x73JteJAbr/wFje29
-      DA8PE68P09ffD5ZFX18vlh2it7eTrqsjLN1+lY18lF/4zEvYFrR39/P2aYZsO8TwoxM8Do0+
-      wQsfnOCNN27S0nWFa8PDZNIpPvLRj+lcQCIiVeH7fP2Pv8LS1h59Yx/ic594/qJXpACIiJhK
-      PwMQETHU/wO6ZGNGXrWb4QAAAABJRU5ErkJggg==
-    </thumbnail>
-    <thumbnail height='384' name='Sheet 11' width='384'>
-      iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAYAAACkx7W/AAAACXBIWXMAAA7DAAAOwwHHb6hk
-      AAAFXUlEQVR4nO3VMQEAIAzAMMC/5yFjRxMF/XpnZg4AOW87AIAdBgAQZQAAUQYAEGUAAFEG
-      ABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAA
-      UQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBl
-      AABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYA
-      EGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABR
-      BgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUA
-      AFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQ
-      ZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEG
-      ABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAA
-      UQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBl
-      AABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYA
-      EGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABR
-      BgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUA
-      AFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQ
-      ZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEG
-      ABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAA
-      UQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBl
-      AABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYA
-      EGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABR
-      BgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUA
-      AFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQ
-      ZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEG
-      ABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAA
-      UQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBl
-      AABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYA
-      EGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEfFxoG/IiMv0YAAAAASUVORK5CYII=
+    <thumbnail height='198' name='Sheet 7' width='384'>
+      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
     </thumbnail>
   </thumbnails>
 </workbook>
