@@ -10,10 +10,6 @@ Due to the effect SARS-CoV-2 has had on the world, we are interested in understa
 The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX6pGQzegq2OEnil5-H-vAukYI/edit?usp=sharing) can be found here. The data provided by Our World in Data was very comprehensive, as it spanned many features across the globe. However, the data still needed to be cleaned up and was done so by first sorting through and filtering out any missing data points. Using Tableau, the data is easily visualized.
 
 
-The data provided by *Our World in Data* was very comprehensive, as it spanned many features across the globe. However, the data still needed to be cleaned up and was done so by first sorting through and filtering out any missing data points. Using Tableau, the data is easily visualized. 
-main
-
-
 
 ## ERD
 <div align="center"> 
