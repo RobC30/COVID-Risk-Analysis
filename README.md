@@ -1,4 +1,4 @@
-# COVID-Risk-Analysis Project  
+# __COVID-Risk-Analysis Project  __
 
 In 2019, the world was exposed to SARS-CoV-2 creating a global panic which devastated the world; socially, politically and economically. To understand the deadly disease one must understand the morphology of SARS-CoV-2, specially the spike glycoprotein. The spike protein fuses to the cell membrane by binding to the N terminal and entering the cell where the virus is replicated. There have been other outbreaks of viruses with spike proteins, such as SARS and MERS, which also carry the spike protein. Many biological factors which lead to this global pandemic such as the high transmissibility of the virus as well as deadly complication such as MIS-C(multi system inflammatory syndrome in children) or multi system organ failure induced by the cytokine storm. Omicron has been shown to be highly mutable with a total of 50 point mutations - 36 of which are on the spike protein making this the deadliest and most transmissible variant to date.
 
@@ -9,7 +9,11 @@ Due to the effect SARS-CoV-2 has had on the world, we are interested in understa
 
 The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX6pGQzegq2OEnil5-H-vAukYI/edit?usp=sharing) can be found here. The data provided by Our World in Data was very comprehensive, as it spanned many features across the globe. However, the data still needed to be cleaned up and was done so by first sorting through and filtering out any missing data points. Using Tableau, the data is easily visualized.
 
+## __Data Cleaning__
 
+## __Data Preprocessing__
+
+## __Data Training__
 
 ## ERD
 <div align="center"> 
