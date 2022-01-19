@@ -16,9 +16,20 @@ The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX
 
 ## __Data Cleaning__
 
-## __Data Preprocessing__
+## __Data Fea
 
 ## __Data Training__
+
+## Model Choice
+- planned to use randomforestclassifer first to determine bad worse worst - considered bucketing
+- changed to randomforestregression for time series data, captures seasonalities
+- used new_deaths as target variable first
+- experimented with new_cases next
+- used boosters for both
+
+## Results
+### Training Scores
+### Accuracy Scores
 
 ## ERD
 <div align="center"> 
