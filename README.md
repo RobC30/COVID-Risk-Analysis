@@ -15,11 +15,35 @@ The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX
 
 ## __Data Cleaning__
 
-## __Data Fea
+## __Data Preprocessing__
 
 ## __Data Training__
 
-## Model Choice
+## __Model Choice__
+
+__RandomForestClassifier__ <br>
+For our data analysis, we initially planned to use RandomForestClassifer to determine a country's predicted state of COVID risk. Our model is to forecast a future month's number of COVID deaths based on a number of features. The features are as follows:
+
+<div align="center"> 
+
+|             | Features    |               |
+|    :----:   |    :----:   |    :----:     |
+| Country      | Date       | New Cases  |
+| New Cases   | Reproduction Rate        | Stringency Index  |
+| Population   | Population Density        | Median Age     |
+| Number of Age 65+   | Number of Age 70+        | GDP per Capita      |
+| Extreme Poverty  | Cardiovascular Health        | Diabetes Prevalence     |
+| Female Smokers   | Male Smokers        | Hospital Beds per Thousand      |
+| Life Expectancy   | Human Development Index        |
+
+
+</div>
+
+Based on these features, our model will classify if a country's forecasted monthly COVID deaths is __Bad, Worse or Worst.__ This will involve bucketing projected outcomes (e.g. >10,000 deaths - Bad, 10,000 to 50,000 deaths - Worse, 50,000 deaths - Worst)
+
+__RandomForestRegression__ <br>
+In the middle of our analysis, to better represent a time series data we then opted for a RandomForestRegression instead. This will keep our findings cleaner with a definite projected number per month wherein we can pinpoint environment seasonalities (vaccinations started, vaccinations availablity, boosters, re-openings, etc.). We used the same features as stated above. We also experimented on __New Cases__ as our target variable for our model, this will be insightful if we see the number of COVID deaths plateuing because of vaccination efforts. Looking at New Cases instead will keep our model relevant.
+
 - planned to use randomforestclassifer first to determine bad worse worst - considered bucketing
 - changed to randomforestregression for time series data, captures seasonalities
 - used new_deaths as target variable first
