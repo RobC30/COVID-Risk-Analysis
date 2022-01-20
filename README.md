@@ -1,14 +1,18 @@
 # __COVID Risk Analysis Project__
 
-In 2019, the world was exposed to SARS-CoV-2 creating a global panic which devastated the world; socially, politically and economically. To understand the deadly disease one must understand the morphology of SARS-CoV-2, specially the spike glycoprotein. The spike protein fuses to the cell membrane by binding to the N terminal and entering the cell where the virus is replicated. There have been other outbreaks of viruses with spike proteins, such as SARS and MERS, which also carry the spike protein. Many biological factors which lead to this global pandemic such as the high transmissibility of the virus as well as deadly complication such as MIS-C(multi system inflammatory syndrome in children) or multi system organ failure induced by the cytokine storm. Omicron has been shown to be highly mutable with a total of 50 point mutations - 36 of which are on the spike protein making this the deadliest and most transmissible variant to date.
+## Background:
+
+In 2019, the world was exposed to SARS-CoV-2, creating a global panic which devastated the world in all aspects: socially, politically and economically. To understand the deadly disease one must understand the morphology of SARS-CoV-2, specifically the spike glycoprotein. The spike protein fuses to the cell membrane by binding to the N terminal and entering the cell to where the virus is replicated. There have been other outbreaks of viruses with spike proteins, such as SARS and MERS. Many biological factors have lead to this global pandemic, such as the high transmissibility of the virus as well as deadly complications such as MIS-C(Multi-system Inflammatory Syndrome in Children) or multi-system organ failure induced by the cytokine storm. The Omicron variant has been shown to be highly mutable with a total of 50 point mutations - 36 of which are on the spike protein, making this the deadliest and most transmissible variant to date.
 
 ![covid-variants-1500px jpg](https://user-images.githubusercontent.com/89358080/150033604-13497220-a62e-468e-b5cc-dd9f063cd0b4.jpg)
 
-Due to the effect SARS-CoV-2 has had on the world, we are interested in understanding how the virus will affect different communities given the effect it has had on every person in the world. A predictive model was created by looking at a variety of factors, including vaccination status, testing, and comorbidities. The model was then used to determine the impact of COVID in communities. The purpose of the research is to see if there are any factors that could contribute to large outbreaks. A dataset on this [Github](https://github.com/owid/covid-19-data/blob/master/public/data/README.md) page was found and [this dataset](https://covid.ourworldindata.org/data/owid-covid-data.csv) will be used to conduct the analysis. The random forest machine learning model will be used to start the analysis.
+## Methods:
 
 ## __Source of Data__
+Due to the effect SARS-CoV-2 has had on the world, an interest was taken in understanding how the virus will affect different communities. The goal was to create a predictive model looking at a variety of factors, including vaccination status, testing, comorbidities, etc... using this dataset on [Github](https://github.com/owid/covid-19-data/blob/master/public/data/README.md) and [this dataset](https://covid.ourworldindata.org/data/owid-covid-data.csv). After initial extraction, the data was transformed using Pandas, then it was loaded into a database using Postgres, and finally the data was visualized using Tableau. The random forest machine learning model will be used to start the analysis. The model was then used to determine the impact of COVID in communities. The purpose of the research is to see if there are any factors that could contribute to large outbreaks. 
 
-The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX6pGQzegq2OEnil5-H-vAukYI/edit?usp=sharing) can be found here. The data provided by __Our World in Data (OWID)__ was very comprehensive, as it spanned many features across the globe. However, the data still needed to be cleaned up and was done so by first sorting through and filtering out any missing data points. Using Tableau, the data is easily visualized.
+Hiyab_branch
+The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX6pGQzegq2OEnil5-H-vAukYI/edit?usp=sharing) can be found here. 
 
 ## Software
 - Python (sklearn, matplotlib)
@@ -50,11 +54,16 @@ In the middle of our analysis, to better represent a time series data we then op
 __Boosters & StackingRegressor__ <br>
 We also experimented on using GradientBoosting & StackingRegressor on our New Deaths RandomForestRegression model to see if this positively or negatively affects our training & accuracy scores.
 
-- stacking regressor
 
 ## Results
+- Overall, many of the scores accumalated showed an accuracy score of close to 90% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID 
 ### Training Scores
+- The training score was approximately 0.989
 ### Accuracy Scores
+- The coefficient of determination was approximately 94%
+- In terms of new_deaths, the accuracy of the model was approximately 89.7%
+- The predictions for new_cases was approximately 96.4% 
+## ERD
 
 ## ERD
 <div align="center"> 
