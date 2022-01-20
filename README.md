@@ -14,7 +14,7 @@ Due to the effect SARS-CoV-2 has had on the world, an interest was taken in unde
 Hiyab_branch
 The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX6pGQzegq2OEnil5-H-vAukYI/edit?usp=sharing) can be found here. 
 
-## Software
+## __Software__
 - Python (sklearn, matplotlib)
 - Jupyter Notebook
 - Postgres SQL
@@ -24,12 +24,10 @@ The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX
 
 ## __Data Preprocessing__
 
-## __Data Training__
-
-## __Model Choice__
+## __Data Training & Model Choice__
 
 __RandomForestClassifier__ <br>
-For our data analysis, we initially planned to use RandomForestClassifer to determine a country's predicted state of COVID risk. Our model is to forecast a future month's number of COVID deaths based on a number of features. The features are as follows:
+For our data analysis, we initially planned to use RandomForestClassifer to determine a country's predicted state of COVID risk. Our model is to forecast a future month's number of COVID deaths based on a number of features. We used __sklearn's model_selection__ module, imported __train_test_split__ class and used the default setting for testing & training sizes (75/25) . as our The features are as follows:
 
 <div align="center"> 
 
@@ -54,8 +52,7 @@ In the middle of our analysis, to better represent a time series data we then op
 __Boosters & StackingRegressor__ <br>
 We also experimented on using GradientBoosting & StackingRegressor on our New Deaths RandomForestRegression model to see if this positively or negatively affects our training & accuracy scores.
 
-
-## Results
+## __Results__
 - Overall, many of the scores accumalated showed an accuracy score of close to 90% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID 
 ### Training Scores
 - The training score was approximately 0.989
@@ -63,7 +60,6 @@ We also experimented on using GradientBoosting & StackingRegressor on our New De
 - The coefficient of determination was approximately 94%
 - In terms of new_deaths, the accuracy of the model was approximately 89.7%
 - The predictions for new_cases was approximately 96.4% 
-## ERD
 
 ## ERD
 <div align="center"> 
