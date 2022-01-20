@@ -1,4 +1,4 @@
-# __COVID-Risk-Analysis Project__
+# __COVID Risk Analysis Project__
 
 ## Background:
 
@@ -8,10 +8,17 @@ In 2019, the world was exposed to SARS-CoV-2, creating a global panic which deva
 
 ## Methods:
 
+## __Source of Data__
 Due to the effect SARS-CoV-2 has had on the world, an interest was taken in understanding how the virus will affect different communities. The goal was to create a predictive model looking at a variety of factors, including vaccination status, testing, comorbidities, etc... using this dataset on [Github](https://github.com/owid/covid-19-data/blob/master/public/data/README.md) and [this dataset](https://covid.ourworldindata.org/data/owid-covid-data.csv). After initial extraction, the data was transformed using Pandas, then it was loaded into a database using Postgres, and finally the data was visualized using Tableau. The random forest machine learning model will be used to start the analysis. The model was then used to determine the impact of COVID in communities. The purpose of the research is to see if there are any factors that could contribute to large outbreaks. 
 
 Hiyab_branch
 The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX6pGQzegq2OEnil5-H-vAukYI/edit?usp=sharing) can be found here. 
+
+## Software
+- Python (sklearn, matplotlib)
+- Jupyter Notebook
+- Postgres SQL
+- Tableau
 
 ## __Data Cleaning__
 
@@ -44,11 +51,9 @@ Based on these features, our model will classify if a country's forecasted month
 __RandomForestRegression__ <br>
 In the middle of our analysis, to better represent a time series data we then opted for a RandomForestRegression instead. This will keep our findings cleaner with a definite projected number per month wherein we can pinpoint environment seasonalities (vaccinations started, vaccinations availablity, boosters, re-openings, etc.). We used the same features as stated above. We also experimented on __New Cases__ as our target variable for our model, this will be insightful if we see the number of COVID deaths plateuing because of vaccination efforts. Looking at New Cases instead will keep our model relevant.
 
-- planned to use randomforestclassifer first to determine bad worse worst - considered bucketing
-- changed to randomforestregression for time series data, captures seasonalities
-- used new_deaths as target variable first
-- experimented with new_cases next
-- used boosters for both
+__Boosters & StackingRegressor__ <br>
+We also experimented on using GradientBoosting & StackingRegressor on our New Deaths RandomForestRegression model to see if this positively or negatively affects our training & accuracy scores.
+
 
 ## Results
 - Overall, many of the scores accumalated showed an accuracy score of close to 90% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID 
