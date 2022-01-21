@@ -64,7 +64,7 @@ We also experimented on using GradientBoosting & StackingRegressor on our New De
 ## ERD
 <div align="center"> 
 
-<img src = https://raw.githubusercontent.com/RobC30/COVID-Risk-Analysis/main/Resources/ERD.png width = 500 >
+<img src = https://raw.githubusercontent.com/RobC30/COVID-Risk-Analysis/main/Resources/ERD_Datatypes.png width = 500 >
 
 </div>
  
