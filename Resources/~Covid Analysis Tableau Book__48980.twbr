@@ -23,7 +23,7 @@
     <WorksheetBackgroundTransparency />
     <ZoneBackgroundTransparency />
   </document-format-change-manifest>
-  <repository-location id='CovidAnalysisTableauBook' path='/workbooks' revision='2.0' />
+  <repository-location id='CovidAnalysisTableauBook' path='/workbooks' revision='2.2' />
   <preferences>
     <preference name='ui.encoding.shelf.height' value='24' />
     <preference name='ui.shelf.height' value='26' />
@@ -58,9 +58,11 @@
           <member alias='Human Development Index' value='&quot;HDI&quot;' />
         </members>
       </column>
-      <column alias='GDP Per Capita' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;GDP&quot;'>
-        <calculation class='tableau' formula='&quot;GDP&quot;' />
+      <column alias='% of Population above 65' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;65&quot;'>
+        <calculation class='tableau' formula='&quot;65&quot;' />
         <aliases>
+          <alias key='&quot;65&quot;' value='% of Population above 65' />
+          <alias key='&quot;70&quot;' value='% of Population above 70' />
           <alias key='&quot;DP&quot;' value='Diabetes Prevalence' />
           <alias key='&quot;EP&quot;' value='Extreme Poverty' />
           <alias key='&quot;GDP&quot;' value='GDP Per Capita' />
@@ -77,6 +79,8 @@
           <member alias='Human Development Index' value='&quot;HDI&quot;' />
           <member alias='Extreme Poverty' value='&quot;EP&quot;' />
           <member alias='Stringency Index' value='&quot;SI&quot;' />
+          <member alias='% of Population above 65' value='&quot;65&quot;' />
+          <member alias='% of Population above 70' value='&quot;70&quot;' />
         </members>
       </column>
       <column alias='February' caption='Month Parameter' datatype='integer' name='[Parameter 4]' param-domain-type='list' role='measure' type='quantitative' value='2'>
@@ -583,7 +587,7 @@
         </calculation>
       </column>
       <column caption='Feature Parameter' datatype='real' name='[Calculation_210261869707603983]' role='measure' type='quantitative'>
-        <calculation class='tableau' formula='CASE [Parameters].[Parameter 3]&#13;&#10;WHEN &quot;DP&quot; then AVG([diabetes_prevalence])&#13;&#10;when &quot;GDP&quot; then AVG([gdp_per_capita])&#13;&#10;when &quot;MA&quot; then AVG([median_age])&#13;&#10;WHEN &quot;LE&quot; then AVG([life_expectancy])&#13;&#10;WHEN &quot;HDI&quot; then AVG([human_development_index])&#13;&#10;WHEN &quot;EP&quot; then AVG([extreme_poverty])&#13;&#10;WHEN &quot;SI&quot; THEN AVG([stringency_index])&#13;&#10;END' />
+        <calculation class='tableau' formula='CASE [Parameters].[Parameter 3]&#13;&#10;WHEN &quot;DP&quot; then AVG([diabetes_prevalence])&#13;&#10;when &quot;GDP&quot; then AVG([gdp_per_capita])&#13;&#10;when &quot;MA&quot; then AVG([median_age])&#13;&#10;WHEN &quot;LE&quot; then AVG([life_expectancy])&#13;&#10;WHEN &quot;HDI&quot; then AVG([human_development_index])&#13;&#10;WHEN &quot;EP&quot; then AVG([extreme_poverty])&#13;&#10;WHEN &quot;SI&quot; THEN AVG([stringency_index])&#13;&#10;WHEN &quot;65&quot; THEN AVG([Calculation_3133379503138373641])&#13;&#10;WHEN &quot;70&quot; then AVG([Calculation_3133379503138627594])&#13;&#10;END' />
       </column>
       <column caption='CONTINENT' datatype='string' name='[Calculation_210261869711073299]' role='dimension' type='nominal'>
         <calculation class='tableau' formula='if [Continent Set] then [continent]+&quot; +&quot; ELSE [continent]+&quot; -&quot; END' />
@@ -787,6 +791,7 @@
       <column-instance column='[median_age]' derivation='Sum' name='[sum:median_age:qk]' pivot='key' type='quantitative' />
       <column-instance column='[new_cases]' derivation='Sum' name='[sum:new_cases:qk]' pivot='key' type='quantitative' />
       <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:vtsum:qk]' pivot='key' type='quantitative' visual-totals='Sum' />
       <column-instance column='[date]' derivation='Week-Trunc' name='[twk:date:ok]' pivot='key' type='ordinal' />
       <column-instance column='[Calculation_1636777049854615553]' derivation='User' name='[usr:Calculation_1636777049854615553:qk:1]' pivot='key' type='quantitative'>
         <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
@@ -826,6 +831,7 @@
       </column-instance>
       <column-instance column='[Calculation_2015642368501407744]' derivation='User' name='[usr:Calculation_2015642368501407744:qk]' pivot='key' type='quantitative' />
       <column-instance column='[Calculation_2015642368501407744]' derivation='User' name='[usr:Calculation_2015642368501407744:vtavg:qk]' pivot='key' type='quantitative' visual-totals='Avg' />
+      <column-instance column='[Calculation_2015642368501407744]' derivation='User' name='[usr:Calculation_2015642368501407744:vtsum:qk]' pivot='key' type='quantitative' visual-totals='Sum' />
       <column-instance column='[Calculation_210261869707603983]' derivation='User' name='[usr:Calculation_210261869707603983:qk]' pivot='key' type='quantitative' />
       <column-instance column='[Calculation_210261869718290459]' derivation='User' name='[usr:Calculation_210261869718290459:nk]' pivot='key' type='nominal' />
       <column-instance column='[Calculation_210261869940871205]' derivation='User' name='[usr:Calculation_210261869940871205:qk]' pivot='key' type='quantitative' />
@@ -1585,6 +1591,9 @@
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:vtavg:qk]&quot;</bucket>
             </map>
             <map to='#4e79a7'>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:vtsum:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869718290459:nk]&quot;</bucket>
             </map>
             <map to='#59a14f'>
@@ -1678,6 +1687,9 @@
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]&quot;</bucket>
             </map>
             <map to='#e15759'>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:vtsum:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Death Rank (copy)_3133379503097401347:qk]&quot;</bucket>
             </map>
             <map to='#edc948'>
@@ -1735,9 +1747,11 @@
             <alias key='&quot;HDI&quot;' value='Human Development Index' />
           </aliases>
         </column>
-        <column alias='GDP Per Capita' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;GDP&quot;'>
-          <calculation class='tableau' formula='&quot;GDP&quot;' />
+        <column alias='% of Population above 65' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;65&quot;'>
+          <calculation class='tableau' formula='&quot;65&quot;' />
           <aliases>
+            <alias key='&quot;65&quot;' value='% of Population above 65' />
+            <alias key='&quot;70&quot;' value='% of Population above 70' />
             <alias key='&quot;DP&quot;' value='Diabetes Prevalence' />
             <alias key='&quot;EP&quot;' value='Extreme Poverty' />
             <alias key='&quot;GDP&quot;' value='GDP Per Capita' />
@@ -1911,7 +1925,7 @@
             <groupfilter function='level-members' level='[dy:date:ok]' />
           </filter>
           <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]'>
-            <groupfilter function='member' level='[my:date:ok]' member='202104' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[my:date:ok]' member='202004' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
@@ -2076,13 +2090,14 @@
             <column caption='Stringency Index' datatype='real' name='[stringency_index]' role='measure' type='quantitative' />
             <column-instance column='[new_cases]' derivation='Sum' name='[sum:new_cases:qk]' pivot='key' type='quantitative' />
             <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[Calculation_2015642368501407744]' derivation='User' name='[usr:Calculation_2015642368501407744:vtavg:qk]' pivot='key' type='quantitative' visual-totals='Avg' />
+            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:vtsum:qk]' pivot='key' type='quantitative' visual-totals='Sum' />
+            <column-instance column='[Calculation_2015642368501407744]' derivation='User' name='[usr:Calculation_2015642368501407744:vtsum:qk]' pivot='key' type='quantitative' visual-totals='Sum' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]'>
             <groupfilter function='union' user:op='manual'>
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]&quot;' />
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]&quot;' />
-              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:vtavg:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:vtsum:qk]&quot;' />
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:gdp_per_capita:qk]&quot;' />
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]&quot;' />
               <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:cardiovasc_death_rate:qk]&quot;' />
@@ -2095,7 +2110,7 @@
             <dictionary>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]&quot;</bucket>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]&quot;</bucket>
-              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:vtavg:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:vtsum:qk]&quot;</bucket>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:gdp_per_capita:qk]&quot;</bucket>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]&quot;</bucket>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:cardiovasc_death_rate:qk]&quot;</bucket>
@@ -2123,6 +2138,7 @@
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' num-steps='21' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
+            <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:vtsum:qk]' num-steps='21' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
           </style-rule>
         </style>
         <panes>
@@ -2132,7 +2148,7 @@
             </view>
             <mark class='Square' />
             <encodings>
-              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:vtsum:qk]' />
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Multiple Values]' />
             </encodings>
             <customized-label>
@@ -2676,9 +2692,11 @@
             <datasource name='Parameters' />
           </datasources>
           <datasource-dependencies datasource='Parameters'>
-            <column alias='GDP Per Capita' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;GDP&quot;'>
-              <calculation class='tableau' formula='&quot;GDP&quot;' />
+            <column alias='% of Population above 65' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;65&quot;'>
+              <calculation class='tableau' formula='&quot;65&quot;' />
               <aliases>
+                <alias key='&quot;65&quot;' value='% of Population above 65' />
+                <alias key='&quot;70&quot;' value='% of Population above 70' />
                 <alias key='&quot;DP&quot;' value='Diabetes Prevalence' />
                 <alias key='&quot;EP&quot;' value='Extreme Poverty' />
                 <alias key='&quot;GDP&quot;' value='GDP Per Capita' />
@@ -2694,8 +2712,16 @@
               <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
             </column>
             <column caption='Feature Parameter' datatype='real' name='[Calculation_210261869707603983]' role='measure' type='quantitative'>
-              <calculation class='tableau' formula='CASE [Parameters].[Parameter 3]&#13;&#10;WHEN &quot;DP&quot; then AVG([diabetes_prevalence])&#13;&#10;when &quot;GDP&quot; then AVG([gdp_per_capita])&#13;&#10;when &quot;MA&quot; then AVG([median_age])&#13;&#10;WHEN &quot;LE&quot; then AVG([life_expectancy])&#13;&#10;WHEN &quot;HDI&quot; then AVG([human_development_index])&#13;&#10;WHEN &quot;EP&quot; then AVG([extreme_poverty])&#13;&#10;WHEN &quot;SI&quot; THEN AVG([stringency_index])&#13;&#10;END' />
+              <calculation class='tableau' formula='CASE [Parameters].[Parameter 3]&#13;&#10;WHEN &quot;DP&quot; then AVG([diabetes_prevalence])&#13;&#10;when &quot;GDP&quot; then AVG([gdp_per_capita])&#13;&#10;when &quot;MA&quot; then AVG([median_age])&#13;&#10;WHEN &quot;LE&quot; then AVG([life_expectancy])&#13;&#10;WHEN &quot;HDI&quot; then AVG([human_development_index])&#13;&#10;WHEN &quot;EP&quot; then AVG([extreme_poverty])&#13;&#10;WHEN &quot;SI&quot; THEN AVG([stringency_index])&#13;&#10;WHEN &quot;65&quot; THEN AVG([Calculation_3133379503138373641])&#13;&#10;WHEN &quot;70&quot; then AVG([Calculation_3133379503138627594])&#13;&#10;END' />
             </column>
+            <column aggregation='Avg' caption='Above 65%' datatype='real' default-format='p0.00%' name='[Calculation_3133379503138373641]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[aged_65_older]/100' />
+            </column>
+            <column aggregation='Avg' caption='Above 70%' datatype='real' default-format='p0.00%' name='[Calculation_3133379503138627594]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[aged_70_older]/100' />
+            </column>
+            <column caption='Aged 65 Older' datatype='real' name='[aged_65_older]' role='measure' type='quantitative' />
+            <column caption='Aged 70 Older' datatype='real' name='[aged_70_older]' role='measure' type='quantitative' />
             <column aggregate-role-from='[location]' caption='Continent' datatype='string' name='[continent]' role='dimension' type='nominal' />
             <column caption='Diabetes Prevalence' datatype='real' name='[diabetes_prevalence]' role='measure' type='quantitative' />
             <column caption='Extreme Poverty' datatype='real' name='[extreme_poverty]' role='measure' type='quantitative' />
@@ -3777,10 +3803,39 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
-            <format attr='display' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' scope='rows' value='false' />
-            <format attr='display' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' scope='rows' value='false' />
+            <format attr='display' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' scope='rows' value='true' />
             <format attr='display' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[twk:date:qk]' scope='cols' value='false' />
+            <encoding attr='space' class='1' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' field-type='quantitative' major-origin='0.0' major-show='false' major-spacing='1000000.0' minor-origin='0.0' minor-show='false' minor-spacing='100000.0' scope='rows' type='space' />
+            <format attr='display' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' scope='rows' value='true' />
+            <format attr='auto-subtitle' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' scope='rows' value='true' />
+            <encoding attr='space' class='1' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' field-type='quantitative' fold='true' scope='rows' type='space' />
+            <format attr='display' class='1' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' scope='rows' value='true' />
+            <format attr='auto-subtitle' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' scope='rows' value='false' />
+            <format attr='title' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' scope='rows' value='' />
+            <encoding attr='space' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' field-type='quantitative' major-origin='0.0' major-show='false' major-spacing='10000.0' minor-origin='0.0' minor-show='false' minor-spacing='1000.0' scope='rows' type='space' />
+            <format attr='title' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' scope='rows' value='' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-style' data-class='total' scope='rows' value='solid' />
+            <format attr='border-width' data-class='total' scope='rows' value='2' />
+            <format attr='border-color' data-class='total' scope='rows' value='#000000' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#000000' />
+            <format attr='stroke-size' scope='rows' value='2' />
+            <format attr='stroke-color' scope='cols' value='#000000' />
+            <format attr='stroke-size' scope='cols' value='3' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
           </style-rule>
         </style>
         <panes>
@@ -3791,8 +3846,13 @@
             <mark class='Automatic' />
             <encodings>
               <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
-              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' />
             </encodings>
+            <dropline drop-when='selected' haslabel='false' x-axis='true' y-axis='true' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#e15759' />
+              </style-rule>
+            </style>
           </pane>
           <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]'>
             <view>
@@ -3802,8 +3862,8 @@
             <encodings>
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
               <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
-              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' />
             </encodings>
+            <dropline drop-when='selected' haslabel='false' x-axis='true' y-axis='true' />
             <customized-label>
               <formatted-text>
                 <run bold='true' fontcolor='#e15759'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]>]]></run>
@@ -3813,15 +3873,16 @@
             </customized-label>
             <style>
               <style-rule element='cell'>
-                <format attr='text-align' value='right' />
                 <format attr='vertical-align' value='top' />
                 <format attr='wrap' value='on' />
+                <format attr='text-align' value='left' />
               </style-rule>
               <style-rule element='mark'>
                 <format attr='mark-labels-show' value='true' />
                 <format attr='mark-labels-mode' value='range' />
                 <format attr='mark-labels-range-min' value='false' />
                 <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-color' value='#e15759' />
               </style-rule>
             </style>
           </pane>
@@ -3833,7 +3894,6 @@
             <encodings>
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' />
               <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
-              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' />
             </encodings>
             <customized-label>
               <formatted-text>
@@ -3846,7 +3906,7 @@
               <style-rule element='cell'>
                 <format attr='text-orientation' value='0' />
                 <format attr='text-align' value='left' />
-                <format attr='vertical-align' value='bottom' />
+                <format attr='vertical-align' value='top' />
               </style-rule>
               <style-rule element='mark'>
                 <format attr='mark-labels-range-min' value='false' />
@@ -3855,12 +3915,117 @@
                 <format attr='mark-labels-show' value='true' />
                 <format attr='mark-labels-range-field' value='' />
                 <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-color' value='#edc948' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' y-index='1'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
+            </encodings>
+            <dropline drop-when='selected' haslabel='false' x-axis='true' y-axis='true' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#edc948' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='4' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' y-index='1'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
+            </encodings>
+            <dropline drop-when='selected' haslabel='false' x-axis='true' y-axis='true' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#e15759' />
               </style-rule>
             </style>
           </pane>
         </panes>
-        <rows>([federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk] + [federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk])</rows>
-        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[twk:date:qk]</cols>
+        <rows>([federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk] + ([federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk] + ([federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk] + [federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk])))</rows>
+        <cols onLeft='true'>[federated.0odh0nl1upa7j81cq6uit151wcoo].[twk:date:qk]</cols>
+        <annotations>
+          <annotation class='area' id='0' text-pinx='0.5' text-piny='0.5' text-width-delta='-18'>
+            <formatted-text>
+              <run bold='true' fontcolor='#e15759' fontname='Tableau Semibold'>Deaths</run>
+            </formatted-text>
+            <top-left>
+              <visual-coordinate class='axis'>
+                <x-coord axis-value='#2020-01-26 23:35:02.063#'>
+                  <node-reference>
+                    <axis>[federated.0odh0nl1upa7j81cq6uit151wcoo].[twk:date:qk]</axis>
+                  </node-reference>
+                </x-coord>
+                <y-coord axis-value='29666.821899736151'>
+                  <node-reference>
+                    <axis>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</axis>
+                  </node-reference>
+                </y-coord>
+                <page-reference />
+              </visual-coordinate>
+            </top-left>
+            <bottom-right>
+              <visual-coordinate class='axis'>
+                <x-coord axis-value='#2020-05-15 19:18:57.147#'>
+                  <node-reference>
+                    <axis>[federated.0odh0nl1upa7j81cq6uit151wcoo].[twk:date:qk]</axis>
+                  </node-reference>
+                </x-coord>
+                <y-coord axis-value='24792.501319261213'>
+                  <node-reference>
+                    <axis>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</axis>
+                  </node-reference>
+                </y-coord>
+                <page-reference />
+              </visual-coordinate>
+            </bottom-right>
+            <text x='0.5' y='0.5' />
+          </annotation>
+          <annotation class='area' id='1' text-pinx='0.5' text-piny='0.5' text-width-delta='-18'>
+            <formatted-text>
+              <run bold='true' fontcolor='#edc948' fontname='Tableau Semibold'>Cases</run>
+            </formatted-text>
+            <top-left>
+              <visual-coordinate class='axis'>
+                <x-coord axis-value='#2020-01-23 16:54:19.224#'>
+                  <node-reference>
+                    <axis>[federated.0odh0nl1upa7j81cq6uit151wcoo].[twk:date:qk]</axis>
+                  </node-reference>
+                </x-coord>
+                <y-coord axis-value='2688045.2704485487'>
+                  <node-reference>
+                    <axis>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]</axis>
+                  </node-reference>
+                </y-coord>
+                <page-reference />
+              </visual-coordinate>
+            </top-left>
+            <bottom-right>
+              <visual-coordinate class='axis'>
+                <x-coord axis-value='#2020-05-15 06:12:10.007#'>
+                  <node-reference>
+                    <axis>[federated.0odh0nl1upa7j81cq6uit151wcoo].[twk:date:qk]</axis>
+                  </node-reference>
+                </x-coord>
+                <y-coord axis-value='2228438.5540897101'>
+                  <node-reference>
+                    <axis>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]</axis>
+                  </node-reference>
+                </y-coord>
+                <page-reference />
+              </visual-coordinate>
+            </bottom-right>
+            <text x='0.5' y='0.5' />
+          </annotation>
+        </annotations>
       </table>
       <simple-id uuid='{EC01CDFC-BA97-4BFC-893B-89F44D4BD49B}' />
     </worksheet>
@@ -4091,8 +4256,8 @@
           </layout-options>
           <size maxheight='2250' minheight='2250' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='65' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98214' id='64' param='vert' type-v2='layout-flow' w='99064' x='468' y='893'>
+            <zone h='100000' id='69' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98214' id='68' param='vert' type-v2='layout-flow' w='99064' x='468' y='893'>
                 <zone h='4688' id='32' type-v2='title' w='99064' x='468' y='893'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -4342,8 +4507,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1150' minheight='1150' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='20' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98214' id='19' param='vert' type-v2='layout-flow' w='99064' x='468' y='893'>
+            <zone h='100000' id='24' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98214' id='23' param='vert' type-v2='layout-flow' w='99064' x='468' y='893'>
                 <zone h='7701' id='13' name='Deaths' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='10182' x='89350' y='893'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -4817,9 +4982,11 @@
         <datasource name='Parameters' />
       </datasources>
       <datasource-dependencies datasource='Parameters'>
-        <column alias='GDP Per Capita' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;GDP&quot;'>
-          <calculation class='tableau' formula='&quot;GDP&quot;' />
+        <column alias='% of Population above 65' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;65&quot;'>
+          <calculation class='tableau' formula='&quot;65&quot;' />
           <aliases>
+            <alias key='&quot;65&quot;' value='% of Population above 65' />
+            <alias key='&quot;70&quot;' value='% of Population above 70' />
             <alias key='&quot;DP&quot;' value='Diabetes Prevalence' />
             <alias key='&quot;EP&quot;' value='Extreme Poverty' />
             <alias key='&quot;GDP&quot;' value='GDP Per Capita' />
@@ -4836,6 +5003,8 @@
             <member alias='Human Development Index' value='&quot;HDI&quot;' />
             <member alias='Extreme Poverty' value='&quot;EP&quot;' />
             <member alias='Stringency Index' value='&quot;SI&quot;' />
+            <member alias='% of Population above 65' value='&quot;65&quot;' />
+            <member alias='% of Population above 70' value='&quot;70&quot;' />
           </members>
         </column>
       </datasource-dependencies>
@@ -5022,7 +5191,7 @@
               </zone-style>
             </zone>
             <zone h='1069' id='9' name='Data' show-title='false' w='82972' x='476' y='97981'>
-              <layout-cache fixed-size-h='1' type-h='fixed' type-w='fixed' />
+              <layout-cache type-h='fixed' type-w='fixed' />
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -5097,8 +5266,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1250' minheight='1250' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='66' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98100' id='65' param='vert' type-v2='layout-flow' w='99048' x='476' y='950'>
+            <zone h='100000' id='70' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98100' id='69' param='vert' type-v2='layout-flow' w='99048' x='476' y='950'>
                 <zone fixed-size='280' h='97031' id='6' is-fixed='true' name='Map' show-title='false' w='82972' x='476' y='950'>
                   <layout-cache minheight='201' type-h='scalable' type-w='fixed' />
                   <zone-style>
@@ -5181,7 +5350,7 @@
                   </zone-style>
                 </zone>
                 <zone fixed-size='280' h='1069' id='9' is-fixed='true' name='Data' show-title='false' w='82972' x='476' y='97981'>
-                  <layout-cache fixed-size-h='1' type-h='fixed' type-w='fixed' />
+                  <layout-cache type-h='fixed' type-w='fixed' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -5985,17 +6154,17 @@
     </dashboard>
   </dashboards>
   <windows source-height='30'>
-    <window class='dashboard' maximized='true' name='Start Page'>
+    <window class='dashboard' name='Start Page'>
       <viewpoints />
-      <active id='17' />
+      <active id='51' />
       <simple-id uuid='{60E30DFB-ED80-4DBF-A404-2DC851B7370C}' />
     </window>
-    <window class='dashboard' name='Covid Start Dashboard'>
+    <window class='dashboard' maximized='true' name='Covid Start Dashboard'>
       <viewpoints>
         <viewpoint name='Deaths vs Stringency Index'>
           <current-page>
             <multibucket>
-              <bucket>202112</bucket>
+              <bucket>202111</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
@@ -6003,7 +6172,7 @@
         <viewpoint name='New Cases by Month'>
           <current-page>
             <multibucket>
-              <bucket>202112</bucket>
+              <bucket>202111</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
@@ -6011,13 +6180,13 @@
         <viewpoint name='New Deaths by Month'>
           <current-page>
             <multibucket>
-              <bucket>202112</bucket>
+              <bucket>202111</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='85' />
+      <active id='10' />
       <device-preview selected='Desktop' visible='true'>
         <device name='Medium Desktop Monitor' type='Desktop' />
         <device name='iPhone X, XS, 11, 11 Pro' type='Phone' />
@@ -6047,41 +6216,11 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='-1' />
+      <active id='58' />
       <device-preview visible='true'>
         <device is-portrait='false' name='iPhone X, XS, 11, 11 Pro' type='Phone' />
       </device-preview>
       <simple-id uuid='{ACBDFFC4-AF20-40C2-9175-F500ECDBE794}' />
-    </window>
-    <window class='worksheet' name='Feature Selection'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type='size' />
-            <card mode='compact' param='[Parameters].[Parameter 3]' type='parameter' />
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type='color' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{F6D01216-C5D2-46F7-9C8F-BED43BBDCC41}' />
     </window>
     <window class='dashboard' name='Month Comparison Dashboard'>
       <viewpoints>
@@ -6135,7 +6274,7 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='10' />
+      <active id='6' />
       <device-preview visible='true' />
       <simple-id uuid='{0AC2601C-AB10-4620-803C-9995A97913A6}' />
     </window>
@@ -6261,7 +6400,7 @@
         </edge>
         <edge name='right'>
           <strip size='160'>
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' type='color' />
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:vtsum:qk]' type='color' />
           </strip>
         </edge>
       </cards>
@@ -6451,6 +6590,36 @@
         </edge>
       </cards>
       <simple-id uuid='{253294A6-3693-42A5-9181-DD8F323D4295}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Feature Selection'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type='size' />
+            <card mode='compact' param='[Parameters].[Parameter 3]' type='parameter' />
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{F6D01216-C5D2-46F7-9C8F-BED43BBDCC41}' />
     </window>
     <window class='worksheet' hidden='true' name='GDP Per Capita'>
       <cards>
@@ -6792,11 +6961,6 @@
           </strip>
           <strip size='31'>
             <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card pane-specification-id='1' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' type='color' />
           </strip>
         </edge>
       </cards>
