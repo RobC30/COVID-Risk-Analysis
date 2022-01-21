@@ -734,6 +734,7 @@
           </address>
         </table-calc>
       </column-instance>
+      <column-instance column='[date]' derivation='Day' name='[dy:date:ok]' pivot='key' type='ordinal' />
       <column-instance column='[Continent Set]' derivation='InOut' name='[io:Continent Set:nk]' pivot='key' type='nominal' />
       <column-instance column='[stringency_index]' derivation='Median' name='[med:stringency_index:qk]' pivot='key' type='quantitative' />
       <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
@@ -747,14 +748,26 @@
       <column-instance column='[new_cases]' derivation='Sum' name='[pcto:sum:new_cases:qk]' pivot='key' type='quantitative'>
         <table-calc ordering-type='Columns' type='PctTotal' />
       </column-instance>
+      <column-instance column='[new_deaths]' derivation='Sum' name='[pcto:sum:new_deaths:qk:1]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' ordering-type='Field' type='PctTotal' />
+      </column-instance>
       <column-instance column='[new_deaths]' derivation='Sum' name='[pcto:sum:new_deaths:qk]' pivot='key' type='quantitative'>
         <table-calc ordering-type='Rows' type='PctTotal' />
       </column-instance>
       <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:2]' pivot='key' type='quantitative'>
         <table-calc ordering-type='Table' rank-options='Competition,Descending' type='Rank' />
       </column-instance>
+      <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:3]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Rows' rank-options='Unique,Descending' type='Rank' />
+      </column-instance>
       <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:4]' pivot='key' type='quantitative'>
         <table-calc ordering-type='Table' rank-options='Unique,Descending' type='Rank' />
+      </column-instance>
+      <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:5]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='' ordering-type='Field' rank-options='Unique,Descending' type='Rank' />
+      </column-instance>
+      <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:6]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' rank-options='Unique,Descending' type='Rank' />
       </column-instance>
       <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk]' pivot='key' type='quantitative'>
         <table-calc ordering-type='Rows' rank-options='Competition,Descending' type='Rank' />
@@ -819,6 +832,8 @@
       <column-instance column='[Death Rank (copy)_3133379503097401347]' derivation='User' name='[usr:Death Rank (copy)_3133379503097401347:qk]' pivot='key' type='quantitative'>
         <table-calc ordering-type='Rows' />
       </column-instance>
+      <column-instance column='[date]' derivation='Weekday' name='[wd:date:ok]' pivot='key' type='ordinal' />
+      <column-instance column='[date]' derivation='Week' name='[wk:date:ok]' pivot='key' type='ordinal' />
       <group caption='Action (Continent)' hidden='true' name='[Action (Continent)]' name-style='unqualified' user:auto-column='sheet_link'>
         <groupfilter function='crossjoin'>
           <groupfilter function='level-members' level='[continent]' />
@@ -833,6 +848,18 @@
       <group caption='Action (Country)' hidden='true' name='[Action (Country)]' name-style='unqualified' user:auto-column='sheet_link'>
         <groupfilter function='crossjoin'>
           <groupfilter function='level-members' level='[location]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (DAY(Date),WEEK(Date),WEEKDAY(Date))' hidden='true' name='[Action (DAY(Date),WEEK(Date),WEEKDAY(Date))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[dy:date:ok]' />
+          <groupfilter function='level-members' level='[wk:date:ok]' />
+          <groupfilter function='level-members' level='[wd:date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (MY(Date))' hidden='true' name='[Action (MY(Date))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[my:date:ok]' />
         </groupfilter>
       </group>
       <group caption='Action (MY(Date),Country)' hidden='true' name='[Action (MY(Date),Country)]' name-style='unqualified' user:auto-column='sheet_link'>
@@ -885,7 +912,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>40877</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>continent</remote-name>
@@ -900,7 +926,6 @@
               <approx-count>6</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>location</remote-name>
@@ -915,7 +940,6 @@
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>date</remote-name>
@@ -929,7 +953,6 @@
               <aggregation>Year</aggregation>
               <approx-count>1754</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_cases</remote-name>
@@ -943,7 +966,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>6062</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_deaths</remote-name>
@@ -957,7 +979,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>951</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_cases_smoothed_per_million</remote-name>
@@ -971,7 +992,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>19418</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>reproduction_rate</remote-name>
@@ -985,7 +1005,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>334</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_tests_smoothed</remote-name>
@@ -999,7 +1018,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>16832</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>tests_units</remote-name>
@@ -1014,7 +1032,6 @@
               <approx-count>4</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>stringency_index</remote-name>
@@ -1028,7 +1045,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>220</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>population</remote-name>
@@ -1042,7 +1058,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>population_density</remote-name>
@@ -1056,7 +1071,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>median_age</remote-name>
@@ -1070,7 +1084,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>71</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>aged_65_older</remote-name>
@@ -1084,7 +1097,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>aged_70_older</remote-name>
@@ -1098,7 +1110,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>84</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>gdp_per_capita</remote-name>
@@ -1112,7 +1123,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>extreme_poverty</remote-name>
@@ -1126,7 +1136,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>49</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>cardiovasc_death_rate</remote-name>
@@ -1140,7 +1149,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>diabetes_prevalence</remote-name>
@@ -1154,7 +1162,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>female_smokers</remote-name>
@@ -1168,7 +1175,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>77</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>male_smokers</remote-name>
@@ -1182,7 +1188,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>69</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>hospital_beds_per_thousand</remote-name>
@@ -1196,7 +1201,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>62</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>life_expectancy</remote-name>
@@ -1210,7 +1214,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>83</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>human_development_index</remote-name>
@@ -1224,7 +1227,6 @@
               <aggregation>Sum</aggregation>
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
-              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
           </metadata-records>
         </connection>
@@ -1610,13 +1612,25 @@
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[diff:sum:new_deaths:qk]&quot;</bucket>
             </map>
             <map to='#76b7b2'>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[pcto:sum:new_deaths:qk:1]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[pcto:sum:new_deaths:qk]&quot;</bucket>
             </map>
             <map to='#76b7b2'>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:2]&quot;</bucket>
             </map>
             <map to='#76b7b2'>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:3]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:4]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:5]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]&quot;</bucket>
             </map>
             <map to='#76b7b2'>
               <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk]&quot;</bucket>
@@ -1806,12 +1820,13 @@
         <exclude-sheet name='Life Expectancy' />
         <exclude-sheet name='Calendar' />
         <exclude-sheet name='Data' />
+        <exclude-sheet name='Data Country' />
         <exclude-sheet name='Cases Box and Whisker' />
         <exclude-sheet name='Deaths' />
         <exclude-sheet name='Deaths Box and Whisker' />
         <exclude-sheet name='Deaths vs Stringency Index' />
-        <exclude-sheet name='Extreme Poverty' />
         <exclude-sheet name='Diabetes Prevalence Box and Whisker' />
+        <exclude-sheet name='Extreme Poverty' />
         <exclude-sheet name='Feature Selection' />
         <exclude-sheet name='GDP Per Capita' />
         <exclude-sheet name='Median Age' />
@@ -1834,12 +1849,13 @@
         <exclude-sheet name='Life Expectancy' />
         <exclude-sheet name='Calendar' />
         <exclude-sheet name='Data' />
+        <exclude-sheet name='Data Country' />
         <exclude-sheet name='Cases Box and Whisker' />
         <exclude-sheet name='Deaths' />
         <exclude-sheet name='Deaths Box and Whisker' />
         <exclude-sheet name='Deaths vs Stringency Index' />
-        <exclude-sheet name='Extreme Poverty' />
         <exclude-sheet name='Diabetes Prevalence Box and Whisker' />
+        <exclude-sheet name='Extreme Poverty' />
         <exclude-sheet name='Feature Selection' />
         <exclude-sheet name='GDP Per Capita' />
         <exclude-sheet name='Median Age' />
@@ -1856,6 +1872,14 @@
         <param name='on-empty' value='none' />
         <param name='special-fields' value='all' />
         <param name='target' value='Tooltip Country' />
+      </command>
+    </action>
+    <action caption='Calendar Filter' name='[Action4_119625F44C254E96828BD674D1EDB59F]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Calendar Dashboard' type='sheet' worksheet='Calendar' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Calendar Dashboard' />
       </command>
     </action>
     <action caption='Highlight Deaths and Stringency Index' name='[Action5_3C96C37650504AE6B8ECAEFFD1130D1C]'>
@@ -1883,11 +1907,15 @@
             <column-instance column='[date]' derivation='Weekday' name='[wd:date:ok]' pivot='key' type='ordinal' />
             <column-instance column='[date]' derivation='Week' name='[wk:date:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[dy:date:ok]'>
+            <groupfilter function='level-members' level='[dy:date:ok]' />
+          </filter>
           <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]'>
-            <groupfilter function='member' level='[my:date:ok]' member='202005' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[my:date:ok]' member='202104' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[dy:date:ok]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -1899,14 +1927,26 @@
           <style-rule element='label'>
             <format attr='display' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[wk:date:ok]' value='false' />
             <format attr='display' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[wd:date:ok]' value='true' />
-            <format attr='text-format' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[wd:date:ok]' value='ieeeee' />
             <format attr='display' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[dy:date:ok]' value='true' />
+            <format attr='text-format' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[wd:date:ok]' value='ieeeee' />
           </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' palette='orange_blue_diverging_10_0' type='interpolated' />
           </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
           <style-rule element='worksheet'>
             <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='quick-filter'>
+            <format attr='font-weight' value='bold' />
+            <format attr='font-family' value='Tableau Semibold' />
+            <format attr='color' value='#000000' />
+            <format attr='border-style' value='solid' />
+          </style-rule>
+          <style-rule element='quick-filter-title'>
+            <format attr='text-align' value='center' />
           </style-rule>
         </style>
         <panes>
@@ -1939,6 +1979,7 @@
         </panes>
         <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[wk:date:ok]</rows>
         <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[wd:date:ok]</cols>
+        <tooltip-style tooltip-mode='none' />
       </table>
       <simple-id uuid='{6F663D83-CF68-46CB-8EB1-2E59E5F22550}' />
     </worksheet>
@@ -2117,6 +2158,126 @@
       </table>
       <simple-id uuid='{ABDC1FDA-A2F7-41C9-ABFF-9ACA2ECCA87E}' />
     </worksheet>
+    <worksheet name='Data Country'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+            <column caption='Deaths as a % of Population' datatype='real' default-format='p0.0000%' name='[Calculation_2015642368501407744]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
+            </column>
+            <column aggregation='Avg' caption='Above 65%' datatype='real' default-format='p0.00%' name='[Calculation_3133379503138373641]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[aged_65_older]/100' />
+            </column>
+            <column aggregation='Avg' caption='Above 70%' datatype='real' default-format='p0.00%' name='[Calculation_3133379503138627594]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[aged_70_older]/100' />
+            </column>
+            <column caption='Aged 65 Older' datatype='real' name='[aged_65_older]' role='measure' type='quantitative' />
+            <column caption='Aged 70 Older' datatype='real' name='[aged_70_older]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_3133379503138373641]' derivation='Avg' name='[avg:Calculation_3133379503138373641:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_3133379503138627594]' derivation='Avg' name='[avg:Calculation_3133379503138627594:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[cardiovasc_death_rate]' derivation='Avg' name='[avg:cardiovasc_death_rate:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[gdp_per_capita]' derivation='Avg' name='[avg:gdp_per_capita:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[population]' derivation='Avg' name='[avg:population:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[stringency_index]' derivation='Avg' name='[avg:stringency_index:qk]' pivot='key' type='quantitative' />
+            <column caption='Cardiovasc Death Rate' datatype='real' name='[cardiovasc_death_rate]' role='measure' type='quantitative' />
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column-instance column='[date]' derivation='Day' name='[dy:date:ok]' pivot='key' type='ordinal' />
+            <column caption='Gdp Per Capita' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[gdp_per_capita]' role='measure' type='quantitative' />
+            <column caption='Country' datatype='string' name='[location]' role='dimension' semantic-role='[Country].[Name]' type='nominal' />
+            <column caption='New Cases' datatype='real' name='[new_cases]' role='measure' type='quantitative' />
+            <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+            <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
+            <column caption='Population' datatype='real' name='[population]' role='measure' type='quantitative' />
+            <column caption='Stringency Index' datatype='real' name='[stringency_index]' role='measure' type='quantitative' />
+            <column-instance column='[new_cases]' derivation='Sum' name='[sum:new_cases:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_2015642368501407744]' derivation='User' name='[usr:Calculation_2015642368501407744:vtavg:qk]' pivot='key' type='quantitative' visual-totals='Avg' />
+            <column-instance column='[date]' derivation='Weekday' name='[wd:date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[date]' derivation='Week' name='[wk:date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:vtavg:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:gdp_per_capita:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:cardiovasc_death_rate:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:population:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:Calculation_3133379503138373641:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:Calculation_3133379503138627594:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Action (DAY(Date),WEEK(Date),WEEKDAY(Date))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action4_119625F44C254E96828BD674D1EDB59F]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[dy:date:ok]' />
+              <groupfilter function='level-members' level='[wk:date:ok]' />
+              <groupfilter function='level-members' level='[wd:date:ok]' />
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' direction='DESC' using='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
+          <slices>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]</column>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[Action (DAY(Date),WEEK(Date),WEEKDAY(Date))]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' value='96' />
+            <format attr='text-align' value='center' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' value='center' />
+            <format attr='vertical-align' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]' value='center' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Square' />
+            <encodings>
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
+              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Multiple Values]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run bold='true'>&lt;</run>
+                <run bold='true'>[federated.0odh0nl1upa7j81cq6uit151wcoo].[Multiple Values]</run>
+                <run bold='true'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows total='true'>[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[:Measure Names]</cols>
+      </table>
+      <simple-id uuid='{DBA877F7-1F21-4DF3-B55F-C0AEC3229A82}' />
+    </worksheet>
     <worksheet name='Deaths'>
       <layout-options>
         <title>
@@ -2130,152 +2291,63 @@
           <datasources>
             <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
           </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
           <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
-            <column caption='C_Running_Total_Cases' datatype='real' name='[C_Running_Total_Deaths (copy)_274438165011202058]' role='measure' type='quantitative'>
-              <calculation class='tableau' formula='RUNNING_SUM(SUM([new_cases]))'>
-                <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
-              </calculation>
+            <column caption='Deaths as a % of Population' datatype='real' default-format='p0.0000%' name='[Calculation_2015642368501407744]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
             </column>
-            <column caption='C_Running_Total_Deaths' datatype='real' name='[Calculation5]' role='measure' type='quantitative'>
-              <calculation class='tableau' formula='RUNNING_SUM(SUM([new_deaths]))'>
-                <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
-              </calculation>
-            </column>
-            <column caption='Running Total Rank' datatype='integer' name='[Calculation_210261869607354377]' role='measure' type='quantitative'>
-              <calculation class='tableau' formula='RANK_UNIQUE([Calculation5])'>
-                <table-calc ordering-type='Rows' />
-              </calculation>
-            </column>
-            <column-instance column='[stringency_index]' derivation='Avg' name='[avg:stringency_index:qk]' pivot='key' type='quantitative' />
             <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column-instance column='[date]' derivation='Day' name='[dy:date:ok]' pivot='key' type='ordinal' />
             <column caption='Country' datatype='string' name='[location]' role='dimension' semantic-role='[Country].[Name]' type='nominal' />
-            <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
             <column caption='New Cases' datatype='real' name='[new_cases]' role='measure' type='quantitative' />
             <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
             <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
-            <column caption='Stringency Index' datatype='real' name='[stringency_index]' role='measure' type='quantitative' />
+            <column caption='Population' datatype='real' name='[population]' role='measure' type='quantitative' />
+            <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:ok:3]' pivot='key' type='ordinal'>
+              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' rank-options='Unique,Descending' type='Rank' />
+            </column-instance>
+            <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:6]' pivot='key' type='quantitative'>
+              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' rank-options='Unique,Descending' type='Rank' />
+            </column-instance>
             <column-instance column='[new_cases]' derivation='Sum' name='[sum:new_cases:qk]' pivot='key' type='quantitative' />
             <column-instance column='[new_deaths]' derivation='Sum' name='[sum:new_deaths:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[C_Running_Total_Deaths (copy)_274438165011202058]' derivation='User' name='[usr:C_Running_Total_Deaths (copy)_274438165011202058:qk]' pivot='key' type='quantitative'>
-              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
-            </column-instance>
-            <column-instance column='[Calculation5]' derivation='User' name='[usr:Calculation5:qk]' pivot='key' type='quantitative'>
-              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
-            </column-instance>
-            <column-instance column='[Calculation_210261869607354377]' derivation='User' name='[usr:Calculation_210261869607354377:ok:2]' pivot='key' type='ordinal'>
-              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' />
-              <table-calc field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Calculation5]' ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
-            </column-instance>
-            <column-instance column='[Calculation_210261869607354377]' derivation='User' name='[usr:Calculation_210261869607354377:qk:3]' pivot='key' type='quantitative'>
-              <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' />
-              <table-calc field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Calculation5]' ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' ordering-type='Field' />
-            </column-instance>
+            <column-instance column='[Calculation_2015642368501407744]' derivation='User' name='[usr:Calculation_2015642368501407744:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[date]' derivation='Weekday' name='[wd:date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[date]' derivation='Week' name='[wk:date:ok]' pivot='key' type='ordinal' />
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:ok:2]'>
-            <groupfilter function='union' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='1' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='2' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='3' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='4' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='5' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='6' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='7' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='8' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='9' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='10' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='11' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='12' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='13' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='14' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='15' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='16' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='17' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='18' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='19' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='20' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='21' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='22' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='23' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='24' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='25' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='26' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='27' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='28' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='29' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='30' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='31' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='32' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='33' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='34' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='35' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='36' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='37' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='38' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='39' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='40' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='41' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='42' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='43' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='44' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='45' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='46' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='47' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='48' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='49' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='50' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='51' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='52' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='53' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='54' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='55' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='56' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='57' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='58' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='59' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='60' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='61' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='62' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='63' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='64' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='65' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='66' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='67' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='68' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='69' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='70' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='71' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='72' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='73' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='74' />
-              <groupfilter function='member' level='[usr:Calculation_210261869607354377:ok:2]' member='75' />
+          <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[Action (DAY(Date),WEEK(Date),WEEKDAY(Date))]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action4_119625F44C254E96828BD674D1EDB59F]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[dy:date:ok]' />
+              <groupfilter function='level-members' level='[wk:date:ok]' />
+              <groupfilter function='level-members' level='[wd:date:ok]' />
             </groupfilter>
           </filter>
-          <filter class='quantitative' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:qk:3]' included-values='in-range'>
+          <filter class='quantitative' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]' included-values='in-range'>
             <max>10</max>
           </filter>
           <slices>
-            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:ok:2]</column>
-            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:qk:3]</column>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]</column>
+            <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[Action (DAY(Date),WEEK(Date),WEEKDAY(Date))]</column>
           </slices>
           <aggregation value='true' />
         </view>
         <style>
-          <style-rule element='mark'>
-            <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' palette='orange_blue_diverging_10_0' type='interpolated' />
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' value='n#,##0;-#,##0' />
           </style-rule>
-          <style-rule element='legend-title-text'>
-            <format attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' value='Stringency Index'>
-              <formatted-text>
-                <run fontalignment='1'>Stringency Index</run>
-              </formatted-text>
-            </format>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
           </style-rule>
           <style-rule element='quick-filter'>
-            <format attr='title' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:qk:3]' value='Show Top Countries'>
-              <formatted-text>
-                <run>Show Top Countries</run>
-              </formatted-text>
-            </format>
+            <format attr='title' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]' value='Show top countries' />
           </style-rule>
         </style>
         <panes>
@@ -2283,31 +2355,37 @@
             <view>
               <breakdown value='auto' />
             </view>
-            <mark class='Automatic' />
+            <mark class='Bar' />
             <encodings>
-              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' />
+              <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' />
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
-              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation5:qk]' />
-              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:C_Running_Total_Deaths (copy)_274438165011202058:qk]' />
-              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' />
+              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
+              <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
             </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true' fontalignment='1'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]> had ]]></run>
+                <run bold='true' fontalignment='1' fontcolor='#f1ce63'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]> new cases ]]></run>
+                <run bold='true' fontalignment='1' fontcolor='#000000'>of COVID-19 and </run>
+                <run bold='true' fontalignment='1' fontcolor='#e15759'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]> new deaths ]]></run>
+                <run bold='true' fontalignment='1' fontcolor='#000000'>representing </run>
+                <run bold='true' fontalignment='1'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]> of its population]]></run>
+              </formatted-text>
+            </customized-tooltip>
             <customized-label>
               <formatted-text>
-                <run bold='true'><![CDATA[ <[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]>]]></run>
+                <run bold='true' fontname='Tableau Semibold'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]>]]></run>
                 <run>Æ&#10;</run>
-                <run bold='true' fontcolor='#e15759' fontsize='10'>Æ </run>
-                <run fontcolor='#e15759' fontsize='10'>Æ </run>
-                <run bold='true' fontcolor='#e15759' fontsize='10'><![CDATA[   <[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation5:qk]> Total Deaths ]]></run>
-                <run bold='true' fontcolor='#e15759' fontsize='8'><![CDATA[(<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]> New)]]></run>
-                <run bold='true' fontsize='8'>Æ    </run>
+                <run bold='true' fontcolor='#edc948' fontname='Tableau Semibold'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]> Cases]]></run>
                 <run>Æ&#10;</run>
-                <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:C_Running_Total_Deaths (copy)_274438165011202058:qk]> Total Cases ]]></run>
-                <run bold='true' fontsize='8'><![CDATA[(<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]> New)]]></run>
-                <run>Æ&#10;</run>
+                <run fontcolor='#e15759' fontname='Tableau Semibold'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]> Deaths]]></run>
               </formatted-text>
             </customized-label>
             <style>
+              <style-rule element='cell'>
+                <format attr='text-orientation' value='0' />
+              </style-rule>
               <style-rule element='mark'>
                 <format attr='mark-labels-show' value='true' />
                 <format attr='mark-labels-cull' value='true' />
@@ -2315,11 +2393,8 @@
             </style>
           </pane>
         </panes>
-        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:ok:2]</rows>
-        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</cols>
-        <pages>
-          <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
-        </pages>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]</rows>
+        <cols>[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:ok:3]</cols>
       </table>
       <simple-id uuid='{725BE52B-6592-43D0-8F70-6F714914DD7D}' />
     </worksheet>
@@ -2728,6 +2803,13 @@
       <simple-id uuid='{3C99B91C-20C8-498F-8579-567FE3B7FC74}' />
     </worksheet>
     <worksheet name='Life Expectancy'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>% of population above 65</run>
+          </formatted-text>
+        </title>
+      </layout-options>
       <table>
         <view>
           <datasources>
@@ -2737,8 +2819,11 @@
             <column caption='Deaths as a % of Population' datatype='real' default-format='p0.0000%' name='[Calculation_2015642368501407744]' role='measure' type='quantitative'>
               <calculation class='tableau' formula='SUM([new_deaths])/AVG([population])' />
             </column>
-            <column-instance column='[life_expectancy]' derivation='Avg' name='[avg:life_expectancy:qk]' pivot='key' type='quantitative' />
-            <column caption='Life Expectancy' datatype='real' name='[life_expectancy]' role='measure' type='quantitative' />
+            <column aggregation='Avg' caption='Above 65%' datatype='real' default-format='p0.00%' name='[Calculation_3133379503138373641]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[aged_65_older]/100' />
+            </column>
+            <column caption='Aged 65 Older' datatype='real' name='[aged_65_older]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_3133379503138373641]' derivation='Avg' name='[avg:Calculation_3133379503138373641:qk]' pivot='key' type='quantitative' />
             <column caption='Country' datatype='string' name='[location]' role='dimension' semantic-role='[Country].[Name]' type='nominal' />
             <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
             <column-instance column='[location]' derivation='None' name='[none:location:nk]' pivot='key' type='nominal' />
@@ -2748,9 +2833,6 @@
           <aggregation value='true' />
         </view>
         <style>
-          <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:life_expectancy:qk]' field-type='quantitative' max='88.170206896551207' min='60.0' range-type='fixed' scope='rows' type='space' />
-          </style-rule>
           <style-rule element='mark'>
             <encoding attr='color' field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
           </style-rule>
@@ -2761,19 +2843,20 @@
               <breakdown value='auto' />
             </view>
             <mark class='Circle' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
             <encodings>
               <color column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' />
               <lod column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
             </encodings>
-            <reference-line axis-column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:life_expectancy:qk]' boxplot-mark-exclusion='false' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-cell' symmetric='false' value-column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:life_expectancy:qk]' z-order='1' />
+            <reference-line axis-column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:Calculation_3133379503138373641:qk]' boxplot-mark-exclusion='false' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-cell' symmetric='false' value-column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:Calculation_3133379503138373641:qk]' z-order='1' />
             <style>
               <style-rule element='mark'>
-                <format attr='size' value='0.25' />
+                <format attr='size' value='0.38381215929985046' />
               </style-rule>
             </style>
           </pane>
         </panes>
-        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:life_expectancy:qk]</rows>
+        <rows>[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:Calculation_3133379503138373641:qk]</rows>
         <cols />
       </table>
       <simple-id uuid='{C89B8E95-A88C-4590-BAF0-36D8A00BBD37}' />
@@ -3820,7 +3903,6 @@
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:location:nk]' />
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' />
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]' />
-              <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' />
               <text column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' />
             </encodings>
             <customized-label>
@@ -3831,9 +3913,6 @@
                 <run bold='true'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_cases:qk]> Cases]]></run>
                 <run>Æ&#10;</run>
                 <run bold='true' fontname='Tableau Semibold' fontsize='10'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]> Total Deaths]]></run>
-                <run>Æ&#10;</run>
-                <run fontsize='8'><![CDATA[<[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]> ]]></run>
-                <run fontsize='6'>of the population died</run>
               </formatted-text>
             </customized-label>
             <style>
@@ -3933,8 +4012,8 @@
                 </zone>
                 <zone h='28832' id='25' param='horz' type-v2='layout-flow' w='66062' x='33470' y='34410'>
                   <zone h='28832' id='23' param='horz' type-v2='layout-flow' w='66062' x='33470' y='34410'>
-                    <zone h='28832' id='26' name='Life Expectancy' w='33031' x='33470' y='34410'>
-                      <layout-cache cell-count-w='1' minheight='143' non-cell-size-w='59' type-h='scalable' type-w='cell' />
+                    <zone h='28832' id='26' name='Life Expectancy' w='33675' x='33470' y='34410'>
+                      <layout-cache cell-count-w='1' minheight='143' non-cell-size-w='81' type-h='scalable' type-w='cell' />
                       <zone-style>
                         <format attr='border-color' value='#000000' />
                         <format attr='border-style' value='none' />
@@ -3942,7 +4021,7 @@
                         <format attr='margin' value='4' />
                       </zone-style>
                     </zone>
-                    <zone h='28832' id='27' name='Stringency Index' w='33031' x='66501' y='34410'>
+                    <zone h='28832' id='27' name='Stringency Index' w='32387' x='67145' y='34410'>
                       <layout-cache cell-count-w='1' non-cell-size-w='59' type-h='fixed' type-w='cell' />
                       <zone-style>
                         <format attr='border-color' value='#000000' />
@@ -4012,8 +4091,8 @@
           </layout-options>
           <size maxheight='2250' minheight='2250' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='63' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98214' id='62' param='vert' type-v2='layout-flow' w='99064' x='468' y='893'>
+            <zone h='100000' id='65' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98214' id='64' param='vert' type-v2='layout-flow' w='99064' x='468' y='893'>
                 <zone h='4688' id='32' type-v2='title' w='99064' x='468' y='893'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -4063,8 +4142,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='223' h='28832' id='26' is-fixed='true' name='Life Expectancy' w='33031' x='33470' y='34410'>
-                  <layout-cache cell-count-w='1' minheight='143' non-cell-size-w='59' type-h='scalable' type-w='cell' />
+                <zone fixed-size='223' h='28832' id='26' is-fixed='true' name='Life Expectancy' w='33675' x='33470' y='34410'>
+                  <layout-cache cell-count-w='1' minheight='143' non-cell-size-w='81' type-h='scalable' type-w='cell' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -4073,7 +4152,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='223' h='28832' id='27' is-fixed='true' name='Stringency Index' w='33031' x='66501' y='34410'>
+                <zone fixed-size='223' h='28832' id='27' is-fixed='true' name='Stringency Index' w='32387' x='67145' y='34410'>
                   <layout-cache cell-count-w='1' non-cell-size-w='59' type-h='fixed' type-w='cell' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -4141,6 +4220,231 @@
         </devicelayout>
       </devicelayouts>
       <simple-id uuid='{6F531314-A63B-4B9E-88BA-ABAE95DE6C6D}' />
+    </dashboard>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Calendar Dashboard'>
+      <style />
+      <size sizing-mode='automatic' />
+      <datasources>
+        <datasource caption='Covid_Cleaned_Database' name='federated.0odh0nl1upa7j81cq6uit151wcoo' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0odh0nl1upa7j81cq6uit151wcoo'>
+        <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+        <column caption='Country' datatype='string' name='[location]' role='dimension' semantic-role='[Country].[Name]' type='nominal' />
+        <column-instance column='[date]' derivation='MY' name='[my:date:ok]' pivot='key' type='ordinal' />
+        <column caption='New Deaths' datatype='real' name='[new_deaths]' role='measure' type='quantitative' />
+        <column-instance column='[new_deaths]' derivation='Sum' name='[rank:sum:new_deaths:qk:6]' pivot='key' type='quantitative'>
+          <table-calc ordering-field='[federated.0odh0nl1upa7j81cq6uit151wcoo].[location]' ordering-type='Field' rank-options='Unique,Descending' type='Rank' />
+        </column-instance>
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='37326' id='3' param='vert' type-v2='layout-flow' w='19076' x='468' y='893'>
+            <zone fixed-size='46' h='6027' id='7' is-fixed='true' mode='dropdown' name='Calendar' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' show-all='false' show-title='false' type-v2='filter' w='19076' x='468' y='893'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='31297' id='6' name='Calendar' show-title='false' w='19076' x='468' y='6920'>
+              <layout-cache cell-count-h='5' fixed-size-w='492' non-cell-size-h='20' type-h='cell' type-w='fixed' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone h='59520' id='5' param='vert' type-v2='layout-flow' w='69806' x='19544' y='893'>
+            <zone h='59520' id='10' param='vert' type-v2='layout-flow' w='69806' x='19544' y='893'>
+              <zone h='59520' id='12' name='Deaths' show-title='false' w='69806' x='19544' y='893'>
+                <layout-cache minheight='121' type-h='scalable' type-w='fixed' />
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone h='54192' id='9' param='vert' type-v2='layout-flow' w='19076' x='468' y='38219' />
+          <zone h='31998' id='11' param='vert' type-v2='layout-flow' w='69806' x='19544' y='60413'>
+            <zone h='31998' id='16' name='Data Country' show-title='false' w='69806' x='19544' y='60413'>
+              <layout-cache fixed-size-h='1541' type-h='fixed' type-w='fixed' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone h='91518' id='15' param='vert' type-v2='layout-flow' w='10182' x='89350' y='893'>
+            <zone h='7701' id='13' name='Deaths' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='10182' x='89350' y='893'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='7255' id='14' name='Deaths' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='color' w='10182' x='89350' y='8594'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone h='6696' id='17' type-v2='dashboard-object' w='49532' x='468' y='92411'>
+            <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
+              <button-visual-state>
+                <caption>Return Home</caption>
+                <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                <format attr='background-color' value='#333333' />
+              </button-visual-state>
+            </button>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone h='6696' id='18' type-v2='dashboard-object' w='49532' x='50000' y='92411'>
+            <button action='tabdoc:goto-sheet window-id=&quot;{59390966-9CE9-4B8D-9FF1-8F05FA620F9C}&quot;' button-type='text'>
+              <button-visual-state>
+                <caption>Next Dashboard (Box and Whisker)</caption>
+                <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                <format attr='background-color' value='#333333' />
+              </button-visual-state>
+            </button>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1150' minheight='1150' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='20' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98214' id='19' param='vert' type-v2='layout-flow' w='99064' x='468' y='893'>
+                <zone h='7701' id='13' name='Deaths' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='10182' x='89350' y='893'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='59520' id='12' is-fixed='true' name='Deaths' show-title='false' w='69806' x='19544' y='893'>
+                  <layout-cache minheight='121' type-h='scalable' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='7255' id='14' name='Deaths' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='color' w='10182' x='89350' y='8594'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='46' h='6027' id='7' mode='dropdown' name='Calendar' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' show-all='false' show-title='false' type-v2='filter' w='19076' x='468' y='893'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='243' h='31297' id='6' is-fixed='true' name='Calendar' show-title='false' w='19076' x='468' y='6920'>
+                  <layout-cache cell-count-h='5' fixed-size-w='492' non-cell-size-h='20' type-h='cell' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='248' h='31998' id='16' is-fixed='true' name='Data Country' show-title='false' w='69806' x='19544' y='60413'>
+                  <layout-cache fixed-size-h='1541' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='6696' id='17' type-v2='dashboard-object' w='49532' x='468' y='92411'>
+                  <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
+                    <button-visual-state>
+                      <caption>Return Home</caption>
+                      <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                      <format attr='background-color' value='#333333' />
+                    </button-visual-state>
+                  </button>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='6696' id='18' type-v2='dashboard-object' w='49532' x='50000' y='92411'>
+                  <button action='tabdoc:goto-sheet window-id=&quot;{59390966-9CE9-4B8D-9FF1-8F05FA620F9C}&quot;' button-type='text'>
+                    <button-visual-state>
+                      <caption>Next Dashboard (Box and Whisker)</caption>
+                      <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                      <format attr='background-color' value='#333333' />
+                    </button-visual-state>
+                  </button>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{77921D63-41A2-479F-83DB-056F39C32CBF}' />
     </dashboard>
     <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Covid Start Dashboard'>
       <style />
@@ -4351,9 +4655,9 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='89311' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='950'>
-            <zone h='89311' id='5' type-v2='layout-basic' w='89524' x='476' y='950'>
-              <zone h='89311' id='65' name='Running Total Deaths' w='89524' x='476' y='950'>
+          <zone h='89310' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='950'>
+            <zone h='89310' id='5' type-v2='layout-basic' w='89524' x='476' y='950'>
+              <zone h='89310' id='65' name='Running Total Deaths' w='89524' x='476' y='950'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4362,7 +4666,7 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone fixed-size='160' h='89311' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='950'>
+            <zone fixed-size='160' h='89310' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='950'>
               <zone h='8195' id='66' name='Running Total Deaths' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:qk:3]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='9524' x='90000' y='950'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
@@ -4389,7 +4693,7 @@
               </zone>
             </zone>
           </zone>
-          <zone h='8789' id='57' type-v2='dashboard-object' w='49524' x='476' y='90261'>
+          <zone h='8790' id='57' type-v2='dashboard-object' w='49524' x='476' y='90260'>
             <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Return Home</caption>
@@ -4404,7 +4708,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='8789' id='58' type-v2='dashboard-object' w='49524' x='50000' y='90261'>
+          <zone h='8790' id='58' type-v2='dashboard-object' w='49524' x='50000' y='90260'>
             <button action='tabdoc:goto-sheet window-id=&quot;{ACBDFFC4-AF20-40C2-9175-F500ECDBE794}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Next Dashboard (Feature Selection)</caption>
@@ -4537,9 +4841,9 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='90073' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='950'>
-            <zone h='90073' id='3' param='vert' type-v2='layout-flow' w='89524' x='476' y='950'>
-              <zone h='90073' id='5' name='Feature Selection' w='89524' x='476' y='950'>
+          <zone h='90072' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='950'>
+            <zone h='90072' id='3' param='vert' type-v2='layout-flow' w='89524' x='476' y='950'>
+              <zone h='90072' id='5' name='Feature Selection' w='89524' x='476' y='950'>
                 <layout-cache minheight='198' minwidth='188' type-h='scalable' type-w='scalable' />
                 <zone-style>
                   <format attr='border-color' value='#000000' />
@@ -4549,7 +4853,7 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone fixed-size='160' h='90073' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='950'>
+            <zone fixed-size='160' h='90072' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='950'>
               <zone h='14964' id='8' name='Feature Selection' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='9524' x='90000' y='950'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
@@ -4576,7 +4880,7 @@
               </zone>
             </zone>
           </zone>
-          <zone h='8027' id='59' type-v2='dashboard-object' w='49524' x='50000' y='91023'>
+          <zone h='8028' id='59' type-v2='dashboard-object' w='49524' x='50000' y='91022'>
             <button action='tabdoc:goto-sheet window-id=&quot;{86039E7E-4BBD-40E5-B946-F0591130B962}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Next Dashboard (Month Comparison)</caption>
@@ -4591,7 +4895,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='8027' id='58' type-v2='dashboard-object' w='49524' x='476' y='91023'>
+          <zone h='8028' id='58' type-v2='dashboard-object' w='49524' x='476' y='91022'>
             <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Return Home</caption>
@@ -4707,8 +5011,8 @@
       <size sizing-mode='automatic' />
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='98100' id='3' param='vert' type-v2='layout-flow' w='82973' x='476' y='950'>
-            <zone h='97031' id='6' name='Map' show-title='false' w='82973' x='476' y='950'>
+          <zone h='98100' id='3' param='vert' type-v2='layout-flow' w='82972' x='476' y='950'>
+            <zone h='97031' id='6' name='Map' show-title='false' w='82972' x='476' y='950'>
               <layout-cache minheight='201' type-h='scalable' type-w='fixed' />
               <zone-style>
                 <format attr='border-color' value='#000000' />
@@ -4717,7 +5021,7 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone h='1069' id='9' name='Data' show-title='false' w='82973' x='476' y='97981'>
+            <zone h='1069' id='9' name='Data' show-title='false' w='82972' x='476' y='97981'>
               <layout-cache fixed-size-h='1' type-h='fixed' type-w='fixed' />
               <zone-style>
                 <format attr='border-color' value='#000000' />
@@ -4727,8 +5031,8 @@
               </zone-style>
             </zone>
           </zone>
-          <zone h='98100' id='10' param='vert' type-v2='layout-flow' w='16075' x='83449' y='950'>
-            <zone h='14964' id='7' name='Map' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16075' x='83449' y='950'>
+          <zone h='98100' id='10' param='vert' type-v2='layout-flow' w='16076' x='83448' y='950'>
+            <zone h='14964' id='7' name='Map' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16076' x='83448' y='950'>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -4736,7 +5040,7 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone h='7720' id='8' name='Map' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' type-v2='color' w='16075' x='83449' y='15914'>
+            <zone h='7720' id='8' name='Map' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' type-v2='color' w='16076' x='83448' y='15914'>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -4744,7 +5048,7 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone h='6176' id='12' type-v2='dashboard-object' w='16075' x='83449' y='23634'>
+            <zone h='6176' id='12' type-v2='dashboard-object' w='16076' x='83448' y='23634'>
               <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
                 <button-visual-state>
                   <caption>Return Home</caption>
@@ -4759,10 +5063,10 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone fixed-size='69' h='9145' id='33' is-fixed='true' type-v2='dashboard-object' w='16075' x='83449' y='29810'>
-              <button action='tabdoc:goto-sheet window-id=&quot;{59390966-9CE9-4B8D-9FF1-8F05FA620F9C}&quot;' button-type='text'>
+            <zone fixed-size='70' h='9264' id='33' is-fixed='true' type-v2='dashboard-object' w='16076' x='83448' y='29810'>
+              <button action='tabdoc:goto-sheet window-id=&quot;{DB680FED-6124-48FD-AA8A-378B7B5F5FCE}&quot;' button-type='text'>
                 <button-visual-state>
-                  <caption>Next Dashboard (Box and Whisker)</caption>
+                  <caption>Next Dashboard (Calendar)</caption>
                   <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' />
                   <format attr='background-color' value='#333333' />
                 </button-visual-state>
@@ -4793,9 +5097,9 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1250' minheight='1250' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='64' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98100' id='63' param='vert' type-v2='layout-flow' w='99048' x='476' y='950'>
-                <zone fixed-size='280' h='97031' id='6' is-fixed='true' name='Map' show-title='false' w='82973' x='476' y='950'>
+            <zone h='100000' id='66' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98100' id='65' param='vert' type-v2='layout-flow' w='99048' x='476' y='950'>
+                <zone fixed-size='280' h='97031' id='6' is-fixed='true' name='Map' show-title='false' w='82972' x='476' y='950'>
                   <layout-cache minheight='201' type-h='scalable' type-w='fixed' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -4805,7 +5109,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='14964' id='7' name='Map' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16075' x='83449' y='950'>
+                <zone h='14964' id='7' name='Map' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='16076' x='83448' y='950'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -4814,7 +5118,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='7720' id='8' name='Map' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' type-v2='color' w='16075' x='83449' y='15914'>
+                <zone h='7720' id='8' name='Map' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' type-v2='color' w='16076' x='83448' y='15914'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -4835,7 +5139,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='6176' id='12' type-v2='dashboard-object' w='16075' x='83449' y='23634'>
+                <zone h='6176' id='12' type-v2='dashboard-object' w='16076' x='83448' y='23634'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
                     <button-visual-state>
                       <caption>Return Home</caption>
@@ -4851,10 +5155,10 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='69' h='9145' id='33' type-v2='dashboard-object' w='16075' x='83449' y='29810'>
-                  <button action='tabdoc:goto-sheet window-id=&quot;{59390966-9CE9-4B8D-9FF1-8F05FA620F9C}&quot;' button-type='text'>
+                <zone fixed-size='70' h='9264' id='33' type-v2='dashboard-object' w='16076' x='83448' y='29810'>
+                  <button action='tabdoc:goto-sheet window-id=&quot;{DB680FED-6124-48FD-AA8A-378B7B5F5FCE}&quot;' button-type='text'>
                     <button-visual-state>
-                      <caption>Next Dashboard (Box and Whisker)</caption>
+                      <caption>Next Dashboard (Calendar)</caption>
                       <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' />
                       <format attr='background-color' value='#333333' />
                     </button-visual-state>
@@ -4876,8 +5180,8 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='280' h='1069' id='9' is-fixed='true' name='Data' show-title='false' w='82973' x='476' y='97981'>
-                  <layout-cache type-h='fixed' type-w='fixed' />
+                <zone fixed-size='280' h='1069' id='9' is-fixed='true' name='Data' show-title='false' w='82972' x='476' y='97981'>
+                  <layout-cache fixed-size-h='1' type-h='fixed' type-w='fixed' />
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -4959,9 +5263,9 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='90736' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='950'>
-            <zone h='90736' id='5' type-v2='layout-basic' w='89524' x='476' y='950'>
-              <zone h='90736' id='3' name='Month Comparison' w='89524' x='476' y='950'>
+          <zone h='90841' id='7' param='horz' type-v2='layout-flow' w='99064' x='468' y='893'>
+            <zone h='90841' id='5' type-v2='layout-basic' w='89702' x='468' y='893'>
+              <zone h='90841' id='3' name='Month Comparison' w='89702' x='468' y='893'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4970,8 +5274,8 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone fixed-size='160' h='90736' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='950'>
-              <zone custom-title='true' h='6176' id='8' mode='compact' param='[Parameters].[Parameter 4]' type-v2='paramctrl' w='9524' x='90000' y='950'>
+            <zone fixed-size='160' h='90841' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9362' x='90170' y='893'>
+              <zone custom-title='true' h='5804' id='8' mode='compact' param='[Parameters].[Parameter 4]' type-v2='paramctrl' w='9362' x='90170' y='893'>
                 <formatted-text>
                   <run>Choose Month to Look At</run>
                 </formatted-text>
@@ -4982,7 +5286,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone custom-title='true' h='6176' id='9' mode='compact' param='[Parameters].[Parameter 5]' type-v2='paramctrl' w='9524' x='90000' y='7126'>
+              <zone custom-title='true' h='5804' id='9' mode='compact' param='[Parameters].[Parameter 5]' type-v2='paramctrl' w='9362' x='90170' y='6697'>
                 <formatted-text>
                   <run>Choose Year to look at</run>
                 </formatted-text>
@@ -4993,7 +5297,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='8195' id='14' name='Month Comparison' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_1636777049854615553:qk:2]' show-null-ctrls='false' type-v2='filter' values='database' w='9524' x='90000' y='13302'>
+              <zone h='7701' id='14' name='Month Comparison' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_1636777049854615553:qk:2]' show-null-ctrls='false' type-v2='filter' values='database' w='9362' x='90170' y='12501'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -5003,7 +5307,7 @@
               </zone>
             </zone>
           </zone>
-          <zone h='7364' id='43' type-v2='dashboard-object' w='49524' x='476' y='91686'>
+          <zone h='7373' id='43' type-v2='dashboard-object' w='49532' x='468' y='91734'>
             <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Return Home</caption>
@@ -5018,7 +5322,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='7364' id='44' type-v2='dashboard-object' w='49524' x='50000' y='91686'>
+          <zone h='7373' id='44' type-v2='dashboard-object' w='49532' x='50000' y='91734'>
             <button action='tabdoc:goto-sheet window-id=&quot;{0AC2601C-AB10-4620-803C-9995A97913A6}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Next Dashboard (Map Dashboard)</caption>
@@ -5267,7 +5571,7 @@
                   </zone>
                 </zone>
               </zone>
-              <zone h='37477' id='16' param='vert' type-v2='layout-flow' w='88057' x='468' y='8170'>
+              <zone h='37477' id='16' param='horz' type-v2='layout-flow' w='88057' x='468' y='8170'>
                 <zone _.fcp.ExternalImageContentForZones.true...image-file-url='https://user-images.githubusercontent.com/89358080/150033604-13497220-a62e-468e-b5cc-dd9f063cd0b4.jpg' h='37477' id='17' is-scaled='1' type-v2='bitmap' w='88057' x='468' y='8170'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -5278,7 +5582,7 @@
                 </zone>
               </zone>
               <zone h='87612' id='38' layout-strategy-id='distribute-evenly' param='vert' type-v2='layout-flow' w='11007' x='88525' y='11495'>
-                <zone h='14620' id='41' type-v2='dashboard-object' w='11001' x='88531' y='11496'>
+                <zone h='12611' id='41' type-v2='dashboard-object' w='11001' x='88531' y='11496'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{B643CF3E-D9F7-454E-8900-1D39D1DB9454}&quot;' button-type='text'>
                     <button-visual-state>
                       <caption>Start Dashboard</caption>
@@ -5293,7 +5597,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone h='14621' id='42' type-v2='dashboard-object' w='11001' x='88531' y='26116'>
+                <zone h='12500' id='42' type-v2='dashboard-object' w='11001' x='88531' y='24107'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{60DB6350-72C8-453A-AE5C-027467ED8AE3}&quot;' button-type='text'>
                     <button-visual-state>
                       <caption>Death Rank Dashboard</caption>
@@ -5308,7 +5612,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='70' h='14620' id='48' is-fixed='true' type-v2='dashboard-object' w='11001' x='88531' y='40737'>
+                <zone fixed-size='70' h='12500' id='48' is-fixed='true' type-v2='dashboard-object' w='11001' x='88531' y='36607'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{ACBDFFC4-AF20-40C2-9175-F500ECDBE794}&quot;' button-type='text'>
                     <button-visual-state>
                       <caption>Feature Selection Dashboard</caption>
@@ -5323,7 +5627,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='64' h='14621' id='49' is-fixed='true' type-v2='dashboard-object' w='11001' x='88531' y='55357'>
+                <zone fixed-size='64' h='12500' id='49' is-fixed='true' type-v2='dashboard-object' w='11001' x='88531' y='49107'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{86039E7E-4BBD-40E5-B946-F0591130B962}&quot;' button-type='text'>
                     <button-visual-state>
                       <caption>Month Comparison Dashboard</caption>
@@ -5338,7 +5642,7 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone h='14620' id='50' type-v2='dashboard-object' w='11001' x='88531' y='69978'>
+                <zone h='12500' id='50' type-v2='dashboard-object' w='11001' x='88531' y='61607'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{0AC2601C-AB10-4620-803C-9995A97913A6}&quot;' button-type='text'>
                     <button-visual-state>
                       <caption>Map Dashboard</caption>
@@ -5353,7 +5657,22 @@
                     <format attr='margin' value='4' />
                   </zone-style>
                 </zone>
-                <zone h='14509' id='72' type-v2='dashboard-object' w='11001' x='88531' y='84598'>
+                <zone h='12500' id='112' type-v2='dashboard-object' w='11001' x='88531' y='74107'>
+                  <button action='tabdoc:goto-sheet window-id=&quot;{DB680FED-6124-48FD-AA8A-378B7B5F5FCE}&quot;' button-type='text'>
+                    <button-visual-state>
+                      <caption>Calendar Dashboard</caption>
+                      <button-caption-font-style fontcolor='#ffffff' fontname='Tableau Bold' fontsize='12' />
+                      <format attr='background-color' value='#333333' />
+                    </button-visual-state>
+                  </button>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='12500' id='72' type-v2='dashboard-object' w='11001' x='88531' y='86607'>
                   <button action='tabdoc:goto-sheet window-id=&quot;{59390966-9CE9-4B8D-9FF1-8F05FA620F9C}&quot;' button-type='text'>
                     <button-visual-state>
                       <caption>Box and Whisker Dashboard</caption>
@@ -5666,9 +5985,9 @@
     </dashboard>
   </dashboards>
   <windows source-height='30'>
-    <window class='dashboard' name='Start Page'>
+    <window class='dashboard' maximized='true' name='Start Page'>
       <viewpoints />
-      <active id='92' />
+      <active id='17' />
       <simple-id uuid='{60E30DFB-ED80-4DBF-A404-2DC851B7370C}' />
     </window>
     <window class='dashboard' name='Covid Start Dashboard'>
@@ -5734,6 +6053,36 @@
       </device-preview>
       <simple-id uuid='{ACBDFFC4-AF20-40C2-9175-F500ECDBE794}' />
     </window>
+    <window class='worksheet' name='Feature Selection'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type='size' />
+            <card mode='compact' param='[Parameters].[Parameter 3]' type='parameter' />
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{F6D01216-C5D2-46F7-9C8F-BED43BBDCC41}' />
+    </window>
     <window class='dashboard' name='Month Comparison Dashboard'>
       <viewpoints>
         <viewpoint name='Month Comparison'>
@@ -5786,9 +6135,24 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='6' />
+      <active id='10' />
       <device-preview visible='true' />
       <simple-id uuid='{0AC2601C-AB10-4620-803C-9995A97913A6}' />
+    </window>
+    <window class='dashboard' name='Calendar Dashboard'>
+      <viewpoints>
+        <viewpoint name='Calendar'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Data Country'>
+          <zoom type='fit-width' />
+        </viewpoint>
+        <viewpoint name='Deaths'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='6' />
+      <simple-id uuid='{DB680FED-6124-48FD-AA8A-378B7B5F5FCE}' />
     </window>
     <window class='dashboard' name='Box and Whisker Dashboard'>
       <viewpoints>
@@ -5817,51 +6181,13 @@
           <zoom type='entire-view' />
         </viewpoint>
         <viewpoint name='Stringency Index'>
-          <zoom type='entire-view' />
+          <zoom type='fit-width' />
         </viewpoint>
       </viewpoints>
-      <active id='32' />
+      <active id='26' />
       <simple-id uuid='{59390966-9CE9-4B8D-9FF1-8F05FA620F9C}' />
     </window>
-    <window class='worksheet' maximized='true' name='Deaths'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:qk:3]' show-domain='false' show-null-ctrls='false' type='filter' />
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' type='color' />
-            <card type='currpage' />
-          </strip>
-        </edge>
-      </cards>
-      <viewpoint>
-        <current-page>
-          <multibucket>
-            <bucket>202002</bucket>
-          </multibucket>
-        </current-page>
-        <zoom type='entire-view' />
-      </viewpoint>
-      <simple-id uuid='{4D9C41DA-00CD-4711-8B49-5DFF03AC5E21}' />
-    </window>
-    <window class='worksheet' name='Calendar'>
+    <window class='worksheet' hidden='true' name='Calendar'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -5943,6 +6269,68 @@
         <zoom type='entire-view' />
       </viewpoint>
       <simple-id uuid='{FBF829D1-1CF3-48D6-9DEC-C9674EB62AC8}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Data Country'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[sum:new_deaths:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <simple-id uuid='{AE34863A-3B1C-4446-B9BC-33E7B250293B}' />
+    </window>
+    <window class='worksheet' hidden='true' name='Deaths'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]' show-domain='false' show-null-ctrls='false' type='filter' />
+            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{4D9C41DA-00CD-4711-8B49-5DFF03AC5E21}' />
     </window>
     <window class='worksheet' hidden='true' name='Deaths Box and Whisker'>
       <cards>
@@ -6063,36 +6451,6 @@
         </edge>
       </cards>
       <simple-id uuid='{253294A6-3693-42A5-9181-DD8F323D4295}' />
-    </window>
-    <window class='worksheet' hidden='true' name='Feature Selection'>
-      <cards>
-        <edge name='left'>
-          <strip size='160'>
-            <card type='pages' />
-            <card type='filters' />
-            <card type='marks' />
-          </strip>
-        </edge>
-        <edge name='top'>
-          <strip size='2147483647'>
-            <card type='columns' />
-          </strip>
-          <strip size='2147483647'>
-            <card type='rows' />
-          </strip>
-          <strip size='31'>
-            <card type='title' />
-          </strip>
-        </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type='size' />
-            <card mode='compact' param='[Parameters].[Parameter 3]' type='parameter' />
-            <card pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type='color' />
-          </strip>
-        </edge>
-      </cards>
-      <simple-id uuid='{F6D01216-C5D2-46F7-9C8F-BED43BBDCC41}' />
     </window>
     <window class='worksheet' hidden='true' name='GDP Per Capita'>
       <cards>
