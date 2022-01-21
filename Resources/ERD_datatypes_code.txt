@@ -1,0 +1,30 @@
+features
+-
+index int pk
+continent varchar
+location varchar
+date date
+new_cases int
+reproduction_rate double
+new_tests_smoothed int
+stringency_index double
+population int
+population_density double
+median_age double
+aged_65_older double
+aged_70_older double
+gdp_per_capita double
+extreme_poverty double
+cardiovasc_death_rate double
+diabetes_prevalance double
+female_smokers double
+male_smokers double
+hospital_beds_per_thousand double
+life_expectancy double
+human_development_index double
+
+
+target_variable
+-
+index int  pk fk - features.index
+new_deaths int
