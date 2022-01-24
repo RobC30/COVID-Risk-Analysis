@@ -67,7 +67,8 @@ We also experimented on using GradientBoosting & StackingRegressor on our New De
 ## __Results__
 - Overall, many of the scores accumalated showed an accuracy score of close to 90% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID 
 ### Training Scores
-- The training score was approximately 0.989
+- The training score was approximately 0.989, making the data a bit overfitted, however the testing score was approximately
+25.46%.
 ### Accuracy Scores
 - The coefficient of determination was approximately 94%
 - In terms of new_deaths, the accuracy of the model was approximately 89.7%
