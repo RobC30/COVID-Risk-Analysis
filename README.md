@@ -11,7 +11,6 @@ In 2019, the world was exposed to SARS-CoV-2, creating panic that devastated the
 ## __Source of Data__
 Due to the effect SARS-CoV-2 has had on the world, an interest was taken in understanding how the virus will affect different communities. The goal was to create a predictive model looking at a variety of factors, including vaccination status, testing, comorbidities, etc... using this dataset on [Github](https://github.com/owid/covid-19-data/blob/master/public/data/README.md) and [this dataset](https://covid.ourworldindata.org/data/owid-covid-data.csv). After initial extraction, the data was transformed using Pandas, then it was loaded into a database using Postgres, and finally the data was [visualized using Tableau](https://public.tableau.com/app/profile/naftali.dubin5014/viz/CovidAnalysisTableauBook/MapDashboard?publish=yes). The random forest machine learning model will be used to start the analysis. The model was then used to determine the impact of COVID in communities. The purpose of the research is to see if there are any factors that could contribute to large outbreaks. 
 
-Hiyab_branch
 The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX6pGQzegq2OEnil5-H-vAukYI/edit?usp=sharing) can be found here. 
 
 ## __Software__
@@ -20,9 +19,22 @@ The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX
 - Postgres SQL
 - Tableau
 
-## __Data Cleaning__
+## __Data Cleaning__  
+1. Remove all iso codes starting with OWID because they are aggregated rows not counted rows  
+2. Dropping all columns that start with excess because they are mostly null columns  
+3. Dropped all columns with less than 10k rows of data  
+4. Dropped cumulative columns because they are aggregated columns not counting up as they go along  
+5. Dropped all columns with less than 1/2 their rows populated  
+6. Dropped all smooth columns  
+7. Dropped all na rows  
+8. Dropped iso codes as it is redundant with Location  
 
-## __Data Preprocessing__
+## __Data Preprocessing__  
+1. Removing the new_deaths column from DataFrame and setting it as X  
+2. Using LabelEncode for Data and Location Columns  
+3. Using the OneHotEncoder on continent  
+4. Merging the encoded continent with our features DataFrame and dropping the continent column  
+5. Using StandardScaler for all columns 
 
 ## __Data Training & Model Choice__
 
