@@ -16,10 +16,12 @@ The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX
 ## __Software__
 - Python (sklearn, matplotlib)
 - Jupyter Notebook
-- Postgres SQL
+- Postgres SQL / SQL Alchemy
 - Tableau
 
 ## __Data Cleaning__  
+Our raw dataset contained __151,776 rows x 67 columns__. Initial findings on dataset suggest that 'date' column was not the correct datatype, it had to be converted by using __pd.datetime__. Null values and less populated features had to be dropped to ensure our model's efficiency & accuracy. Ultimately, our cleaned dataset contained __40,877 rows x 26 columns.__ Below are the detailed steps taken in cleaning our dataset.
+
 1. Remove all iso codes starting with OWID because they are aggregated rows not counted rows  
 2. Dropping all columns that start with excess because they are mostly null columns  
 3. Dropped all columns with less than 10k rows of data  
@@ -39,7 +41,7 @@ The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX
 ## __Data Training & Model Choice__
 
 __RandomForestClassifier__ <br>
-For our data analysis, we initially planned to use RandomForestClassifer to determine a country's predicted state of COVID risk. Our model is to forecast a future month's number of COVID deaths based on a number of features. We used __sklearn's model_selection__ module, imported __train_test_split__ class and used the default setting for testing & training sizes (75/25) . as our The features are as follows:
+For our data analysis, we initially planned to use RandomForestClassifer to determine a country's predicted state of COVID risk. Our model is to forecast a future month's number of COVID deaths based on a number of features. We used __sklearn's model_selection__ module, imported __train_test_split__ class and used the default setting for testing & training sizes (75/25). We would only be analyzing the last 3 months worth of data to consider vaccination/booster efforts. The features are as follows:
 
 <div align="center"> 
 
@@ -59,10 +61,10 @@ For our data analysis, we initially planned to use RandomForestClassifer to dete
 Based on these features, our model will classify if a country's forecasted monthly COVID deaths is __Bad, Worse or Worst.__ This will involve bucketing projected outcomes (e.g. >10,000 deaths - Bad, 10,000 to 50,000 deaths - Worse, 50,000 deaths - Worst)
 
 __RandomForestRegression__ <br>
-In the middle of our analysis, to better represent a time series data we then opted for a RandomForestRegression instead. This will keep our findings cleaner with a definite projected number per month wherein we can pinpoint environment seasonalities (vaccinations started, vaccinations availablity, boosters, re-openings, etc.). We used the same features as stated above. We also experimented on __New Cases__ as our target variable for our model, this will be insightful if we see the number of COVID deaths plateuing because of vaccination efforts. Looking at New Cases instead will keep our model relevant.
+In the middle of our analysis, to better represent a time series data we then opted for a RandomForestRegression instead. This will keep our findings cleaner with a definite projected number per month wherein we can pinpoint environment seasonalities (vaccinations started, vaccinations availablity, boosters, re-openings, etc.). We used the same features as stated above but used the all available dates instead of looking at the last 3 months. We also experimented on __New Cases__ as our target variable for our model, this will be insightful if we see the number of COVID deaths plateuing because of vaccination efforts, looking at New Cases instead will keep our model relevant.
 
-__Boosters & StackingRegressor__ <br>
-We also experimented on using GradientBoosting & StackingRegressor on our New Deaths RandomForestRegression model to see if this positively or negatively affects our training & accuracy scores.
+__Boosters & Bonus__ <br>
+We also experimented on using GradientBoosting, DecisionTreeRegressor &  on our New Deaths RandomForestRegression model to see if this positively or negatively affects our training & accuracy scores.
 
 ## __Results__
 - Overall, many of the scores accumalated showed an accuracy score of close to 90% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID 
