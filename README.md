@@ -107,27 +107,27 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
         
  * Lasso linear model with iterative fitting along a regularization path
     
-    Training R2: %
+    Training R2: 18.31%
     
-    Testing R2: %
+    Testing R2: 16.40%
     
  * Stochastic Gradient Descent Regression
     
-    Training R2: %
+    Training R2: 69.50%
     
-    Testing R2: %
+    Testing R2: 67.32%
         
  * Bayesian Ridge Regression
     
-    Training R2: %
+    Training R2: 69.59%
     
-    Testing R2: %
+    Testing R2: 67.26%
     
  * Support Vector Machine
     
-    Training R2: %
+    Training R2: 19.48%
     
-    Testing R2: %
+    Testing R2: 18.93%
 
 ## ERD
 <div align="center"> 
