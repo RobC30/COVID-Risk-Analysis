@@ -131,7 +131,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
 ![Singular_Regression_Model_Results](https://user-images.githubusercontent.com/88443672/151254257-de4799ad-eb5d-4ba6-9251-a49bd34b5aa5.png)
 
-## __AdaBoost__
+### __AdaBoost__
 
  * Trial 1: RandomForestRegressor, AdaBoost
     
@@ -146,7 +146,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     Testing R2: 93.35%
 
 
-## __Stacking_Regressor_Results__
+### __Stacking_Regressor_Results__
 
  * Trial 1: KNeighborsRegressor, DecisionTreeRegressor, HistGradientBoostingRegressor, LassoCV, XGBRegressor, RandomForestRegressor
     
@@ -208,10 +208,10 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Testing R2: %
             
-## __Stacking_w/XGBRegressor__
+### __Stacking_w/XGBRegressor__
 
 
-## __Stacking_w/RandomForestRegressor
+### __Stacking_w/RandomForestRegressor
 
 
 ## ERD
