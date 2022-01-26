@@ -67,7 +67,7 @@ __Boosters & Bonus__ <br>
 We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighborsRegressor, LassoCV, SGDRegressor, BayesianRidge, SVR, and XGBRegressor reggression on our dataframe, alongside adding AdaBoost Regression to the top three performing models.
 
 ## __Results__
-- Overall, many of the scores accumalated showed an accuracy score of 94% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID.  We tested 10 different regression models and tuned them to achieve the best results possible.  The results were as follows: 
+- Overall, many of the scores accumalated showed an accuracy score of 94% or higher. We tested 10 different regression models and used loops to tune their features in order to achieve the best results possible.  The results were as follows: 
 
  * Random Forest Regression
  
