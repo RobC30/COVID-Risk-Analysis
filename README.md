@@ -307,7 +307,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Training R2: %
     
-    Testing R2: %.
+    Testing R2: -0.91%
     
  * Trial 7: BayesianRidge, RandomForestRegressor
     
