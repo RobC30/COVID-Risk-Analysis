@@ -180,9 +180,9 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
  * Trial 6: HistGradientBoostingRegressor, XGBRegressor
     
-    Training R2: %
+    Training R2: 93.52%
     
-    Testing R2: %.
+    Testing R2: 93.71%
     
  * Trial 7: RandomForestRegressor, XGBRegressor
     
