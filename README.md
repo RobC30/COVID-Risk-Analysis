@@ -71,63 +71,63 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
 
  * Random Forest Regression
  
-    Training: 99.07%
+    Training R2: 99.07%
     
-    Testing: 94.16%
+    Testing R2: 94.16%
  
  * Gradient Boosting Regression
     
-    Training: 97.99%
+    Training R2: 97.99%
     
-    Testing: 94.06%
+    Testing R2: 94.06%
     
  * Decision Tree Regression
     
-    Training: 99.51%
+    Training R2: 99.51%
     
-    Testing: 91.13%
+    Testing R2: 91.13%
 
  * Extreme Gradient Boosting Regression
     
-    Training: 97.41%
+    Training R2: 97.41%
     
-    Testing: 94.56%
+    Testing R2: 94.56%
     
  * Histogram-based Gradient Boosting Regression Tree
     
-    Training: %
+    Training R2: %
     
-    Testing: %
+    Testing R2: %
     
  * Regression based on k-nearest neighbors
     
-    Training: %
+    Training R2: %
     
-    Testing: %
+    Testing R2: %
         
  * Lasso linear model with iterative fitting along a regularization path
     
-    Training: %
+    Training R2: %
     
-    Testing: %
+    Testing R2: %
     
  * Stochastic Gradient Descent Regression
     
-    Training: %
+    Training R2: %
     
-    Testing: %
+    Testing R2: %
         
  * Bayesian Ridge Regression
     
-    Training: %
+    Training R2: %
     
-    Testing: %
+    Testing R2: %
     
  * Support Vector Machine
     
-    Training: %
+    Training R2: %
     
-    Testing: %
+    Testing R2: %
 
 ## ERD
 <div align="center"> 
