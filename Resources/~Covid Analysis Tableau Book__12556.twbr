@@ -58,8 +58,8 @@
           <member alias='Human Development Index' value='&quot;HDI&quot;' />
         </members>
       </column>
-      <column alias='% of Population above 65' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;65&quot;'>
-        <calculation class='tableau' formula='&quot;65&quot;' />
+      <column alias='Median Age' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;MA&quot;'>
+        <calculation class='tableau' formula='&quot;MA&quot;' />
         <aliases>
           <alias key='&quot;65&quot;' value='% of Population above 65' />
           <alias key='&quot;70&quot;' value='% of Population above 70' />
@@ -924,6 +924,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>40877</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>continent</remote-name>
@@ -938,6 +939,7 @@
               <approx-count>6</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>location</remote-name>
@@ -952,6 +954,7 @@
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>date</remote-name>
@@ -965,6 +968,7 @@
               <aggregation>Year</aggregation>
               <approx-count>1754</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_cases</remote-name>
@@ -978,6 +982,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>6062</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_deaths</remote-name>
@@ -991,6 +996,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>951</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_cases_smoothed_per_million</remote-name>
@@ -1004,6 +1010,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>19418</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>reproduction_rate</remote-name>
@@ -1017,6 +1024,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>334</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>new_tests_smoothed</remote-name>
@@ -1030,6 +1038,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>16832</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>tests_units</remote-name>
@@ -1044,6 +1053,7 @@
               <approx-count>4</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>stringency_index</remote-name>
@@ -1057,6 +1067,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>220</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>population</remote-name>
@@ -1070,6 +1081,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>population_density</remote-name>
@@ -1083,6 +1095,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>median_age</remote-name>
@@ -1096,6 +1109,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>71</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>aged_65_older</remote-name>
@@ -1109,6 +1123,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>aged_70_older</remote-name>
@@ -1122,6 +1137,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>84</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>gdp_per_capita</remote-name>
@@ -1135,6 +1151,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>extreme_poverty</remote-name>
@@ -1148,6 +1165,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>49</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>cardiovasc_death_rate</remote-name>
@@ -1161,6 +1179,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>85</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>diabetes_prevalence</remote-name>
@@ -1174,6 +1193,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>female_smokers</remote-name>
@@ -1187,6 +1207,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>77</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>male_smokers</remote-name>
@@ -1200,6 +1221,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>69</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>hospital_beds_per_thousand</remote-name>
@@ -1213,6 +1235,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>62</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>life_expectancy</remote-name>
@@ -1226,6 +1249,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>83</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>human_development_index</remote-name>
@@ -1239,6 +1263,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Covid_Cleaned_Database.csv_B67F7C375BB8425B987F3597020AFE05]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
             </metadata-record>
           </metadata-records>
         </connection>
@@ -1753,8 +1778,8 @@
             <alias key='&quot;HDI&quot;' value='Human Development Index' />
           </aliases>
         </column>
-        <column alias='% of Population above 65' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;65&quot;'>
-          <calculation class='tableau' formula='&quot;65&quot;' />
+        <column alias='Median Age' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;MA&quot;'>
+          <calculation class='tableau' formula='&quot;MA&quot;' />
           <aliases>
             <alias key='&quot;65&quot;' value='% of Population above 65' />
             <alias key='&quot;70&quot;' value='% of Population above 70' />
@@ -1960,7 +1985,7 @@
             <groupfilter function='level-members' level='[dy:date:ok]' />
           </filter>
           <filter class='categorical' column='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]'>
-            <groupfilter function='member' level='[my:date:ok]' member='202004' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+            <groupfilter function='member' level='[my:date:ok]' member='202009' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
           <slices>
             <column>[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]</column>
@@ -2722,8 +2747,8 @@
             <datasource name='Parameters' />
           </datasources>
           <datasource-dependencies datasource='Parameters'>
-            <column alias='% of Population above 65' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;65&quot;'>
-              <calculation class='tableau' formula='&quot;65&quot;' />
+            <column alias='Median Age' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;MA&quot;'>
+              <calculation class='tableau' formula='&quot;MA&quot;' />
               <aliases>
                 <alias key='&quot;65&quot;' value='% of Population above 65' />
                 <alias key='&quot;70&quot;' value='% of Population above 70' />
@@ -4525,8 +4550,8 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='37326' id='3' param='vert' type-v2='layout-flow' w='19076' x='468' y='893'>
-            <zone fixed-size='46' h='6027' id='7' is-fixed='true' mode='dropdown' name='Calendar' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' show-all='false' show-title='false' type-v2='filter' w='19076' x='468' y='893'>
+          <zone h='37325' id='3' param='vert' type-v2='layout-flow' w='19075' x='468' y='893'>
+            <zone fixed-size='46' h='6027' id='7' is-fixed='true' mode='dropdown' name='Calendar' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[my:date:ok]' show-all='false' show-title='false' type-v2='filter' w='19075' x='468' y='893'>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -4534,7 +4559,7 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone h='31297' id='6' name='Calendar' show-title='false' w='19076' x='468' y='6920'>
+            <zone h='31297' id='6' name='Calendar' show-title='false' w='19075' x='468' y='6920'>
               <layout-cache cell-count-h='5' fixed-size-w='492' non-cell-size-h='20' type-h='cell' type-w='fixed' />
               <zone-style>
                 <format attr='border-color' value='#000000' />
@@ -4544,8 +4569,8 @@
               </zone-style>
             </zone>
           </zone>
-          <zone h='59520' id='5' param='vert' type-v2='layout-flow' w='69806' x='19544' y='893'>
-            <zone h='59520' id='12' name='Deaths' show-title='false' w='69806' x='19544' y='893'>
+          <zone h='59519' id='5' param='vert' type-v2='layout-flow' w='69806' x='19543' y='893'>
+            <zone h='59519' id='12' name='Deaths' show-title='false' w='69806' x='19543' y='893'>
               <layout-cache minheight='121' type-h='scalable' type-w='fixed' />
               <zone-style>
                 <format attr='border-color' value='#000000' />
@@ -4555,9 +4580,9 @@
               </zone-style>
             </zone>
           </zone>
-          <zone h='54192' id='9' param='vert' type-v2='layout-flow' w='19076' x='468' y='38219' />
-          <zone h='31998' id='11' param='vert' type-v2='layout-flow' w='69806' x='19544' y='60413'>
-            <zone h='31998' id='16' name='Data Country' show-title='false' w='69806' x='19544' y='60413'>
+          <zone h='54192' id='9' param='vert' type-v2='layout-flow' w='19075' x='468' y='38218' />
+          <zone h='31998' id='11' param='vert' type-v2='layout-flow' w='69806' x='19543' y='60412'>
+            <zone h='31998' id='16' name='Data Country' show-title='false' w='69806' x='19543' y='60412'>
               <layout-cache fixed-size-h='1541' type-h='fixed' type-w='fixed' />
               <zone-style>
                 <format attr='border-color' value='#000000' />
@@ -4567,8 +4592,8 @@
               </zone-style>
             </zone>
           </zone>
-          <zone h='91518' id='15' param='vert' type-v2='layout-flow' w='10182' x='89350' y='893'>
-            <zone h='7701' id='13' name='Deaths' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='10182' x='89350' y='893'>
+          <zone h='91517' id='15' param='vert' type-v2='layout-flow' w='10183' x='89349' y='893'>
+            <zone h='7701' id='13' name='Deaths' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[rank:sum:new_deaths:qk:6]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='10183' x='89349' y='893'>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -4576,7 +4601,7 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone h='7255' id='14' name='Deaths' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='color' w='10182' x='89350' y='8594'>
+            <zone h='7255' id='14' name='Deaths' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='color' w='10183' x='89349' y='8594'>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -4585,7 +4610,7 @@
               </zone-style>
             </zone>
           </zone>
-          <zone h='6696' id='17' type-v2='dashboard-object' w='49532' x='468' y='92411'>
+          <zone h='6697' id='17' type-v2='dashboard-object' w='49532' x='468' y='92410'>
             <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Return Home</caption>
@@ -4600,7 +4625,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='6696' id='18' type-v2='dashboard-object' w='49532' x='50000' y='92411'>
+          <zone h='6697' id='18' type-v2='dashboard-object' w='49532' x='50000' y='92410'>
             <button action='tabdoc:goto-sheet window-id=&quot;{59390966-9CE9-4B8D-9FF1-8F05FA620F9C}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Next Dashboard (Box and Whisker)</caption>
@@ -4743,7 +4768,7 @@
       <size sizing-mode='automatic' />
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='92163' id='18' param='vert' type-v2='layout-flow' w='99048' x='476' y='950'>
+          <zone h='92162' id='18' param='vert' type-v2='layout-flow' w='99048' x='476' y='950'>
             <zone fixed-size='68' h='8076' id='128' is-fixed='true' param='horz' type-v2='layout-flow' w='99048' x='476' y='950'>
               <zone h='8076' id='19' type-v2='title' w='95477' x='476' y='950'>
                 <zone-style>
@@ -4754,7 +4779,7 @@
                 </zone-style>
               </zone>
               <zone h='8076' id='129' name='Start Dashboard Info Icon' show-title='false' w='3571' x='95953' y='950'>
-                <layout-cache cell-count-w='1' minheight='100' type-h='scalable' type-w='cell' />
+                <layout-cache minheight='100' type-h='scalable' type-w='cell' />
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4763,10 +4788,10 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone h='84087' id='16' type-v2='layout-basic' w='99048' x='476' y='9026'>
-              <zone h='41942' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='9026'>
-                <zone h='41942' id='3' param='vert' type-v2='layout-flow' w='89524' x='476' y='9026'>
-                  <zone h='41942' id='5' name='Deaths vs Stringency Index' w='89524' x='476' y='9026'>
+            <zone h='84086' id='16' type-v2='layout-basic' w='99048' x='476' y='9026'>
+              <zone h='41941' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='9026'>
+                <zone h='41941' id='3' param='vert' type-v2='layout-flow' w='89524' x='476' y='9026'>
+                  <zone h='41941' id='5' name='Deaths vs Stringency Index' w='89524' x='476' y='9026'>
                     <layout-cache minheight='198' minwidth='173' type-h='scalable' type-w='scalable' />
                     <zone-style>
                       <format attr='border-color' value='#000000' />
@@ -4776,8 +4801,8 @@
                     </zone-style>
                   </zone>
                 </zone>
-                <zone fixed-size='160' h='41942' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='9026'>
-                  <zone h='13914' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='9524' x='90000' y='9026'>
+                <zone fixed-size='160' h='41941' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='9026'>
+                  <zone h='13913' id='9' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='9524' x='90000' y='9026'>
                     <zone-style>
                       <format attr='border-color' value='#000000' />
                       <format attr='border-style' value='none' />
@@ -4785,7 +4810,7 @@
                       <format attr='margin' value='4' />
                     </zone-style>
                   </zone>
-                  <zone fixed-size='118' h='14964' id='8' is-fixed='true' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='9524' x='90000' y='22940'>
+                  <zone fixed-size='118' h='14964' id='8' is-fixed='true' name='Deaths vs Stringency Index' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='9524' x='90000' y='22939'>
                     <zone-style>
                       <format attr='border-color' value='#000000' />
                       <format attr='border-style' value='none' />
@@ -4793,7 +4818,7 @@
                       <format attr='margin' value='4' />
                     </zone-style>
                   </zone>
-                  <zone count='2' dropdown='1' h='13064' id='10' name='Deaths vs Stringency Index' name1='New Cases by Month' name2='New Deaths by Month' synchronized='1' type-v2='currpage' w='9524' x='90000' y='37904'>
+                  <zone count='2' dropdown='1' h='13064' id='10' name='Deaths vs Stringency Index' name1='New Cases by Month' name2='New Deaths by Month' synchronized='1' type-v2='currpage' w='9524' x='90000' y='37903'>
                     <zone-style>
                       <format attr='border-color' value='#000000' />
                       <format attr='border-style' value='none' />
@@ -4803,9 +4828,9 @@
                   </zone>
                 </zone>
               </zone>
-              <zone h='42145' id='11' param='horz' type-v2='layout-flow' w='99048' x='476' y='50968'>
-                <zone h='42145' id='14' param='horz' type-v2='layout-flow' w='99048' x='476' y='50968'>
-                  <zone h='42145' id='85' name='New Deaths by Month' w='49524' x='476' y='50968'>
+              <zone h='42145' id='11' param='horz' type-v2='layout-flow' w='99048' x='476' y='50967'>
+                <zone h='42145' id='14' param='horz' type-v2='layout-flow' w='99048' x='476' y='50967'>
+                  <zone h='42145' id='85' name='New Deaths by Month' w='49524' x='476' y='50967'>
                     <layout-cache minwidth='180' type-h='fixed' type-w='scalable' />
                     <zone-style>
                       <format attr='border-color' value='#000000' />
@@ -4814,7 +4839,7 @@
                       <format attr='margin' value='4' />
                     </zone-style>
                   </zone>
-                  <zone h='42145' id='15' name='New Cases by Month' w='49524' x='50000' y='50968'>
+                  <zone h='42145' id='15' name='New Cases by Month' w='49524' x='50000' y='50967'>
                     <layout-cache minwidth='180' type-h='fixed' type-w='scalable' />
                     <zone-style>
                       <format attr='border-color' value='#000000' />
@@ -4827,7 +4852,7 @@
               </zone>
             </zone>
           </zone>
-          <zone h='5937' id='94' type-v2='dashboard-object' w='49523' x='476' y='93113'>
+          <zone h='5938' id='94' type-v2='dashboard-object' w='49523' x='476' y='93112'>
             <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Return Home</caption>
@@ -4842,7 +4867,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='5937' id='95' type-v2='dashboard-object' w='49525' x='49999' y='93113'>
+          <zone h='5938' id='95' type-v2='dashboard-object' w='49525' x='49999' y='93112'>
             <button action='tabdoc:goto-sheet window-id=&quot;{60DB6350-72C8-453A-AE5C-027467ED8AE3}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Next Dashboard (Death Rank)</caption>
@@ -4958,9 +4983,9 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='89413' id='7' param='horz' type-v2='layout-flow' w='99064' x='468' y='893'>
-            <zone h='89413' id='5' type-v2='layout-basic' w='89702' x='468' y='893'>
-              <zone h='89413' id='65' name='Running Total Deaths' w='89702' x='468' y='893'>
+          <zone h='89309' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='950'>
+            <zone h='89309' id='5' type-v2='layout-basic' w='89524' x='476' y='950'>
+              <zone h='89309' id='65' name='Running Total Deaths' w='89524' x='476' y='950'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4969,8 +4994,8 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone fixed-size='160' h='89413' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9362' x='90170' y='893'>
-              <zone h='7701' id='66' name='Running Total Deaths' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:qk:3]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='9362' x='90170' y='893'>
+            <zone fixed-size='160' h='89309' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='950'>
+              <zone h='8195' id='66' name='Running Total Deaths' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_210261869607354377:qk:3]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='9524' x='90000' y='950'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4978,7 +5003,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='7255' id='67' name='Running Total Deaths' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' type-v2='color' w='9362' x='90170' y='8594'>
+              <zone h='7720' id='67' name='Running Total Deaths' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[avg:stringency_index:qk]' type-v2='color' w='9524' x='90000' y='9145'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4986,7 +5011,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='9822' id='68' name='Running Total Deaths' synchronized='1' trailctrls='0' type-v2='currpage' w='9362' x='90170' y='15849'>
+              <zone h='10451' id='68' name='Running Total Deaths' synchronized='1' trailctrls='0' type-v2='currpage' w='9524' x='90000' y='16865'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -4996,7 +5021,7 @@
               </zone>
             </zone>
           </zone>
-          <zone h='8801' id='57' type-v2='dashboard-object' w='49532' x='468' y='90306'>
+          <zone h='8791' id='57' type-v2='dashboard-object' w='49524' x='476' y='90259'>
             <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Return Home</caption>
@@ -5011,7 +5036,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='8801' id='58' type-v2='dashboard-object' w='49532' x='50000' y='90306'>
+          <zone h='8791' id='58' type-v2='dashboard-object' w='49524' x='50000' y='90259'>
             <button action='tabdoc:goto-sheet window-id=&quot;{ACBDFFC4-AF20-40C2-9175-F500ECDBE794}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Next Dashboard (Feature Selection)</caption>
@@ -5120,8 +5145,8 @@
         <datasource name='Parameters' />
       </datasources>
       <datasource-dependencies datasource='Parameters'>
-        <column alias='% of Population above 65' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;65&quot;'>
-          <calculation class='tableau' formula='&quot;65&quot;' />
+        <column alias='Median Age' caption='Choose Feature' datatype='string' name='[Parameter 3]' param-domain-type='list' role='measure' type='nominal' value='&quot;MA&quot;'>
+          <calculation class='tableau' formula='&quot;MA&quot;' />
           <aliases>
             <alias key='&quot;65&quot;' value='% of Population above 65' />
             <alias key='&quot;70&quot;' value='% of Population above 70' />
@@ -5148,9 +5173,9 @@
       </datasource-dependencies>
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='90176' id='7' param='horz' type-v2='layout-flow' w='99064' x='468' y='893'>
-            <zone h='90176' id='3' param='vert' type-v2='layout-flow' w='89702' x='468' y='893'>
-              <zone h='90176' id='5' name='Feature Selection' w='89702' x='468' y='893'>
+          <zone h='90071' id='7' param='horz' type-v2='layout-flow' w='99048' x='476' y='950'>
+            <zone h='90071' id='3' param='vert' type-v2='layout-flow' w='89524' x='476' y='950'>
+              <zone h='90071' id='5' name='Feature Selection' w='89524' x='476' y='950'>
                 <layout-cache minheight='198' minwidth='188' type-h='scalable' type-w='scalable' />
                 <zone-style>
                   <format attr='border-color' value='#000000' />
@@ -5160,8 +5185,8 @@
                 </zone-style>
               </zone>
             </zone>
-            <zone fixed-size='160' h='90176' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9362' x='90170' y='893'>
-              <zone h='14063' id='8' name='Feature Selection' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='9362' x='90170' y='893'>
+            <zone fixed-size='160' h='90071' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='9524' x='90000' y='950'>
+              <zone h='14964' id='8' name='Feature Selection' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[usr:Calculation_2015642368501407744:qk]' type-v2='size' w='9524' x='90000' y='950'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -5169,7 +5194,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='16295' id='9' name='Feature Selection' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='9362' x='90170' y='14956'>
+              <zone h='17340' id='9' name='Feature Selection' pane-specification-id='0' param='[federated.0odh0nl1upa7j81cq6uit151wcoo].[none:continent:nk]' type-v2='color' w='9524' x='90000' y='15914'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -5177,7 +5202,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='5804' id='10' mode='compact' param='[Parameters].[Parameter 3]' type-v2='paramctrl' w='9362' x='90170' y='31251'>
+              <zone h='6176' id='10' mode='compact' param='[Parameters].[Parameter 3]' type-v2='paramctrl' w='9524' x='90000' y='33254'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -5187,7 +5212,7 @@
               </zone>
             </zone>
           </zone>
-          <zone h='8038' id='59' type-v2='dashboard-object' w='49532' x='50000' y='91069'>
+          <zone h='8029' id='59' type-v2='dashboard-object' w='49524' x='50000' y='91021'>
             <button action='tabdoc:goto-sheet window-id=&quot;{86039E7E-4BBD-40E5-B946-F0591130B962}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Next Dashboard (Month Comparison)</caption>
@@ -5202,7 +5227,7 @@
               <format attr='margin' value='4' />
             </zone-style>
           </zone>
-          <zone h='8038' id='58' type-v2='dashboard-object' w='49532' x='468' y='91069'>
+          <zone h='8029' id='58' type-v2='dashboard-object' w='49524' x='476' y='91021'>
             <button action='tabdoc:goto-sheet window-id=&quot;{60E30DFB-ED80-4DBF-A404-2DC851B7370C}&quot;' button-type='text'>
               <button-visual-state>
                 <caption>Return Home</caption>
@@ -6309,12 +6334,12 @@
       <active id='14' />
       <simple-id uuid='{60E30DFB-ED80-4DBF-A404-2DC851B7370C}' />
     </window>
-    <window class='dashboard' name='Covid Start Dashboard'>
+    <window class='dashboard' maximized='true' name='Covid Start Dashboard'>
       <viewpoints>
         <viewpoint name='Deaths vs Stringency Index'>
           <current-page>
             <multibucket>
-              <bucket>202007</bucket>
+              <bucket>202002</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
@@ -6322,7 +6347,7 @@
         <viewpoint name='New Cases by Month'>
           <current-page>
             <multibucket>
-              <bucket>202007</bucket>
+              <bucket>202002</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
@@ -6330,7 +6355,7 @@
         <viewpoint name='New Deaths by Month'>
           <current-page>
             <multibucket>
-              <bucket>202007</bucket>
+              <bucket>202002</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
@@ -6339,7 +6364,7 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='-1' />
+      <active id='129' />
       <device-preview visible='true'>
         <device name='Generic Desktop Monitor' type='Desktop' />
         <device name='iPhone X, XS, 11, 11 Pro' type='Phone' />
@@ -6351,13 +6376,13 @@
         <viewpoint name='Running Total Deaths'>
           <current-page>
             <multibucket>
-              <bucket>202112</bucket>
+              <bucket>202002</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='-1' />
+      <active id='68' />
       <device-preview visible='true'>
         <device is-portrait='false' name='iPhone X, XS, 11, 11 Pro' type='Phone' />
       </device-preview>
@@ -6369,7 +6394,7 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='-1' />
+      <active id='10' />
       <device-preview visible='true'>
         <device is-portrait='false' name='iPhone X, XS, 11, 11 Pro' type='Phone' />
       </device-preview>
@@ -6431,7 +6456,7 @@
       <device-preview visible='true' />
       <simple-id uuid='{0AC2601C-AB10-4620-803C-9995A97913A6}' />
     </window>
-    <window class='dashboard' maximized='true' name='Calendar Dashboard'>
+    <window class='dashboard' name='Calendar Dashboard'>
       <viewpoints>
         <viewpoint name='Calendar'>
           <zoom type='entire-view' />
@@ -6443,7 +6468,7 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='-1' />
+      <active id='6' />
       <simple-id uuid='{DB680FED-6124-48FD-AA8A-378B7B5F5FCE}' />
     </window>
     <window class='dashboard' name='Box and Whisker Dashboard'>
