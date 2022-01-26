@@ -64,7 +64,7 @@ __RandomForestRegression__ <br>
 In the middle of the analysis, to better represent a time series data we then opted for a RandomForestRegression instead. This will keep our findings cleaner with a definite projected number per month wherein we can pinpoint environment seasonalities (vaccinations started, vaccinations availablity, boosters, re-openings, etc.). We used the same features as stated above but used the all available dates instead of looking at the last 3 months. We also experimented on __New Cases__ as our target variable for our model, this will be insightful if we see the number of COVID deaths plateuing because of vaccination efforts, looking at New Cases instead will keep our model relevant.
 
 __Boosters & Bonus__ <br>
-We also experimented on using GradientBoosting, DecisionTreeRegressor &  on our New Deaths RandomForestRegression model to see if this positively or negatively affects our training & accuracy scores.
+We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighborsRegressor, LassoCV, SGDRegressor, BayesianRidge, SVR, and XGBRegressor reggression on our dataframe, alongside adding AdaBoost Regression to the top three performing models.
 
 ## __Results__
 - Overall, many of the scores accumalated showed an accuracy score of 94% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID.  We tested 10 different regression models and tuned them to achieve the best results possible.  The results were as follows: 
