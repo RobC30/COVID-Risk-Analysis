@@ -67,7 +67,7 @@ __Boosters & Bonus__ <br>
 We also experimented on using GradientBoosting, DecisionTreeRegressor &  on our New Deaths RandomForestRegression model to see if this positively or negatively affects our training & accuracy scores.
 
 ## __Results__
-- Overall, many of the scores accumalated showed an accuracy score of close to 90% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID 
+- Overall, many of the scores accumalated showed an accuracy score of 94% or higher. A variety of factors affected the transmission of COVID, an example being that the lower a countries GDP, there would be a larger percentage of the population under COVID.  We tested 10 different regression models and tuned them to achieve the best results possible.  The results were as follows: 
 
  * Random Forest Regression
  
