@@ -145,49 +145,49 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Testing R2: %
         
- * Trial 3:
+ * Trial 3: KNeighborsRegressor, RandomForestRegressor, LassoCV, DecisionTreeRegressor, HistGradientBoostingRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 4:
+ * Trial 4: XGBRegressor, KNeighborsRegressor, RandomForestRegressor, LassoCV, DecisionTreeRegressor, HistGradientBoostingRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 5:
+ * Trial 5: RandomForestRegressor, HistGradientBoostingRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 6:
+ * Trial 6: HistGradientBoostingRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %.
     
- * Trial 7:
+ * Trial 7: RandomForestRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 8:
+ * Trial 8: XGBRegressor, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 9:
+ * Trial 9: RandomForestRegressor, KNeighborsRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 10:
+ * Trial 10: RandomForestRegressor, LassoCV, XGBRegressor
     
     Training R2: %
     
