@@ -154,6 +154,8 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     Training R2: 19.48%
     
     Testing R2: 18.93%
+    
+![Singular_Regression_Model_Results](https://user-images.githubusercontent.com/88443672/151254257-de4799ad-eb5d-4ba6-9251-a49bd34b5aa5.png)
 
 ## ERD
 <div align="center"> 
