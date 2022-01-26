@@ -210,31 +210,31 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
             
 ### __Stacking_w/XGBRegressor__
 
- * Trial 1: , XGBRegressor
+ * Trial 1: RandomForestRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 2: , XGBRegressor
+ * Trial 2: KNeighborsRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
         
- * Trial 3: , XGBRegressor
+ * Trial 3: LassoCV, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 4: , XGBRegressor
+ * Trial 4: DecisionTreeRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 5: , XGBRegressor
+ * Trial 5: HistGradientBoostingRegressor, XGBRegressor
     
     Training R2: %
     
@@ -246,25 +246,25 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Testing R2: %.
     
- * Trial 7: , XGBRegressor
+ * Trial 7: SVR, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 8: , XGBRegressor
+ * Trial 8: BayesianRidge, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 9: , XGBRegressor
+ * Trial 9: SGDRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 10: , XGBRegressor
+ * Trial 10: GradientBoostingRegressor, XGBRegressor
     
     Training R2: %
     
