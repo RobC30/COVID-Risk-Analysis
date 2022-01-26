@@ -267,65 +267,60 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
 ### __Stacking_w/RandomForestRegressor
 
- * Trial 1: , RandomForestRegressor
+ * Trial 1: XGBRegressor, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 2: , RandomForestRegressor
+ * Trial 2: KNeighborsRegressor, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
         
- * Trial 3: , RandomForestRegressor
+ * Trial 3: LassoCV, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 4: , RandomForestRegressor
+ * Trial 4: DecisionTreeRegressor, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 5: , RandomForestRegressor
+ * Trial 5: HistGradientBoostingRegressor, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 6: , RandomForestRegressor
+ * Trial 6: SVR, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %.
     
- * Trial 7: , RandomForestRegressor
+ * Trial 7: BayesianRidge, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 8: , RandomForestRegressor
+ * Trial 8: SGDRegressor, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 9: , RandomForestRegressor
+ * Trial 9: GradientBoostingRegressor, RandomForestRegressor
     
     Training R2: %
     
     Testing R2: %
-    
- * Trial 10: , RandomForestRegressor
-    
-    Training R2: %
-    
-    Testing R2: %
+
 
 ## ERD
 <div align="center"> 
