@@ -41,7 +41,7 @@ Our raw dataset contained __151,776 rows x 67 columns__. Initial findings on the
 ## __Data Training & Model Choice__
 
 __RandomForestClassifier__ <br>
-For the data analysis, the initial plan was to use RandomForestClassifer to determine a country's predicted state of COVID risk. The model is to forecast a future month's number of COVID deaths based on a number of features. We used __sklearn's model_selection__ module, imported __train_test_split__ class and used the default setting for testing & training sizes (75/25). The features are as follows:
+For the data analysis, the initial plan was to use RandomForestClassifer to determine a country's predicted state of COVID risk. The model is to forecast a future month's number of COVID deaths based on a number of features. We used __sklearn's model_selection__ module, imported __train_test_split__ class and used the default setting for testing & training sizes (75/25). Only the last 3 months worth of data was analyzed when considering vaccination/booster efforts. The features are as follows:
 
 <div align="center"> 
 
@@ -213,7 +213,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
 #### Although the results were close, Trial 1's R2 of 94.52% fell just short of the Extreme Gradient Boosting Regressor results     
 ![Stacking_Results](https://user-images.githubusercontent.com/88443672/151259884-f74f0b9d-ce16-44c6-966c-d74033148fa3.png)
       
-### Stacking_w/XGBRegressor
+### Stacking_w/XGBRegressor: When stacked with another regressor, XGBRegressor results worsened from the individual accuracy of 94.55%
 
  * Trial 1: RandomForestRegressor, XGBRegressor
     
@@ -223,84 +223,85 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
  * Trial 2: KNeighborsRegressor, XGBRegressor
     
-    Training R2: %
+    Training R2: 97.63%
     
-    Testing R2: %
+    Testing R2: 88.75%
         
  * Trial 3: LassoCV, XGBRegressor
     
-    Training R2: %
+    Training R2: 49.24%
     
-    Testing R2: %
+    Testing R2: 48.95%
     
  * Trial 4: DecisionTreeRegressor, XGBRegressor
     
-    Training R2: %
+    Training R2: 97.21%
     
-    Testing R2: %
+    Testing R2: 90.40%
     
  * Trial 5: HistGradientBoostingRegressor, XGBRegressor
     
-    Training R2: %
+    Training R2: 93.52%
     
-    Testing R2: %
+    Testing R2: 93.71%
     
  * Trial 6: SVR, XGBRegressor
     
-    Training R2: %
+    Training R2: 41.74%
     
-    Testing R2: %.
+    Testing R2: 38.93%
     
  * Trial 7: BayesianRidge, XGBRegressor
     
-    Training R2: %
+    Training R2: 72.95%
     
-    Testing R2: %
+    Testing R2: 73.39%
     
  * Trial 8: SGDRegressor, XGBRegressor
     
-    Training R2: %
+    Training R2: 72.54%
     
-    Testing R2: %
+    Testing R2: 72.59%
     
  * Trial 9: GradientBoostingRegressor, XGBRegressor
     
-    Training R2: %
+    Training R2: 96.11%
     
-    Testing R2: %
+    Testing R2: 92.63%
     
-    
+![XGB_stacked](https://user-images.githubusercontent.com/88443672/151266556-8cb05c4a-05ab-45e1-98cb-3c5875aaca32.png)
+
 ### Stacking_w/RandomForestRegressor
 
  * Trial 1: XGBRegressor, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 93.35%
     
-    Testing R2: %
+    Testing R2: 91.33%
     
  * Trial 2: KNeighborsRegressor, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 97.63%
     
-    Testing R2: %
+    Testing R2: 88.75%
         
  * Trial 3: LassoCV, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 49.29%
     
-    Testing R2: %
+    Testing R2: 48.94%
     
  * Trial 4: DecisionTreeRegressor, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 93.32%
     
-    Testing R2: %
+    Testing R2: 88.35%
     
  * Trial 5: HistGradientBoostingRegressor, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 91.52%
     
-    Testing R2: %
+    Testing R2: 89.87%
     
  * Trial 6: SVR, RandomForestRegressor
     
