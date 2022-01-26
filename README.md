@@ -41,7 +41,7 @@ Our raw dataset contained __151,776 rows x 67 columns__. Initial findings on the
 ## __Data Training & Model Choice__
 
 __RandomForestClassifier__ <br>
-For the data analysis, the initial plan was to use RandomForestClassifer to determine a country's predicted state of COVID risk. The model is to forecast a future month's number of COVID deaths based on a number of features. We used __sklearn's model_selection__ module, imported __train_test_split__ class and used the default setting for testing & training sizes (75/25). Only the last 3 months worth of data was analyzed when considering vaccination/booster efforts. The features are as follows:
+For the data analysis, the initial plan was to use RandomForestClassifer to determine a country's predicted state of COVID risk. The model is to forecast a future month's number of COVID deaths based on a number of features. We used __sklearn's model_selection__ module, imported __train_test_split__ class and used the default setting for testing & training sizes (75/25). The features are as follows:
 
 <div align="center"> 
 
