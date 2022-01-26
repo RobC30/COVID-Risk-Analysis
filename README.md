@@ -209,7 +209,10 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     Training R2: 96.49%
     
     Testing R2: 92.27%
-            
+    
+#### Although the results were close, Trial 1's R2 of 94.52% fell just short of the Extreme Gradient Boosting Regressor results     
+![Stacking_Results](https://user-images.githubusercontent.com/88443672/151259884-f74f0b9d-ce16-44c6-966c-d74033148fa3.png)
+      
 ### Stacking_w/XGBRegressor
 
  * Trial 1: RandomForestRegressor, XGBRegressor
