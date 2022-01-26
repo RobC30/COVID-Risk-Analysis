@@ -101,9 +101,9 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
  * Regression based on k-nearest neighbors
     
-    Training R2: %
+    Training R2: 100%
     
-    Testing R2: %
+    Testing R2: 90.12%
         
  * Lasso linear model with iterative fitting along a regularization path
     
