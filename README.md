@@ -217,9 +217,9 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
 
  * Trial 1: RandomForestRegressor, XGBRegressor
     
-    Training R2: %
+    Training R2: 97.31%
     
-    Testing R2: %
+    Testing R2: 92.84%
     
  * Trial 2: KNeighborsRegressor, XGBRegressor
     
