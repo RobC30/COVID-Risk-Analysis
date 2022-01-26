@@ -2,7 +2,7 @@
 
 ## Background:
 
-In 2019, the world was exposed to SARS-CoV-2, creating panic that devastated the world in all aspects: socially, politically and economically. To understand the deadly disease one must understand the morphology of SARS-CoV-2, specifically the spike glycoprotein. The spike protein fuses to the cell membrane by binding to the N terminal and entering the cell to where the virus is replicated. There have been other outbreaks of viruses with spike proteins, such as SARS and MERS. Many biological factors have lead to this global pandemic, such as the high transmissibility of the virus as well as deadly complications such as MIS-C (Multi-system Inflammatory Syndrome in Children) or multi-system organ failure induced by the cytokine storm. The Omicron variant has been shown to be highly mutable with a total of 50 point mutations - 36 of which are on the spike protein, making this the deadliest and most transmissible variant to date.
+In 2019, the world was exposed to SARS-CoV-2, creating panic that devastated the world in all aspects: socially, politically and economically. To understand the deadly disease one must understand the morphology of SARS-CoV-2, specifically the spike glycoprotein. The spike protein fuses to the cell membrane by binding to the N terminal and entering the cell to where the virus is replicated. There have been other outbreaks of viruses with spike proteins, such as SARS and MERS. Many biological factors have lead to this global pandemic, such as the high transmissibility of the virus as well as deadly complications such as MIS-C (Multi-system Inflammatory Syndrome in Children) or multi-system organ failure induced by the cytokine storm. The Omicron variant has been shown to be highly mutable with a total of 50 point mutations - 36 of which are on the spike protein, making this one of the most transmissible variants to date.
 
 ![covid-variants-1500px jpg](https://user-images.githubusercontent.com/89358080/150033604-13497220-a62e-468e-b5cc-dd9f063cd0b4.jpg)
 
@@ -20,7 +20,7 @@ The [Google Slides](https://docs.google.com/presentation/d/101htR5K1BQZjaQds0KX
 - Tableau
 
 ## __Data Cleaning__  
-Our raw dataset contained __151,776 rows x 67 columns__. Initial findings on dataset suggest that 'date' column was not the correct datatype, it had to be converted by using __pd.datetime__. Null values and less populated features had to be dropped to ensure our model's efficiency & accuracy. Ultimately, our cleaned dataset contained __40,877 rows x 26 columns.__ Below are the detailed steps taken in cleaning our dataset.
+Our raw dataset contained __151,776 rows x 67 columns__. Initial findings on the dataset suggest that 'date' column was not the correct datatype, and it had to be converted using __pd.datetime__. Null values and less populated features had to be dropped to ensure the model's efficiency & accuracy. Ultimately, the cleaned dataset contained __40,877 rows x 26 columns.__ Below are the detailed steps taken in cleaning the dataset.
 
 1. Remove all iso codes starting with OWID because they are aggregated rows not counted rows  
 2. Dropping all columns that start with excess because they are mostly null columns  
@@ -58,7 +58,7 @@ For our data analysis, we initially planned to use RandomForestClassifer to dete
 
 </div>
 
-Based on these features, our model will classify if a country's forecasted monthly COVID deaths is __Bad, Worse or Worst.__ This will involve bucketing projected outcomes (e.g. >10,000 deaths - Bad, 10,000 to 50,000 deaths - Worse, 50,000 deaths - Worst)
+Based on these features, the model will classify if a country's forecasted monthly COVID deaths is __Bad, Worse or Worst.__ This will involve bucketing projected outcomes (e.g. >10,000 deaths - Bad, 10,000 to 50,000 deaths - Worse, 50,000 deaths - Worst)
 
 __RandomForestRegression__ <br>
 In the middle of our analysis, to better represent a time series data we then opted for a RandomForestRegression instead. This will keep our findings cleaner with a definite projected number per month wherein we can pinpoint environment seasonalities (vaccinations started, vaccinations availablity, boosters, re-openings, etc.). We used the same features as stated above but used the all available dates instead of looking at the last 3 months. We also experimented on __New Cases__ as our target variable for our model, this will be insightful if we see the number of COVID deaths plateuing because of vaccination efforts, looking at New Cases instead will keep our model relevant.
