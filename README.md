@@ -193,6 +193,11 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Testing R2: %
             
+## __Stacking_w/XGBRegressor__
+
+
+## __Stacking_w/RandomForestRegressor
+
 
 ## ERD
 <div align="center"> 
