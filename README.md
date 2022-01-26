@@ -210,9 +210,127 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
             
 ### __Stacking_w/XGBRegressor__
 
-
+ * Trial 1: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 2: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+        
+ * Trial 3: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 4: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 5: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 6: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %.
+    
+ * Trial 7: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 8: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 9: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 10: , XGBRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
 ### __Stacking_w/RandomForestRegressor
 
+ * Trial 1: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 2: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+        
+ * Trial 3: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 4: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 5: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 6: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %.
+    
+ * Trial 7: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 8: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 9: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 10: , RandomForestRegressor
+    
+    Training R2: %
+    
+    Testing R2: %
 
 ## ERD
 <div align="center"> 
