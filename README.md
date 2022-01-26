@@ -240,35 +240,30 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Testing R2: %
     
- * Trial 6: , XGBRegressor
+ * Trial 6: SVR, XGBRegressor
     
     Training R2: %
     
     Testing R2: %.
     
- * Trial 7: SVR, XGBRegressor
+ * Trial 7: BayesianRidge, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 8: BayesianRidge, XGBRegressor
+ * Trial 8: SGDRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 9: SGDRegressor, XGBRegressor
+ * Trial 9: GradientBoostingRegressor, XGBRegressor
     
     Training R2: %
     
     Testing R2: %
     
- * Trial 10: GradientBoostingRegressor, XGBRegressor
-    
-    Training R2: %
-    
-    Testing R2: %
     
 ### __Stacking_w/RandomForestRegressor
 
