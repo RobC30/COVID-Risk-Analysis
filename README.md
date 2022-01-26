@@ -208,7 +208,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Testing R2: %
             
-### __Stacking_w/XGBRegressor__
+###__Stacking_w/XGBRegressor__
 
  * Trial 1: RandomForestRegressor, XGBRegressor
     
@@ -265,7 +265,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     Testing R2: %
     
     
-### __Stacking_w/RandomForestRegressor
+###__Stacking_w/RandomForestRegressor
 
  * Trial 1: XGBRegressor, RandomForestRegressor
     
