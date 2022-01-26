@@ -95,9 +95,9 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
  * Histogram-based Gradient Boosting Regression Tree
     
-    Training R2: %
+    Training R2: 95.01%
     
-    Testing R2: %
+    Testing R2: 94.32%
     
  * Regression based on k-nearest neighbors
     
