@@ -128,34 +128,36 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     Training R2: 19.48%
     
     Testing R2: 18.93%
+    
+![Singular_Regression_Model_Results](https://user-images.githubusercontent.com/88443672/151254257-de4799ad-eb5d-4ba6-9251-a49bd34b5aa5.png)
 
 ## __Stacking_Regressor_Results__
 
  * Trial 1: KNeighborsRegressor, DecisionTreeRegressor, HistGradientBoostingRegressor, LassoCV, XGBRegressor, RandomForestRegressor
     
-    Training R2: 18.31%
+    Training R2: %
     
-    Testing R2: 16.40%
+    Testing R2: %
     
- * Stochastic Gradient Descent Regression
+ * 
     
-    Training R2: 69.50%
+    Training R2: %
     
-    Testing R2: 67.32%
+    Testing R2: %
         
- * Bayesian Ridge Regression
+ * 
     
-    Training R2: 69.59%
+    Training R2: %
     
-    Testing R2: 67.26%
+    Testing R2: %
     
- * Support Vector Machine
+ * 
     
-    Training R2: 19.48%
+    Training R2: %
     
-    Testing R2: 18.93%
+    Testing R2: %
     
-![Singular_Regression_Model_Results](https://user-images.githubusercontent.com/88443672/151254257-de4799ad-eb5d-4ba6-9251-a49bd34b5aa5.png)
+
 
 ## ERD
 <div align="center"> 
