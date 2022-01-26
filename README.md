@@ -145,19 +145,54 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Testing R2: %
         
- * 
+ * Trial 3:
     
     Training R2: %
     
     Testing R2: %
     
- * 
+ * Trial 4:
     
     Training R2: %
     
     Testing R2: %
     
-
+ * Trial 5:
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 6:
+    
+    Training R2: %
+    
+    Testing R2: %.
+    
+ * Trial 7:
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 8:
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 9:
+    
+    Training R2: %
+    
+    Testing R2: %
+    
+ * Trial 10:
+    
+    Training R2: %
+    
+    Testing R2: %
+            
 
 ## ERD
 <div align="center"> 
