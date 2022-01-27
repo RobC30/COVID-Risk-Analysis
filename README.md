@@ -91,7 +91,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Training R2: 97.41%
     
-    Testing R2: 94.56%
+--> Testing R2: 94.56%
     
  * Histogram-based Gradient Boosting Regression Tree
     
@@ -154,7 +154,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
     Training R2: 97.03%
     
-    ##Testing R2: 94.52%
+--> Testing R2: 94.52%
     
  * Trial 2: KNeighborsRegressor, RandomForestRegressor, HistGradientBoostingRegressor, LassoCV, DecisionTreeRegressor, XGBRegressor 
     
