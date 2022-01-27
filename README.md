@@ -271,7 +271,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
 ![XGB_stacked](https://user-images.githubusercontent.com/88443672/151266556-8cb05c4a-05ab-45e1-98cb-3c5875aaca32.png)
 
-### Stacking_w/RandomForestRegressor
+### Stacking_w/RandomForestRegressor: When stacked with another regressor, RandomForestRegressor results worsened from the individual accuracy of 94.16%
 
  * Trial 1: XGBRegressor, RandomForestRegressor
     
@@ -305,28 +305,29 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
     
  * Trial 6: SVR, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 1.64%
     
     Testing R2: -0.91%
     
  * Trial 7: BayesianRidge, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 67.43%
     
-    Testing R2: %
+    Testing R2: 63.53%
     
  * Trial 8: SGDRegressor, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 62.14%
     
-    Testing R2: %
+    Testing R2: 61.93%
     
  * Trial 9: GradientBoostingRegressor, RandomForestRegressor
     
-    Training R2: %
+    Training R2: 93.54%
     
-    Testing R2: %
+    Testing R2: 89.69%
 
+![RF XDG_Stacked](https://user-images.githubusercontent.com/88443672/151267216-9c390947-27b1-4f7f-bba9-2e1c285d7a19.png)
 
 ## ERD
 <div align="center"> 
