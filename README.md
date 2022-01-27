@@ -73,7 +73,7 @@ We also experimented with using GradientBoosting, DecisionTreeRegressor, KNeighb
  
     Training R2: 99.07%
     
-    Testing R2: 94.16%
+--> Testing R2: 94.16%
  
  * Gradient Boosting Regression
     
